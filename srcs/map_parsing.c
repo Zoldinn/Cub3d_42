@@ -83,7 +83,6 @@ void	check_map(t_map *map)
 void	set_map_and_datas(t_map *map, char *file_temp)
 {
 	char	**temp;
-	int		len_file;
 	int		i;
 	int		j;
 
@@ -93,7 +92,6 @@ void	set_map_and_datas(t_map *map, char *file_temp)
 	map->map = ft_calloc((arrlen(temp) - i + 1), sizeof(char *));
 	map->data = ft_calloc((map->start_map + 2), sizeof(char *));
 	find_end_map(map, &i, temp);
-	len_file = i;
 	i = -1;
 	j = -1;
 	while (i++ < map->start_map)
@@ -104,7 +102,8 @@ void	set_map_and_datas(t_map *map, char *file_temp)
 	free_arr(temp);
 	if (map->lines_data > 5 && map->rows == 0)
 	{
-		p_er("The map is not in the right place");
+		p_er("The map is not in the right place or missing");
+		free(file_temp);
 		free_and_exit(map, 1);
 	}
 }
