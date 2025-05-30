@@ -18,7 +18,6 @@ int	check_extension(char *file_name, char *ext)
 
 static int	check_args(int argc, char **argv)
 {
-
 	if (argc < 2)
 	{
 		p_er("An argument including a map in .cub format is required.");
@@ -41,11 +40,13 @@ void	init_map(t_map *map)
 	map->data = NULL;
 	map->map = NULL;
 	map->txt = NULL;
+	map->rows = 0;
+	map->lines_data = 0;
 }
 
 int	main(int argc, char **argv)
 {
-	t_map map;
+	t_map	map;
 
 	init_map(&map);
 	if (check_args(argc, argv) != 0)
@@ -53,5 +54,5 @@ int	main(int argc, char **argv)
 	if (check_file(argv[1], &map) != 0)
 		return (free_map(&map), 1);
 	free_map(&map);
-	return (printf("%sParsing ok !%s\n", GREEN, NC), 0);
+	return (printf("\e[32mParsing ok !\e[0m"), 0);
 }

@@ -28,24 +28,3 @@ int	arrlen(char **arr)
 		i++;
 	return (i);
 }
-
-char	*get_rgb(char *id, t_map *map)
-{
-	int		i;
-	char	**split;
-	char	*res;
-
-	i = -1;
-	while (map->txt[++i])
-	{
-		if (ft_strnstr(map->txt[i], id, ft_strlen(map->txt[i])) != NULL)
-		{
-			split = ft_split(map->txt[i], " \t");
-			if (!split)
-				return (printf("erreur split\n"), NULL);
-			res = ft_strdup(split[1]);
-			return (free_arr(split), res);
-		}
-	}
-	return (NULL);
-}

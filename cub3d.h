@@ -7,18 +7,28 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 
-# define NC		"\e[0m"
-# define RED	"\e[31m"
-# define GREEN	"\e[32m"
+# define R	"\e[31m"
+# define N	"\e[0m"
 
 typedef struct s_map
 {
 	char	**data;
 	char	**map;
 	int		rows;
+	int		lines_data;
 	int		start_map;
 	char	**txt;
 }	t_map;
+
+typedef enum e_id
+{
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C
+}	t_id;
 
 /**========================================================================
  *!                           CHECK ERRORS
@@ -35,7 +45,10 @@ int		check_file(char *path, t_map *map);
  *========================================================================**/
 char	*ft_straddstr(char *s1, char *s2);
 char	*get_next_line(int fd);
-char	*get_rgb(char *id, t_map *map);
+void	print_datas_and_map(t_map *map);
+void	find_start_map(t_map *map, int *i, char **temp);
+void	find_end_map(t_map *map, int *i, char **temp);
+void	check_empty_lines_map(t_map *map, char *file_temp);
 /**========================================================================
  *!                               FREE
  *========================================================================**/

@@ -2,7 +2,7 @@
 
 void	p_er(char *str)
 {
-	printf("\n>%sERROR:\n%s", RED, NC);
+	printf("\e[31mERROR:\n\e[0m");
 	if (str && str[0])
 		printf("%s\n", str);
 }
@@ -87,4 +87,24 @@ char	*get_next_line(int fd)
 	if (bytes_read < 0 || index_line == 0)
 		return (NULL);
 	return (ft_strdup(line));
+}
+
+void	print_datas_and_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->data[i])
+	{
+		printf("%s\n", map->data[i]);
+		i++;
+	}
+	printf("------------------------------\n");
+	i = 0;
+	while (map->map[i])
+	{
+		printf("%s\n", map->map[i]);
+		i++;
+	}
+	printf("*********************\n");
 }
