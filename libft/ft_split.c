@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:25:33 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/05/28 14:36:44 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/05/30 16:27:07 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ char	**ft_split(char const *s, char *charset)
 	size_t	end;
 
 	tab = (char **) malloc((ft_countnbstring(s, charset) + 1) * sizeof(char *));
-	if (tab == NULL || !s || !*s)
+	if (tab == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		while (s[i] && is_charset(s[i], charset) == 1)
 			i++;

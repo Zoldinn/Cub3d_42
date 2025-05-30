@@ -49,7 +49,7 @@ int	get_data(t_map *map, char **id, int i)
 			if (ft_cmpstr(line[0], id[j]) == 0)
 			{
 				if (map->txt[j] == NULL)
-					map->txt[j] = ft_strdup(line[1]);
+					map->txt[j] = ft_strdup(map->data[i]);
 				else
 					return (p_er("multiple time a texture"), free_arr(line), 1);
 				break ;
@@ -80,22 +80,31 @@ char	**ids(void)
 
 int	check_txt(t_map *map)
 {
-	int	i;
+	int		i;
+	char	**split;
 	// int	fd;
 
 	if (map->txt == NULL)
 		return (1);
 	i = -1;
-	while (++i < 4)
+	while (++i < 7)
 	{
-		if (map->txt[i] && check_extension(map->txt[i], ".xpm") != 0)
-			return (1);
-		else if (map->txt[i] == NULL)
-			return (1);
-		// fd = open(map->txt[i], O_RDONLY);
-		// if (fd <= 0)
-		// 	return (p_er("failed openning a file"), 1);
-		// close(fd);
+		// printf("%s\n", map->txt[i]);
+		split = ft_split(map->txt[i], " \t");
+		if (!split)
+			return (printf("split failed\n"), 1);
+		if (ft_cmpstr(split[0], "F") != 0 && ft_cmpstr(split[0], "C") != 0)
+		{
+			if (map->txt[i] && check_extension(map->txt[i], ".xpm") != 0)
+				return (free_arr(split), 1);
+			else if (map->txt[i] == NULL)
+				return (free_arr(split), 1);
+			// fd = open(map->txt[i], O_RDONLY);
+			// if (fd <= 0)
+			// 	return (p_er("failed openning a file"), 1);
+			// close(fd);
+		}
+		free_arr(split);
 	}
 	return (0);
 }
@@ -122,9 +131,9 @@ int	check_file(char *path, t_map *map)
 		count++;
 	if (count != 6)
 		return (p_er("there's something missing"), 1);
-	rgb[0] = map->data[4];
-	rgb[1] = map->data[5];
+	rgb[0] = get_rgb("F", map);
+	rgb[1] = get_rgb("C", map);
 	if (check_rgb_values(rgb) != 0 || check_txt(map) != 0)
-		return (1);
-	return (0);
+		return (free(rgb[0]), free(rgb[1]), 1);
+	return (free(rgb[0]), free(rgb[1]), 0);
 }

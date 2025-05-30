@@ -49,6 +49,7 @@ char	*get_rgb(char *id, t_map *map)
 			free(clean);
 			return (data);
 		}
+		// printf("map->txt[i : %d] : %s\n", i, map->txt[i]);
 	}
 	return (NULL);
 }

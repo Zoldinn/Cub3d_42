@@ -49,6 +49,7 @@ void	print_datas_and_map(t_map *map);
 void	find_start_map(t_map *map, int *i, char **temp);
 void	find_end_map(t_map *map, int *i, char **temp);
 void	check_empty_lines_map(t_map *map, char *file_temp);
+char	*get_rgb(char *id, t_map *map);
 /**========================================================================
  *!                               FREE
  *========================================================================**/
