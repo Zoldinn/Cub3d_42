@@ -12,22 +12,22 @@ int	check_rgb_values(char *rgb[2])
 		return (p_er("rgb values not found"), 1);
 	while (++i < 2)
 	{
+		// printf("rgb[i : %d] = %s\n", i, rgb[i]);
 		values = ft_split(rgb[i], " ,");
 		if (!values)
 			return (p_er("Failed split rgb values"), 1);
 		j = -1;
 		while (values[++j])
 		{
+			// printf("values[j : %d] = %s\n", j, values[j]);
 			value = ft_check_atoi(values[j]);
+			// printf("value (int) = %d\n", value);
 			if (value < 0 || value > 255)
 				return (p_er("RGB should be [0;255]"), free_arr(values), 1);
 		}
 		if (j != 3)
 		{
-			printf("line = %s\n", rgb[i]);
-			printf("value = %s\n", values[j]);
-			printf("int value = %d\n", value);
-			printf("j = %d\n", j);
+			// printf("j != 3\n-> j = %d\n", j);
 			return (p_er("RGB values are only 3 int"), free_arr(values), 1);
 		}
 		free_arr(values);

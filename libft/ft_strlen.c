@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lefoffan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:41:20 by lefoffan          #+#    #+#             */
-/*   Updated: 2024/11/12 11:12:30 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:05:39 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	size;
 
 	size = 0;
+	if (!s || !*s)
+		return (0);
 	while (s[size])
 		size++;
 	return (size);

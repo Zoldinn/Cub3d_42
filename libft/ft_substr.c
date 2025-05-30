@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:02:36 by lefoffan          #+#    #+#             */
-/*   Updated: 2024/11/18 14:09:16 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:05:09 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	size;
 
-	if (start > ft_strlen(s))
+	if (start > ft_strlen(s) || !s || !*s)
 		return (ft_strdup(""));
 	size = ft_strlen(s) - start;
 	if (len > size)
