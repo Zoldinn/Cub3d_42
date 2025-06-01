@@ -10,24 +10,18 @@ int	check_rgb_values(char *rgb[2])
 	i = -1;
 	while (++i < 2)
 	{
-		// printf("rgb[i : %d] = %s\n", i, rgb[i]);
 		values = ft_split(rgb[i], " ,");
 		if (!values)
 			return (p_er("Failed to split rgb values"), 1);
 		j = 0;
 		while (values[++j])
 		{
-			// printf("values[j : %d] = %s\n", j, values[j]);
 			value = ft_check_atoi(values[j]);
-			// printf("value (int) = %d\n", value);
 			if (value < 0 || value > 255)
 				return (p_er("RGB should be [0;255]"), free_arr(values), 1);
 		}
 		if (j != 3)
-		{
-			// printf("j != 3\n-> j = %d\n", j);
 			return (p_er("RGB values are only 3 int"), free_arr(values), 1);
-		}
 		free_arr(values);
 	}
 	return (0);
@@ -82,27 +76,22 @@ int	check_txt(t_map *map)
 {
 	int		i;
 	char	**split;
-	// int	fd;
 
 	if (map->txt == NULL)
 		return (1);
 	i = -1;
 	while (++i < 7)
 	{
-		// printf("%s\n", map->txt[i]);
 		split = ft_split(map->txt[i], " \t");
 		if (!split)
 			return (printf("split failed\n"), 1);
-		if (ft_cmpstr(split[0], "F") != 0 && ft_cmpstr(split[0], "C") != 0)
+		if (ft_cmpstr(split[0], "F") != 0
+			&& ft_cmpstr(split[0], "C") != 0)
 		{
 			if (map->txt[i] && check_extension(map->txt[i], ".xpm") != 0)
 				return (free_arr(split), 1);
 			else if (map->txt[i] == NULL)
 				return (free_arr(split), 1);
-			// fd = open(map->txt[i], O_RDONLY);
-			// if (fd <= 0)
-			// 	return (p_er("failed openning a file"), 1);
-			// close(fd);
 		}
 		free_arr(split);
 	}
