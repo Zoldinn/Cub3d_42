@@ -9,9 +9,9 @@
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
 
-# define R					"\e[31m"
-# define N					"\e[0m"
-# define KEY_ESC			65307
+# define RED		"\e[31m"
+# define NC			"\e[0m"
+# define KEY_ESC	65307
 
 typedef struct s_map
 {

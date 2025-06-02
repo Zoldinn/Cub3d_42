@@ -1,10 +1,10 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	p_er(char *str)
 {
-	printf("\e[31mERROR:\n\e[0m");
+	printf("%sERROR\n%s", RED, NC);
 	if (str && str[0])
-		printf("%s\n", str);
+		printf("%s%s%s\n", RED, str, NC);
 }
 
 // an atoi which check nb

@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 //compare 2 strings
 //0 if same
@@ -37,7 +37,6 @@ char	*get_rgb(char *id, t_map *map)
 	int		len;
 
 	i = -1;
-	// printf("id searched : %s\n", id);
 	while (map->txt[++i])
 	{
 		if (ft_strnstr(map->txt[i], id, ft_strlen(map->txt[i])) != NULL)
@@ -45,11 +44,9 @@ char	*get_rgb(char *id, t_map *map)
 			len = ft_strlen(map->txt[i]) - ft_strlen(id);
 			clean = ft_strtrim(map->txt[i], " \t");
 			data = ft_substr(clean, ft_strlen(id), len);
-			// printf("data : %s\n", data);
 			free(clean);
 			return (data);
 		}
-		// printf("map->txt[i : %d] : %s\n", i, map->txt[i]);
 	}
 	return (NULL);
 }

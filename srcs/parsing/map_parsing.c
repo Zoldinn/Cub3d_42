@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 //check if the map is valid
 //x is set to know if we check '0' or not
