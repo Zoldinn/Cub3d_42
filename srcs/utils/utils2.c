@@ -50,3 +50,11 @@ char	*get_rgb(char *id, t_map *map)
 	}
 	return (NULL);
 }
+
+int	**get_grid_map(t_map *map)
+{
+	int	**grid;
+
+	// malloc int* = nb de ligne, malloc des int = nb de col
+	grid = malloc(sizeof(int *) * map->rows) // rajouter un int speciale pour dire fin du tableau ? Comme il ne peut y avoir que des 1 ou 0
+}

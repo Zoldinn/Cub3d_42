@@ -20,6 +20,7 @@ typedef struct s_map
 {
 	char	**data;
 	char	**map;
+	int		**grid;
 	int		rows;
 	int		col_max;
 	int		lines_data;
