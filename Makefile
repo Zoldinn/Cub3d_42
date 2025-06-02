@@ -13,7 +13,9 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	check_map_file.c \
 	map_parsing.c \
 	frees.c \
-	map_parsing_utils.c)
+	map_parsing_utils.c \
+	init_and_close.c \
+	map.c)
 OBJ = $(addprefix $(DIR_OBJ)/, $(notdir $(SRC:.c=.o)))
 
 LIBFT = $(DIR_LIBFT)/libft.a

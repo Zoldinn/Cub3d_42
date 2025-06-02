@@ -13,21 +13,33 @@
 # define N					"\e[0m"
 # define KEY_ESC			65307
 
+# define FLOOR_PATH			"./assets/floor.xpm"
+# define WALL_PATH			"./assets/wall.xpm"
+
 typedef struct s_map
 {
 	char	**data;
 	char	**map;
 	int		rows;
+	int		col_max;
 	int		lines_data;
 	int		start_map;
 	char	**txt;
 }	t_map;
+
+typedef struct s_texture
+{
+	void	*img;
+	char	*path;
+}	t_texture;
 
 typedef struct s_game
 {
 	void		*mlx;
 	void		*window;
 	t_map		map;
+	t_texture	floor;
+	t_texture	wall;
 }	t_game;
 
 typedef enum e_id
@@ -70,5 +82,14 @@ int		arrlen(char **arr);
 int		ft_check_atoi(const char *nptr);
 int		ft_cmpstr(char *s1, char *s2);
 void	p_er(char *str);
+/**========================================================================
+ *!                          INIT AND CLOSE
+ *========================================================================**/
+void	init_map(t_map *map);
+void	init_game(t_game *game);
+void	init_texture(t_game *game);
+int		render_map(t_game *game);
+int		end_game(t_game *game);
+int		destroy_all(int keysym, t_game *game);
 
 #endif

@@ -65,6 +65,8 @@ void	check_map(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
+			if (j > map->col_max)
+				map->col_max = j;
 			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 				count_player++;
