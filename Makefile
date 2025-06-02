@@ -3,20 +3,21 @@ NAME = cub3d
 CFLAGS = -Wall -Wextra -Werror -g
 
 DIR_SRC = srcs
-DIR_OBJ = objs
-DIR_MLX = mlx
-DIR_LIBFT = libft
-
 SRC = $(addprefix $(DIR_SRC)/, main.c \
-	utils.c \
-	utils2.c \
-	check_map_file.c \
-	map_parsing.c \
-	frees.c \
-	map_parsing_utils.c)
+	utils/utils.c \
+	utils/utils2.c \
+	utils/frees.c \
+	paring/check_map_file.c \
+	paring/map_parsing.c \
+	paring/map_parsing_utils.c)
+
+DIR_OBJ = objs
 OBJ = $(addprefix $(DIR_OBJ)/, $(notdir $(SRC:.c=.o)))
 
+DIR_LIBFT = libft
 LIBFT = $(DIR_LIBFT)/libft.a
+
+DIR_MLX = mlx
 MLX = $(DIR_MLX)/libmlx_Linux.a
 MLX_FLAGS = -I$(DIR_MLX) -L$(DIR_MLX) -lmlx -lXext -lX11
 

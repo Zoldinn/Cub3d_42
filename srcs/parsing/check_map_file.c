@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 int	check_rgb_values(char *rgb[2])
 {

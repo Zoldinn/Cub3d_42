@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	find_start_map(t_map *map, int *i, char **temp)
 {
