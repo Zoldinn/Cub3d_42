@@ -6,9 +6,12 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+# include "mlx/mlx.h"
+# include "mlx/mlx_int.h"
 
-# define R	"\e[31m"
-# define N	"\e[0m"
+# define R					"\e[31m"
+# define N					"\e[0m"
+# define KEY_ESC			65307
 
 typedef struct s_map
 {
@@ -19,6 +22,13 @@ typedef struct s_map
 	int		start_map;
 	char	**txt;
 }	t_map;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*window;
+	t_map		map;
+}	t_game;
 
 typedef enum e_id
 {
