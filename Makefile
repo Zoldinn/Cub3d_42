@@ -4,12 +4,14 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 DIR_SRC = srcs
 SRC = $(addprefix $(DIR_SRC)/, main.c \
+	parsing/check_map_file.c \
+	parsing/map_parsing.c \
+	parsing/map_parsing_utils.c \
 	utils/utils.c \
 	utils/utils2.c \
 	utils/frees.c \
-	parsing/check_map_file.c \
-	parsing/map_parsing.c \
-	parsing/map_parsing_utils.c)
+	init_and_close.c \
+	map.c)
 
 DIR_OBJ = objs
 OBJ = $(SRC:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
