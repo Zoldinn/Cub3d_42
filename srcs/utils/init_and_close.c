@@ -20,7 +20,7 @@ void	init_game(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	game->window = mlx_new_window(game->mlx, (game->map.col_max + 1) * 64,
-		game->map.rows * 64, "cub3d");
+			game->map.rows * 64, "cub3d");
 	if (game->window == NULL)
 	{
 		free(game->window);

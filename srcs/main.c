@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	init_texture(&game);
 	render_map(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
-			&end_game, &game);
+		&end_game, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &destroy_all, &game);
 	mlx_loop(game.mlx);
 	free_map(&game.map);
