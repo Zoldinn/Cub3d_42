@@ -10,7 +10,7 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	utils/utils.c \
 	utils/utils2.c \
 	utils/frees.c \
-	init_and_close.c \
+	utils/init_and_close.c \
 	map.c)
 
 DIR_OBJ = objs

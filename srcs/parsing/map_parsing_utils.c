@@ -33,6 +33,8 @@ void	find_end_map(t_map *map, int *i, char **temp)
 		if (temp[*i][0] == '\n')
 			break ;
 		map->map[j++] = ft_strdup(temp[*i]);
+		if (map->map[j - 1] == NULL)
+			printf("Error during the strdup\n");
 		map->rows++;
 		(*i)++;
 	}

@@ -9,12 +9,16 @@
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
 
-# define RED		"\e[31m"
-# define NC			"\e[0m"
-# define KEY_ESC	65307
+# define RED			"\e[31m"
+# define NC				"\e[0m"
+# define KEY_ESC		65307
+# define SIZE			16
 
-# define FLOOR_PATH			"./assets/floor.xpm"
-# define WALL_PATH			"./assets/wall.xpm"
+# define FLOOR_PATH		"./assets/floor.xpm"
+# define WALL_PATH		"./assets/wall.xpm"
+# define EMPTY_PATH		"./assets/empty.xpm"
+# define PLAYER_PATH	"./assets/player.xpm"
+# define OOB_PATH		"./assets/oob.xpm"
 
 typedef struct s_map
 {
@@ -40,6 +44,9 @@ typedef struct s_game
 	t_map		map;
 	t_texture	floor;
 	t_texture	wall;
+	t_texture	empty;
+	t_texture	oob;
+	t_texture	player;
 }	t_game;
 
 typedef enum e_id

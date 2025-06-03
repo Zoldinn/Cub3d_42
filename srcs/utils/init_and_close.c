@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	init_map(t_map *map)
 {
@@ -19,8 +19,8 @@ void	init_game(t_game *game)
 		printf("Error creating the mlx\n");
 		exit(EXIT_FAILURE);
 	}
-	game->window = mlx_new_window(game->mlx, (game->map.col_max + 1) * 64,
-			game->map.rows * 64, "cub3d");
+	game->window = mlx_new_window(game->mlx, (game->map.col_max + 1) * SIZE,
+			game->map.rows * SIZE, "cub3d");
 	if (game->window == NULL)
 	{
 		free(game->window);
@@ -36,6 +36,12 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->wall.img);
 	if (game->floor.img)
 		mlx_destroy_image(game->mlx, game->floor.img);
+	if (game->empty.img)
+		mlx_destroy_image(game->mlx, game->empty.img);
+	if (game->player.img)
+		mlx_destroy_image(game->mlx, game->player.img);
+	if (game->oob.img)
+		mlx_destroy_image(game->mlx, game->oob.img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);
