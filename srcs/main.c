@@ -37,6 +37,23 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
+void	move_player(int keysym, t_game *game)
+{
+	(void) keysym;
+	(void) game;
+	printf("Player is moving\n");
+}
+
+int	handle_keypress(int keysym, t_game *game)
+{
+	if (keysym == KEY_ESC)
+		end_game(game);
+	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
+		|| keysym == KEY_D)
+		move_player(keysym, game);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -50,8 +67,8 @@ int	main(int argc, char **argv)
 	init_texture(&game);
 	render_map(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
-			&end_game, &game);
-	mlx_hook(game.window, KeyPress, KeyPressMask, &destroy_all, &game);
+		&end_game, &game);
+	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_loop(game.mlx);
 	free_map(&game.map);
 	return (0);

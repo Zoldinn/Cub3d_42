@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	init_map(t_map *map)
 {
@@ -19,13 +19,15 @@ void	init_game(t_game *game)
 		printf("Error creating the mlx\n");
 		exit(EXIT_FAILURE);
 	}
-	game->window = mlx_new_window(game->mlx, (game->map.col_max + 1) * 64,
-		game->map.rows * 64, "cub3d");
+	game->window = mlx_new_window(game->mlx, (game->map.col_max + 1) * SIZE,
+			game->map.rows * SIZE, "cub3d");
 	if (game->window == NULL)
 	{
 		free(game->window);
 		exit(EXIT_FAILURE);
 	}
+	game->player.pos_x = 0;
+	game->player.pos_y = 0;
 }
 
 //close mlx and free everything
@@ -36,19 +38,15 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->wall.img);
 	if (game->floor.img)
 		mlx_destroy_image(game->mlx, game->floor.img);
+	if (game->empty.img)
+		mlx_destroy_image(game->mlx, game->empty.img);
+	if (game->player.texture.img)
+		mlx_destroy_image(game->mlx, game->player.texture.img);
+	if (game->oob.img)
+		mlx_destroy_image(game->mlx, game->oob.img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);
 	exit(EXIT_SUCCESS);
-	return (0);
-}
-
-//call end_game when echap is pressed
-int	destroy_all(int keysym, t_game *game)
-{
-	if (keysym == KEY_ESC)
-	{
-		end_game(game);
-	}
 	return (0);
 }
