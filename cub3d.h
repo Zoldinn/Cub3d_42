@@ -13,8 +13,8 @@
 # define NC			"\e[0m"
 # define KEY_ESC	65307
 
-# define FLOOR_PATH			"./assets/floor.xpm"
-# define WALL_PATH			"./assets/wall.xpm"
+# define FLOOR_PATH	"./assets/floor.xpm"
+# define WALL_PATH	"./assets/wall.xpm"
 
 typedef struct s_map
 {
@@ -73,6 +73,7 @@ void	find_start_map(t_map *map, int *i, char **temp);
 void	find_end_map(t_map *map, int *i, char **temp);
 void	check_empty_lines_map(t_map *map, char *file_temp);
 char	*get_rgb(char *id, t_map *map);
+int		is_charset(char c, char *charset);
 /**========================================================================
  *!                               FREE
  *========================================================================**/
