@@ -39,9 +39,17 @@ static int	check_args(int argc, char **argv)
 
 void	move_player(int keysym, t_game *game)
 {
-	(void) keysym;
-	(void) game;
-	printf("Player is moving\n");
+	mlx_put_image_to_window(game->mlx, game->window,
+		game->floor.img, SIZE * game->player.pos_y,
+		SIZE * game->player.pos_x);
+	if (keysym == KEY_W)
+		game->player.pos_x -= .1f;
+	else if (keysym == KEY_S)
+		game->player.pos_x += .1f;
+	else if (keysym == KEY_A)
+		game->player.pos_y -= .1f;
+	else if (keysym == KEY_D)
+		game->player.pos_y += .1f;
 }
 
 int	handle_keypress(int keysym, t_game *game)
@@ -50,7 +58,12 @@ int	handle_keypress(int keysym, t_game *game)
 		end_game(game);
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
 		|| keysym == KEY_D)
+	{
 		move_player(keysym, game);
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->player.texture.img, SIZE * game->player.pos_y,
+			SIZE * game->player.pos_x);
+	}
 	return (0);
 }
 

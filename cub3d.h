@@ -44,8 +44,8 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	int			pos_x;
-	int			pos_y;
+	double		pos_x;
+	double		pos_y;
 	t_texture	texture;
 }	t_player;
 

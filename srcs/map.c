@@ -35,7 +35,7 @@ void	fill_map(t_game *game, int x, int y)
 {
 	char	pos;
 
-	if (y <= (int)ft_strlen(game->map.map[x]))
+	if (y < (int)ft_strlen(game->map.map[x]))
 	{
 		pos = game->map.map[x][y];
 		if (pos == '1')
@@ -51,7 +51,6 @@ void	fill_map(t_game *game, int x, int y)
 		{
 			game->player.pos_x = x;
 			game->player.pos_y = y;
-			
 		}
 	}
 	else
