@@ -11,8 +11,13 @@
 
 # define RED			"\e[31m"
 # define NC				"\e[0m"
+
+# define KEY_W			119
+# define KEY_A			97
+# define KEY_S			115
+# define KEY_D			100
 # define KEY_ESC		65307
-# define SIZE			16
+# define SIZE			24
 
 # define FLOOR_PATH		"./assets/floor.xpm"
 # define WALL_PATH		"./assets/wall.xpm"
@@ -37,6 +42,13 @@ typedef struct s_texture
 	char	*path;
 }	t_texture;
 
+typedef struct s_player
+{
+	int			pos_x;
+	int			pos_y;
+	t_texture	texture;
+}	t_player;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -46,7 +58,7 @@ typedef struct s_game
 	t_texture	wall;
 	t_texture	empty;
 	t_texture	oob;
-	t_texture	player;
+	t_player	player;
 }	t_game;
 
 typedef enum e_id

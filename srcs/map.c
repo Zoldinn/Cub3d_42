@@ -22,12 +22,12 @@ void	init_texture(t_game *game)
 	game->wall.img = NULL;
 	game->floor.img = NULL;
 	game->empty.img = NULL;
-	game->player.img = NULL;
+	game->player.texture.img = NULL;
 	game->oob.img = NULL;
 	game->wall = new_texture(game, WALL_PATH);
 	game->floor = new_texture(game, FLOOR_PATH);
 	game->empty = new_texture(game, EMPTY_PATH);
-	game->player = new_texture(game, PLAYER_PATH);
+	game->player.texture = new_texture(game, PLAYER_PATH);
 	game->oob = new_texture(game, OOB_PATH);
 }
 
@@ -48,14 +48,18 @@ void	fill_map(t_game *game, int x, int y)
 			mlx_put_image_to_window(game->mlx, game->window, game->empty.img,
 				SIZE * y, SIZE * x);
 		else if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
-			mlx_put_image_to_window(game->mlx, game->window, game->player.img,
-				SIZE * y, SIZE * x);
+		{
+			game->player.pos_x = x;
+			game->player.pos_y = y;
+			
+		}
 	}
 	else
 		mlx_put_image_to_window(game->mlx, game->window, game->oob.img,
 			SIZE * y, SIZE * x);
 }
 
+//render the map to print it in 2D
 int	render_map(t_game *game)
 {
 	int	x;
@@ -72,5 +76,8 @@ int	render_map(t_game *game)
 		}
 		x++;
 	}
+	mlx_put_image_to_window(game->mlx, game->window,
+		game->player.texture.img, SIZE * game->player.pos_y,
+		SIZE * game->player.pos_x);
 	return (0);
 }
