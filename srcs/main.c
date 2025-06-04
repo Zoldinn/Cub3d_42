@@ -60,9 +60,10 @@ int	handle_keypress(int keysym, t_game *game)
 		|| keysym == KEY_D)
 	{
 		move_player(keysym, game);
-		mlx_put_image_to_window(game->mlx, game->window,
+		/* mlx_put_image_to_window(game->mlx, game->window,
 			game->player.texture.img, SIZE * game->player.pos_y,
-			SIZE * game->player.pos_x);
+			SIZE * game->player.pos_x); */
+		render_map(game);
 	}
 	return (0);
 }

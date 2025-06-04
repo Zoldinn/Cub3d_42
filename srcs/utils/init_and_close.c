@@ -26,8 +26,8 @@ void	init_game(t_game *game)
 		free(game->window);
 		exit(EXIT_FAILURE);
 	}
-	game->player.pos_x = 0;
-	game->player.pos_y = 0;
+	game->player.pos_x = -1;
+	game->player.pos_y = -1;
 }
 
 //close mlx and free everything
