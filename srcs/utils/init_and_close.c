@@ -34,16 +34,16 @@ void	init_game(t_game *game)
 int	end_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->window);
-	if (game->wall.img)
-		mlx_destroy_image(game->mlx, game->wall.img);
-	if (game->floor.img)
-		mlx_destroy_image(game->mlx, game->floor.img);
-	if (game->empty.img)
-		mlx_destroy_image(game->mlx, game->empty.img);
+	if (game->txt[WALL].img)
+		mlx_destroy_image(game->mlx, game->txt[WALL].img);
+	if (game->txt[FLOOR].img)
+		mlx_destroy_image(game->mlx, game->txt[FLOOR].img);
+	if (game->txt[EMPTY].img)
+		mlx_destroy_image(game->mlx, game->txt[EMPTY].img);
 	if (game->player.texture.img)
 		mlx_destroy_image(game->mlx, game->player.texture.img);
-	if (game->oob.img)
-		mlx_destroy_image(game->mlx, game->oob.img);
+	if (game->txt[OOB].img)
+		mlx_destroy_image(game->mlx, game->txt[OOB].img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);
