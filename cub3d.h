@@ -46,6 +46,7 @@ typedef struct s_map
 
 typedef struct s_camera
 {
+	double	angle_rad;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
