@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
@@ -17,8 +18,15 @@
 # define KEY_S			115
 # define KEY_D			100
 # define KEY_ESC		65307
-# define SIZE			24
 
+# define SIZE			24
+# define FOV_DEGREE		66
+# define PI				3.14159265359
+
+# define FLOOR			0
+# define WALL			1
+# define EMPTY			2
+# define OOB			3
 # define FLOOR_PATH		"./assets/floor.xpm"
 # define WALL_PATH		"./assets/wall.xpm"
 # define EMPTY_PATH		"./assets/empty.xpm"
@@ -36,6 +44,15 @@ typedef struct s_map
 	char	**txt;
 }	t_map;
 
+typedef struct s_camera
+{
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_camera;
+
+
 typedef struct s_texture
 {
 	void	*img;
@@ -44,9 +61,10 @@ typedef struct s_texture
 
 typedef struct s_player
 {
+	t_texture	texture;
 	double		pos_x;
 	double		pos_y;
-	t_texture	texture;
+	t_camera	camera;
 }	t_player;
 
 typedef struct s_game
@@ -54,10 +72,8 @@ typedef struct s_game
 	void		*mlx;
 	void		*window;
 	t_map		map;
-	t_texture	floor;
-	t_texture	wall;
-	t_texture	empty;
-	t_texture	oob;
+	int			**grid;
+	t_texture	txt[4];
 	t_player	player;
 }	t_game;
 
@@ -91,6 +107,7 @@ void	find_start_map(t_map *map, int *i, char **temp);
 void	find_end_map(t_map *map, int *i, char **temp);
 void	check_empty_lines_map(t_map *map, char *file_temp);
 char	*get_rgb(char *id, t_map *map);
+int		is_charset(char c, char *charset);
 /**========================================================================
  *!                               FREE
  *========================================================================**/

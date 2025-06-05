@@ -50,3 +50,18 @@ char	*get_rgb(char *id, t_map *map)
 	}
 	return (NULL);
 }
+
+int	is_charset(char c, char *charset)
+{
+	int	i;
+
+	i = -1;
+	if (!charset)
+		return (0);
+	while (charset[++i])
+	{
+		if (charset[i] == c)
+			return (1);
+	}
+	return (0);
+}

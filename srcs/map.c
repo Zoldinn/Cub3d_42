@@ -19,16 +19,16 @@ t_texture	new_texture(t_game *game, char *path)
 
 void	init_texture(t_game *game)
 {
-	game->wall.img = NULL;
-	game->floor.img = NULL;
-	game->empty.img = NULL;
+	game->txt[WALL].img = NULL;
+	game->txt[FLOOR].img = NULL;
+	game->txt[EMPTY].img = NULL;
 	game->player.texture.img = NULL;
-	game->oob.img = NULL;
-	game->wall = new_texture(game, WALL_PATH);
-	game->floor = new_texture(game, FLOOR_PATH);
-	game->empty = new_texture(game, EMPTY_PATH);
+	game->txt[OOB].img = NULL;
+	game->txt[WALL] = new_texture(game, WALL_PATH);
+	game->txt[FLOOR] = new_texture(game, FLOOR_PATH);
+	game->txt[EMPTY] = new_texture(game, EMPTY_PATH);
 	game->player.texture = new_texture(game, PLAYER_PATH);
-	game->oob = new_texture(game, OOB_PATH);
+	game->txt[OOB] = new_texture(game, OOB_PATH);
 }
 
 void	fill_map(t_game *game, int x, int y)
@@ -39,23 +39,22 @@ void	fill_map(t_game *game, int x, int y)
 	{
 		pos = game->map.map[x][y];
 		if (pos == '1')
-			mlx_put_image_to_window(game->mlx, game->window, game->wall.img,
-				SIZE * y, SIZE * x);
+			mlx_put_image_to_window(game->mlx, game->window,
+				game->txt[WALL].img, SIZE * y, SIZE * x);
 		else if (pos == '0')
-			mlx_put_image_to_window(game->mlx, game->window, game->floor.img,
-				SIZE * y, SIZE * x);
+			mlx_put_image_to_window(game->mlx, game->window,
+				game->txt[FLOOR].img, SIZE * y, SIZE * x);
 		else if (pos == ' ')
-			mlx_put_image_to_window(game->mlx, game->window, game->empty.img,
-				SIZE * y, SIZE * x);
-		else if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
-			&& (game->player.pos_x == -1 && game->player.pos_x == -1))
+			mlx_put_image_to_window(game->mlx, game->window,
+				game->txt[EMPTY].img, SIZE * y, SIZE * x);
+		else if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 		{
 			game->player.pos_x = x;
 			game->player.pos_y = y;
 		}
 	}
 	else
-		mlx_put_image_to_window(game->mlx, game->window, game->oob.img,
+		mlx_put_image_to_window(game->mlx, game->window, game->txt[OOB].img,
 			SIZE * y, SIZE * x);
 }
 

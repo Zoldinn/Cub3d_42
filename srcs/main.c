@@ -40,7 +40,7 @@ static int	check_args(int argc, char **argv)
 void	move_player(int keysym, t_game *game)
 {
 	mlx_put_image_to_window(game->mlx, game->window,
-		game->floor.img, SIZE * game->player.pos_y,
+		game->txt[FLOOR].img, SIZE * game->player.pos_y,
 		SIZE * game->player.pos_x);
 	if (keysym == KEY_W)
 		game->player.pos_x -= .1f;
