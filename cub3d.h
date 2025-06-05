@@ -69,6 +69,7 @@ typedef struct s_player
 	t_texture	texture;
 	double		pos_x;
 	double		pos_y;
+	int			neg_dir;
 	t_camera	camera;
 }	t_player;
 

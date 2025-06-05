@@ -30,9 +30,18 @@ void	update_map2D(t_game *game)
 	double	x;
 	double	y;
 
-	x = floor(game->player.pos_x);
-	y = floor(game->player.pos_y);
-	if (game->map.map[(int)x][(int)y] == '1')
+	if (game->player.neg_dir == 0)
+	{
+		x = ceil(game->player.pos_x);
+		y = ceil(game->player.pos_y);
+	}
+	else
+	{
+		x = floor(game->player.pos_x);
+		y = floor(game->player.pos_y);
+	}
+	if (game->map.map[(int)x][(int)y]
+		&& game->map.map[(int)x][(int)y] == '1')
 		draw_square(game, WALL_COLOR);
 	else
 		draw_square(game, FLOOR_COLOR);

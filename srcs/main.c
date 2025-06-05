@@ -37,15 +37,24 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
+//get pressed key, draw a square pixel where the player is
+//and set his new position
 void	move_player(int keysym, t_game *game)
 {
+	game->player.neg_dir = 0;
 	update_map2D(game);
 	if (keysym == KEY_W)
+	{
 		game->player.pos_x -= .1f;
+		game->player.neg_dir = 1;
+	}
 	else if (keysym == KEY_S)
 		game->player.pos_x += .1f;
 	else if (keysym == KEY_A)
+	{
 		game->player.pos_y -= .1f;
+		game->player.neg_dir = 1;
+	}
 	else if (keysym == KEY_D)
 		game->player.pos_y += .1f;
 }
