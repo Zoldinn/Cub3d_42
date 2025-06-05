@@ -15,7 +15,7 @@
 # define NC				"\e[0m"
 # define PLAYER_COLOR	0xEE0943
 # define FLOOR_COLOR	0xFFFFFF
-# define WALL_COLOR	0x403C37
+# define WALL_COLOR		0x403C37
 
 # define KEY_W			119
 # define KEY_A			97
