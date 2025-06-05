@@ -11,7 +11,8 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	utils/utils2.c \
 	utils/frees.c \
 	utils/init_and_close.c \
-	map.c)
+	rendering/map.c \
+	rendering/render_map.c)
 
 DIR_OBJ = objs
 OBJ = $(SRC:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
@@ -27,7 +28,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	@echo "🔨 Compilation de $(NAME)..."
-	@cc $(OBJ) $(LIBFT) $(CFLAGS) $(MLX_FLAGS) -o $(NAME)
+	@cc $(OBJ) $(LIBFT) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) -lm
 	@echo "✅ Compilation réussie !"
 
 $(DIR_OBJ)/%.o:$(DIR_SRC)/%.c | $(DIR_OBJ)

@@ -39,9 +39,7 @@ static int	check_args(int argc, char **argv)
 
 void	move_player(int keysym, t_game *game)
 {
-	mlx_put_image_to_window(game->mlx, game->window,
-		game->floor.img, SIZE * game->player.pos_y,
-		SIZE * game->player.pos_x);
+	update_map2D(game);
 	if (keysym == KEY_W)
 		game->player.pos_x -= .1f;
 	else if (keysym == KEY_S)
@@ -60,10 +58,10 @@ int	handle_keypress(int keysym, t_game *game)
 		|| keysym == KEY_D)
 	{
 		move_player(keysym, game);
-		/* mlx_put_image_to_window(game->mlx, game->window,
-			game->player.texture.img, SIZE * game->player.pos_y,
-			SIZE * game->player.pos_x); */
-		render_map(game);
+		printf("pos_x : %f\n", game->player.pos_x);
+		printf("pos_y : %f\n", game->player.pos_y);
+		draw_square(game, PLAYER_COLOR);
+		mlx_do_sync(game->mlx);
 	}
 	return (0);
 }
@@ -79,7 +77,7 @@ int	main(int argc, char **argv)
 		return (free_map(&game.map), 1);
 	init_game(&game);
 	init_texture(&game);
-	render_map(&game);
+	render_map2D(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
 		&end_game, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);

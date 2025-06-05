@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <math.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -11,6 +12,9 @@
 
 # define RED			"\e[31m"
 # define NC				"\e[0m"
+# define PLAYER_COLOR	0xEE0943
+# define FLOOR_COLOR	0xFFFFFF
+# define WALL_COLOR	0x403C37
 
 # define KEY_W			119
 # define KEY_A			97
@@ -107,7 +111,13 @@ void	p_er(char *str);
 void	init_map(t_map *map);
 void	init_game(t_game *game);
 void	init_texture(t_game *game);
-int		render_map(t_game *game);
+/**========================================================================
+ *!                               MAP
+ *========================================================================**/
+int		render_map2D(t_game *game);
+void	update_map2D(t_game *game);
+void	fill_map(t_game *game, int x, int y);
+void	draw_square(t_game *game, int color);
 int		end_game(t_game *game);
 int		destroy_all(int keysym, t_game *game);
 

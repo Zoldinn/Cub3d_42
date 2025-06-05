@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 t_texture	new_texture(t_game *game, char *path)
 {
@@ -41,13 +41,14 @@ void	fill_map(t_game *game, int x, int y)
 		if (pos == '1')
 			mlx_put_image_to_window(game->mlx, game->window, game->wall.img,
 				SIZE * y, SIZE * x);
-		else if (pos == '0')
+		if (pos == '0' || (pos == 'N' || pos == 'S' || pos == 'W'
+			|| pos == 'E'))
 			mlx_put_image_to_window(game->mlx, game->window, game->floor.img,
 				SIZE * y, SIZE * x);
-		else if (pos == ' ')
+		if (pos == ' ')
 			mlx_put_image_to_window(game->mlx, game->window, game->empty.img,
 				SIZE * y, SIZE * x);
-		else if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
+		if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 			&& (game->player.pos_x == -1 && game->player.pos_x == -1))
 		{
 			game->player.pos_x = x;
@@ -57,27 +58,4 @@ void	fill_map(t_game *game, int x, int y)
 	else
 		mlx_put_image_to_window(game->mlx, game->window, game->oob.img,
 			SIZE * y, SIZE * x);
-}
-
-//render the map to print it in 2D
-int	render_map(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < game->map.rows)
-	{
-		y = 0;
-		while (y <= game->map.col_max)
-		{
-			fill_map(game, x, y);
-			y++;
-		}
-		x++;
-	}
-	mlx_put_image_to_window(game->mlx, game->window,
-		game->player.texture.img, SIZE * game->player.pos_y,
-		SIZE * game->player.pos_x);
-	return (0);
 }
