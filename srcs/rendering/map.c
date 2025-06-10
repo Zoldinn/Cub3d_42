@@ -42,7 +42,7 @@ void	fill_map(t_game *game, int x, int y)
 			mlx_put_image_to_window(game->mlx, game->window,
 				game->txt[WALL].img, SIZE * y, SIZE * x);
 		if (pos == '0' || (pos == 'N' || pos == 'S' || pos == 'W'
-			|| pos == 'E'))
+				|| pos == 'E'))
 			mlx_put_image_to_window(game->mlx, game->window,
 				game->txt[FLOOR].img, SIZE * y, SIZE * x);
 		if (pos == ' ')

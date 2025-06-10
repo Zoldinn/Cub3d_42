@@ -41,22 +41,30 @@ static int	check_args(int argc, char **argv)
 //and set his new position
 void	move_player(int keysym, t_game *game)
 {
-	game->player.neg_dir = 0;
-	update_map2D(game);
 	if (keysym == KEY_W)
 	{
+		game->player.go_up = 1;
+		update_map2d(game);
 		game->player.pos_x -= .1f;
-		game->player.neg_dir = 1;
 	}
 	else if (keysym == KEY_S)
+	{
+		game->player.go_down = 1;
+		update_map2d(game);
 		game->player.pos_x += .1f;
+	}
 	else if (keysym == KEY_A)
 	{
+		game->player.go_left = 1;
+		update_map2d(game);
 		game->player.pos_y -= .1f;
-		game->player.neg_dir = 1;
 	}
 	else if (keysym == KEY_D)
+	{
+		game->player.go_right = 1;
+		update_map2d(game);
 		game->player.pos_y += .1f;
+	}
 }
 
 int	handle_keypress(int keysym, t_game *game)
@@ -66,10 +74,12 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
 		|| keysym == KEY_D)
 	{
+		init_direction_player(game);
 		move_player(keysym, game);
 		printf("pos_x : %f\n", game->player.pos_x);
 		printf("pos_y : %f\n", game->player.pos_y);
-		draw_square(game, PLAYER_COLOR);
+		draw_player(game, game->player.pos_x * SIZE,
+			game->player.pos_y * SIZE, PLAYER_COLOR);
 		mlx_do_sync(game->mlx);
 	}
 	return (0);
@@ -86,7 +96,7 @@ int	main(int argc, char **argv)
 		return (free_map(&game.map), 1);
 	init_game(&game);
 	init_texture(&game);
-	render_map2D(&game);
+	render_map2d(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
 		&end_game, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);

@@ -1,20 +1,16 @@
 #include "../../cub3d.h"
 
-//draw a square in pixels
-void	draw_square(t_game *game, int color)
+//draw a square (the player) in pixels
+void	draw_player(t_game *game, int x, int y, int color)
 {
 	int	i;
 	int	j;
-	int	x;
-	int	y;
 
-	x = game->player.pos_x * SIZE;
-	y = game->player.pos_y * SIZE;
 	i = 0;
-	while (i < 8)
+	while (i < SIZE)
 	{
 		j = 0;
-		while (j < 8)
+		while (j < SIZE)
 		{
 			mlx_pixel_put(game->mlx, game->window, y + j,
 				x + i, color);
@@ -24,35 +20,96 @@ void	draw_square(t_game *game, int color)
 	}
 }
 
-//update the map by adding layers of images/pixels
-void	update_map2D(t_game *game)
+//draw a line of pixel horizontaly behind the player
+void	draw_line_horizontal(t_game *game, double x, double y, int limit)
+{
+	int	i;
+	int	j;
+	int	a;
+	int	b;
+
+	i = 0;
+	while (i < SIZE)
+	{
+		j = -4;
+		while (j < limit)
+		{
+			a = floor((x + j) / SIZE);
+			b = floor((y + i) / SIZE);
+			if (game->map.map[a][b] == '1')
+				mlx_pixel_put(game->mlx, game->window, y + i,
+					x + j, WALL_COLOR);
+			else
+				mlx_pixel_put(game->mlx, game->window, y + i,
+					x + j, FLOOR_COLOR);
+			j++;
+		}
+		i++;
+	}
+}
+
+//draw a line of pixel verticaly behind the player
+void	draw_line_vertical(t_game *game, double x, double y, int limit)
+{
+	int	i;
+	int	j;
+	int	a;
+	int	b;
+
+	i = 0;
+	while (i < SIZE)
+	{
+		j = -4;
+		while (j < limit)
+		{
+			a = floor((x + i) / SIZE);
+			b = floor((y + j) / SIZE);
+			if (game->map.map[a][b] == '1')
+				mlx_pixel_put(game->mlx, game->window, y + j,
+					x + i, WALL_COLOR);
+			else
+				mlx_pixel_put(game->mlx, game->window, y + j,
+					x + i, FLOOR_COLOR);
+			j++;
+		}
+		i++;
+	}
+}
+
+//update the map by adding lines of pixels behind the player
+void	update_map2d(t_game *game)
 {
 	double	x;
 	double	y;
 
-	if (game->player.neg_dir == 0)
+	x = game->player.pos_x;
+	y = game->player.pos_y;
+	if (game->player.go_up == 1)
 	{
-		x = ceil(game->player.pos_x);
-		y = ceil(game->player.pos_y);
+		x += 1;
+		draw_line_horizontal(game, x * SIZE, y * SIZE, 2);
 	}
-	else
+	else if (game->player.go_down == 1)
 	{
-		x = floor(game->player.pos_x);
-		y = floor(game->player.pos_y);
+		draw_line_horizontal(game, x * SIZE, y * SIZE, 3);
 	}
-	if (game->map.map[(int)x][(int)y]
-		&& game->map.map[(int)x][(int)y] == '1')
-		draw_square(game, WALL_COLOR);
-	else
-		draw_square(game, FLOOR_COLOR);
+	else if (game->player.go_left == 1)
+	{
+		y += 1;
+		draw_line_vertical(game, x * SIZE, y * SIZE, 2);
+	}
+	else if (game->player.go_right == 1)
+	{
+		draw_line_vertical(game, x * SIZE, y * SIZE, 3);
+	}
 }
 
 //render the map to print it in 2D
-int	render_map2D(t_game *game)
+int	render_map2d(t_game *game)
 {
 	int	x;
 	int	y;
-	
+
 	x = 0;
 	while (x < game->map.rows)
 	{
@@ -64,6 +121,7 @@ int	render_map2D(t_game *game)
 		}
 		x++;
 	}
-	draw_square(game, PLAYER_COLOR);
+	draw_player(game, game->player.pos_x * SIZE, game->player.pos_y * SIZE,
+		PLAYER_COLOR);
 	return (0);
 }

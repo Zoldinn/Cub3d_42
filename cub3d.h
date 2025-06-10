@@ -13,9 +13,12 @@
 
 # define RED			"\e[31m"
 # define NC				"\e[0m"
+
 # define PLAYER_COLOR	0xEE0943
 # define FLOOR_COLOR	0xFFFFFF
 # define WALL_COLOR		0x403C37
+# define EMPTY_COLOR	0x800080
+# define OOB_COLOR		0xF0C807
 
 # define KEY_W			119
 # define KEY_A			97
@@ -69,7 +72,10 @@ typedef struct s_player
 	t_texture	texture;
 	double		pos_x;
 	double		pos_y;
-	int			neg_dir;
+	int			go_up;
+	int			go_down;
+	int			go_right;
+	int			go_left;
 	t_camera	camera;
 }	t_player;
 
@@ -130,13 +136,14 @@ void	p_er(char *str);
 void	init_map(t_map *map);
 void	init_game(t_game *game);
 void	init_texture(t_game *game);
+void	init_direction_player(t_game *game);
 /**========================================================================
  *!                               MAP
  *========================================================================**/
-int		render_map2D(t_game *game);
-void	update_map2D(t_game *game);
+int		render_map2d(t_game *game);
+void	update_map2d(t_game *game);
 void	fill_map(t_game *game, int x, int y);
-void	draw_square(t_game *game, int color);
+void	draw_player(t_game *game, int x, int y, int color);
 int		end_game(t_game *game);
 int		destroy_all(int keysym, t_game *game);
 
