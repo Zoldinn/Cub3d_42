@@ -17,6 +17,8 @@
 # define FLOOR_COLOR	0xFFFFFF
 # define WALL_COLOR		0x403C37
 
+# define KEY_LEFT		123
+# define KEY_RIGHT		124
 # define KEY_W			119
 # define KEY_A			97
 # define KEY_S			115
@@ -37,6 +39,9 @@
 # define PLAYER_PATH	"./assets/player.xpm"
 # define OOB_PATH		"./assets/oob.xpm"
 
+# define X				0
+# define Y				1
+
 typedef struct s_map
 {
 	char	**data;
@@ -55,6 +60,12 @@ typedef struct s_camera
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	int		step_x;
+	int		step_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		map_x;
+	int		map_y;
 }	t_camera;
 
 
@@ -138,5 +149,10 @@ void	fill_map(t_game *game, int x, int y);
 void	draw_square(t_game *game, int color);
 int		end_game(t_game *game);
 int		destroy_all(int keysym, t_game *game);
+/**========================================================================
+ *!                            RAYCASTING
+ *========================================================================**/
+void	update_camera_dir(t_game *game);
+int		*get_raydir_x(t_game *game, int x);
 
 #endif

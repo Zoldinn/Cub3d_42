@@ -48,6 +48,10 @@ void	move_player(int keysym, t_game *game)
 		game->player.pos_y -= .1f;
 	else if (keysym == KEY_D)
 		game->player.pos_y += .1f;
+	if (keysym == KEY_LEFT)
+		game->player.camera.angle_rad += .1f;
+	else if (keysym == KEY_RIGHT)
+		game->player.camera.angle_rad -= .1f;
 }
 
 int	handle_keypress(int keysym, t_game *game)
@@ -55,14 +59,17 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == KEY_ESC)
 		end_game(game);
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
-		|| keysym == KEY_D)
+		|| keysym == KEY_D || keysym == KEY_LEFT || keysym == KEY_RIGHT)
 	{
 		move_player(keysym, game);
 		printf("pos_x : %f\n", game->player.pos_x);
 		printf("pos_y : %f\n", game->player.pos_y);
+		printf("angle_rad : %f\n", game->player.camera.angle_rad);
+		update_camera_dir(game);
 		draw_square(game, PLAYER_COLOR);
 		mlx_do_sync(game->mlx);
 	}
+
 	return (0);
 }
 
