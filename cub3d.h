@@ -62,7 +62,9 @@ typedef struct s_camera
 	double	delta_dist[2];
 	int		step[2];
 	double	side_dist[2];
+	int		**grid;
 	int		grid_pos[2];
+	int		side_touch;
 }	t_camera;
 
 
