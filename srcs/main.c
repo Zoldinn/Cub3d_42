@@ -81,14 +81,12 @@ int	handle_keypress(int keysym, t_game *game)
 		move_player(keysym, game);
 		printf("pos_x : %f\n", game->player.pos_x);
 		printf("pos_y : %f\n", game->player.pos_y);
-		printf("angle_rad : %f\n", game->player.camera.angle_rad);
-		update_camera_dir(game);
-		draw_square(game, PLAYER_COLOR);
+		// printf("angle_rad : %f\n", game->player.camera.angle_rad);
+		// update_camera_dir(game);
 		draw_player(game, game->player.pos_x * SIZE,
 			game->player.pos_y * SIZE, PLAYER_COLOR);
 		mlx_do_sync(game->mlx);
 	}
-
 	return (0);
 }
 
