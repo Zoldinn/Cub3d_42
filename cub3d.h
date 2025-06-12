@@ -131,6 +131,7 @@ void	find_end_map(t_map *map, int *i, char **temp);
 void	check_empty_lines_map(t_map *map, char *file_temp);
 char	*get_rgb(char *id, t_map *map);
 int		is_charset(char c, char *charset);
+double	get_rad(double degree);
 /**========================================================================
  *!                               FREE
  *========================================================================**/

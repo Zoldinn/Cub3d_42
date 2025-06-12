@@ -32,8 +32,11 @@ void	init_camera_angle(t_camera *camera, t_map *map)
 
 void	update_camera_dir(t_camera *camera)
 {
+	double	fov_rad;
+
+	fov_rad = get_rad((double) FOV_DEGREE);
 	camera->dir[X] = cos(camera->angle_rad);
 	camera->dir[Y] = sin(camera->angle_rad);
-	camera->plane[X] = -camera->dir[Y] * tan(FOV_DEGREE / 2);
-	camera->angle_rad = camera->dir[X] * tan(FOV_DEGREE / 2);
+	camera->plane[X] = -camera->dir[Y] * tan(fov_rad / 2);
+	camera->plane[Y] = camera->dir[X] * tan(fov_rad / 2);
 }

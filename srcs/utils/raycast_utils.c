@@ -45,3 +45,8 @@ int	**get_grid_map(t_game *game)
 	}
 	return (grid);
 }
+
+double	get_rad(double degree)
+{
+	return ((degree * PI) / 180);
+}
