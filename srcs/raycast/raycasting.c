@@ -1,47 +1,5 @@
 #include "../../cub3d.h"
 
-// return an int **grid from the char **map
-int	**get_grid_map(t_game *game)
-{
-	int	**grid;
-	int	i;
-	int	j;
-
-	grid = malloc(sizeof(int *) * game->map.rows);
-	if (!grid)
-		return (NULL);
-	i = -1;
-	while (++i < game->map.rows)
-	{
-		grid[i] = malloc(sizeof(int) * ft_strlen(game->map.map[i]));
-		if (!grid[i])
-			return (NULL);
-		j = -1;
-		while (++j < ft_strlen(game->map.map[i]))
-		{
-			if (is_charset(game->map.map[i][j], "NSWE"))
-				grid[i][j] = 0;
-			else
-				grid[i][j] = ft_atoi(game->map.map[i][j]);
-		}
-	}
-	return (grid);
-}
-
-int	*get_raydir_x(t_camera *camera, t_map *map, int x)
-{
-	int		*raydirs;
-	double	camera_x;
-
-	raydirs = malloc(sizeof(int) * 2);
-	if (!raydirs)
-		return (NULL);
-	camera_x = 2 * x / (double) map->col_max - 1;
-	raydirs[X] = camera->dir[X] + camera->plane[X] * camera_x;
-	raydirs[Y] = camera->dir[Y] + camera->plane[Y] * camera_x;
-	return (raydirs);
-}
-
 // length from x/y to x/y side
 void	set_delta_dist(t_camera *camera)
 {
@@ -55,6 +13,9 @@ void	set_delta_dist(t_camera *camera)
 		camera->delta_dist[Y] = fabs(1.0 / camera->ray_dir[Y]);
 }
 
+// Step is the direction in which the ray move.
+// SideDist is the dist from player to the first side of the grid in x and y
+// like the player is in x0.6 y0.7 so side_dist[x] = 0.4 and y = 0.3
 void	set_step_and_sidedist(t_player *player, t_camera *camera)
 {
 	double	dist_to_grid;
@@ -79,7 +40,7 @@ void	set_step_and_sidedist(t_player *player, t_camera *camera)
 	}
 }
 
-// the DDA algorithm which should return the distance to a wall
+// The DDA algorithm
 int	dda_algo(t_game *game, t_camera *camera, t_player *player)
 {
 	camera->grid = get_grid_map(game);
@@ -104,4 +65,13 @@ int	dda_algo(t_game *game, t_camera *camera, t_player *player)
 			camera->side_touch = 1;
 		}
 	}
+}
+
+// get the distance / length of the ray from player to the wall hit
+int	get_raylength(t_camera *camera)
+{
+	if (camera->side_touch == 0)
+		camera->raylength = camera->side_dist[X] - camera->delta_dist[X];
+	else
+		camera->raylength = camera->side_dist[Y] - camera->delta_dist[Y];
 }

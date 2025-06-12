@@ -1,21 +1,17 @@
 #include "../../cub3d.h"
 
-char	get_player_init_dir(t_map *map)
+int	*get_raydir_x(t_camera *camera, t_map *map, int x)
 {
-	int	i;
-	int	j;
+	int		*raydirs;
+	double	camera_x;
 
-	i = -1;
-	while (++i < map->rows)
-	{
-		j = -1;
-		while (++j < ft_strlen(map->map[i]))
-		{
-			if (is_charset(map->map[i][j], "NSWE"))
-				return (map->map[i][j]);
-		}
-	}
-	return (0);
+	raydirs = malloc(sizeof(int) * 2);
+	if (!raydirs)
+		return (NULL);
+	camera_x = 2 * x / (double) map->col_max - 1;
+	raydirs[X] = camera->dir[X] + camera->plane[X] * camera_x;
+	raydirs[Y] = camera->dir[Y] + camera->plane[Y] * camera_x;
+	return (raydirs);
 }
 
 // North and south are reversed (because axe Y is reversed)

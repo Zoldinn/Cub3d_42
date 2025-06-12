@@ -65,6 +65,7 @@ typedef struct s_camera
 	int		**grid;
 	int		grid_pos[2];
 	int		side_touch;
+	double	raylength;
 }	t_camera;
 
 
