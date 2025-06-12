@@ -11,8 +11,11 @@
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
 
-# define RED			"\e[31m"
-# define NC				"\e[0m"
+# define NC "\e[0m"
+# define RED "\e[31m"
+# define BLUE "\e[34m"
+# define GREEN "\e[32m"
+# define YELLOW "\e[33m"
 
 # define PLAYER_COLOR	0xEE0943
 # define FLOOR_COLOR	0xFFFFFF
@@ -42,8 +45,8 @@
 # define PLAYER_PATH	"./assets/player.xpm"
 # define OOB_PATH		"./assets/oob.xpm"
 
-# define X				0
-# define Y				1
+# define X				1
+# define Y				0
 
 typedef struct s_map
 {
@@ -65,8 +68,6 @@ typedef struct s_camera
 	double	delta_dist[2];
 	int		step[2];
 	double	side_dist[2];
-	int		**grid;
-	int		grid_pos[2];
 	int		side_touch;
 	double	raylength;
 }	t_camera;
@@ -83,6 +84,7 @@ typedef struct s_player
 	t_texture	texture;
 	double		pos_x;
 	double		pos_y;
+	int			grid_pos[2];
 	int			go_up;
 	int			go_down;
 	int			go_right;

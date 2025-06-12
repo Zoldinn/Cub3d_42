@@ -90,6 +90,21 @@ int	handle_keypress(int keysym, t_game *game)
 	return (0);
 }
 
+void	draw_line(t_game *game, t_player *player)
+{
+	double	pos_screen[2];
+
+	pos_screen[X] = player->pos_x * SIZE + (SIZE / 2);
+	pos_screen[Y] = player->pos_y * SIZE;
+	while (game->map.map[(int) (pos_screen[Y] / SIZE)][(int) (pos_screen[X] / SIZE)]
+		!= '1')
+	{
+		mlx_pixel_put(game->mlx, game->window, pos_screen[X], pos_screen[Y],
+			PLAYER_COLOR);
+		pos_screen[Y] -= 0.1f;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -102,7 +117,8 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	init_texture(&game);
 	render_map2d(&game);
-	ray_draw(&game);
+	// ray_draw(&game); phil
+	draw_line(&game, &game.player);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
 		&end_game, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);
