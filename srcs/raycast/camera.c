@@ -9,7 +9,7 @@ char	get_player_init_dir(t_game *game)
 	while (++i < game->map.rows)
 	{
 		j = -1;
-		while (++j < ft_strlen(game->map.map[i]))
+		while (++j < (int)ft_strlen(game->map.map[i]))
 		{
 			if (is_charset(game->map.map[i][j], "NSWE"))
 				return (game->map.map[i][j]);
@@ -23,7 +23,7 @@ void	init_camera_angle(t_game *game)
 {
 	char	player;
 
-	player = get_initial_dir(game);
+	player = get_player_init_dir(game);
 	if (player == 'N')
 		game->player.camera.angle_rad = (3 * PI) / 2;
 	else if (player == 'S')
@@ -73,4 +73,4 @@ int	*get_raydir_x(t_game *game, int x)
 	return (raydirs);
 }
 
-void	set_step_and_dir
+// void	set_step_and_dir
