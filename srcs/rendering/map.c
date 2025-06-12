@@ -51,8 +51,8 @@ void	fill_map(t_game *game, int x, int y)
 		if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 			&& (game->player.pos_x == -1 && game->player.pos_x == -1))
 		{
-			game->player.pos_x = x;
-			game->player.pos_y = y;
+			game->player.pos_x = y;
+			game->player.pos_y = x;
 		}
 	}
 	else

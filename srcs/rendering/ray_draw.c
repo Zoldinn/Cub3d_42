@@ -5,14 +5,14 @@ void	ray_draw(t_game *game)
 	double	x;
 	double	y;
 
-	x = game->player.pos_x;
-	y = game->player.pos_y + 0.5f;
-	while (game->map.map[(int)x][(int)y] != '1')
+	x = game->player.pos_x + 0.5f;
+	y = game->player.pos_y;
+	while (game->map.map[(int)y][(int)x] != '1')
 	{
-		x *= SIZE;
-		mlx_pixel_put(game->mlx, game->window, y * SIZE,
-			x, PLAYER_COLOR);
-		x--;
-		x /= SIZE;
+		y *= SIZE;
+		mlx_pixel_put(game->mlx, game->window, x * SIZE,
+			y, PLAYER_COLOR);
+		y--;
+		y /= SIZE;
 	}
 }

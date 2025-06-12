@@ -12,8 +12,8 @@ void	draw_player(t_game *game, int x, int y, int color)
 		j = 0;
 		while (j < SIZE)
 		{
-			mlx_pixel_put(game->mlx, game->window, y + j,
-				x + i, color);
+			mlx_pixel_put(game->mlx, game->window, x + i,
+				y + j, color);
 			j++;
 		}
 		i++;
@@ -34,14 +34,14 @@ void	draw_line_horizontal(t_game *game, double x, double y, int limit)
 		j = -4;
 		while (j < limit)
 		{
-			a = floor((x + j) / SIZE);
-			b = floor((y + i) / SIZE);
+			a = floor((y + j) / SIZE);
+			b = floor((x + i) / SIZE);
 			if (game->map.map[a][b] == '1')
-				mlx_pixel_put(game->mlx, game->window, y + i,
-					x + j, WALL_COLOR);
+				mlx_pixel_put(game->mlx, game->window, x + i,
+					y + j, WALL_COLOR);
 			else
-				mlx_pixel_put(game->mlx, game->window, y + i,
-					x + j, FLOOR_COLOR);
+				mlx_pixel_put(game->mlx, game->window, x + i,
+					y + j, FLOOR_COLOR);
 			j++;
 		}
 		i++;
@@ -62,14 +62,14 @@ void	draw_line_vertical(t_game *game, double x, double y, int limit)
 		j = -4;
 		while (j < limit)
 		{
-			a = floor((x + i) / SIZE);
-			b = floor((y + j) / SIZE);
+			a = floor((y + i) / SIZE);
+			b = floor((x + j) / SIZE);
 			if (game->map.map[a][b] == '1')
-				mlx_pixel_put(game->mlx, game->window, y + j,
-					x + i, WALL_COLOR);
+				mlx_pixel_put(game->mlx, game->window, x + j,
+					y + i, WALL_COLOR);
 			else
-				mlx_pixel_put(game->mlx, game->window, y + j,
-					x + i, FLOOR_COLOR);
+				mlx_pixel_put(game->mlx, game->window, x + j,
+					y + i, FLOOR_COLOR);
 			j++;
 		}
 		i++;
@@ -86,7 +86,7 @@ void	update_map2d(t_game *game)
 	y = game->player.pos_y;
 	if (game->player.go_up == 1)
 	{
-		x += 1;
+		y += 1;
 		draw_line_horizontal(game, x * SIZE, y * SIZE, 2);
 	}
 	else if (game->player.go_down == 1)
@@ -95,7 +95,7 @@ void	update_map2d(t_game *game)
 	}
 	else if (game->player.go_left == 1)
 	{
-		y += 1;
+		x += 1;
 		draw_line_vertical(game, x * SIZE, y * SIZE, 2);
 	}
 	else if (game->player.go_right == 1)

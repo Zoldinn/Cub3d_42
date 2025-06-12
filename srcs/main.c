@@ -44,25 +44,25 @@ void	move_player(int keysym, t_game *game)
 	{
 		game->player.go_up = 1;
 		update_map2d(game);
-		game->player.pos_x -= .1f;
+		game->player.pos_y -= .1f;
 	}
 	else if (keysym == KEY_S)
 	{
 		game->player.go_down = 1;
 		update_map2d(game);
-		game->player.pos_x += .1f;
+		game->player.pos_y += .1f;
 	}
 	else if (keysym == KEY_A)
 	{
 		game->player.go_left = 1;
 		update_map2d(game);
-		game->player.pos_y -= .1f;
+		game->player.pos_x -= .1f;
 	}
 	else if (keysym == KEY_D)
 	{
 		game->player.go_right = 1;
 		update_map2d(game);
-		game->player.pos_y += .1f;
+		game->player.pos_x += .1f;
 	if (keysym == KEY_LEFT)
 		game->player.camera.angle_rad += .1f;
 	else if (keysym == KEY_RIGHT)
