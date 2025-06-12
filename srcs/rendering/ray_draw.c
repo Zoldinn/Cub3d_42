@@ -1,18 +1,17 @@
 #include "../../cub3d.h"
 
-void	ray_draw(t_game *game)
+void	draw_ray(t_game *game, t_player *player, t_camera *camera)
 {
-	double	x;
-	double	y;
+	double	pos_screen[2];
 
-	x = game->player.pos_x + 0.5f;
-	y = game->player.pos_y;
-	while (game->map.map[(int)y][(int)x] != '1')
+	pos_screen[X] = player->pos_x * SIZE + (SIZE / 2);
+	pos_screen[Y] = player->pos_y * SIZE;
+	while (game->map.map[(int) (pos_screen[Y] / SIZE)][(int) (pos_screen[X] / SIZE)]
+		!= '1')
 	{
-		y *= SIZE;
-		mlx_pixel_put(game->mlx, game->window, x * SIZE,
-			y, PLAYER_COLOR);
-		y--;
-		y /= SIZE;
+		mlx_pixel_put(game->mlx, game->window, pos_screen[X], pos_screen[Y],
+			PLAYER_COLOR);
+		pos_screen[Y] += camera->dir[Y];
+		pos_screen[X] += camera->dir[X];
 	}
 }

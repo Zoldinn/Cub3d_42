@@ -41,7 +41,7 @@ void	set_step_and_sidedist(t_player *player, t_camera *camera)
 }
 
 // The DDA algorithm
-int	dda_algo(t_game *game, t_camera *camera, t_player *player)
+void	dda_algo(t_game *game, t_camera *camera, t_player *player)
 {
 	player->grid_pos[X] = (int) player->pos_x;
 	player->grid_pos[Y] = (int) player->pos_y;
@@ -65,7 +65,7 @@ int	dda_algo(t_game *game, t_camera *camera, t_player *player)
 }
 
 // get the distance / length of the ray from player to the wall hit
-int	get_raylength(t_camera *camera)
+void	get_raylength(t_camera *camera)
 {
 	if (camera->side_touch == 0)
 		camera->raylength = camera->side_dist[X] - camera->delta_dist[X];

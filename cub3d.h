@@ -23,8 +23,8 @@
 # define EMPTY_COLOR	0x800080
 # define OOB_COLOR		0xF0C807
 
-# define KEY_LEFT		123
-# define KEY_RIGHT		124
+# define KEY_LEFT		65361
+# define KEY_RIGHT		65363
 # define KEY_W			119
 # define KEY_A			97
 # define KEY_S			115
@@ -163,8 +163,9 @@ int		destroy_all(int keysym, t_game *game);
 /**========================================================================
  *!                            RAYCASTING
  *========================================================================**/
+void	init_camera_angle(t_camera *camera, t_map *map);
 void	update_camera_dir(t_camera *camera);
 int		*get_raydir_x(t_camera *camera, t_map *map, int x);
-void	ray_draw(t_game *game);
+void	draw_ray(t_game *game, t_player *player, t_camera *camera);
 
 #endif

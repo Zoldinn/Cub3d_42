@@ -1,5 +1,28 @@
 #include "../../cub3d.h"
 
+char	get_player_initial_dir(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < (int) ft_strlen(map->map[i]))
+		{
+			if (is_charset(map->map[i][j], "NSWE"))
+				return (map->map[i][j]);
+		}
+	}
+	return ('\0');
+}
+
+double	get_rad(double degree)
+{
+	return ((degree * PI) / 180);
+}
+
 int	*get_raydir_x(t_camera *camera, t_map *map, int x)
 {
 	int		*raydirs;
@@ -19,7 +42,7 @@ void	init_camera_angle(t_camera *camera, t_map *map)
 {
 	char		player;
 
-	player = get_initial_dir(map);
+	player = get_player_initial_dir(map);
 	if (player == 'N')
 		camera->angle_rad = (3 * PI) / 2;
 	else if (player == 'S')
