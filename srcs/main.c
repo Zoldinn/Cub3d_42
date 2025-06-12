@@ -37,8 +37,7 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
-//get pressed key, draw a square pixel where the player is
-//and set his new position
+//get pressed key, update map and set new position of the player
 void	move_player(int keysym, t_game *game)
 {
 	if (keysym == KEY_W)
