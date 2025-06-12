@@ -59,16 +59,16 @@ typedef struct s_map
 typedef struct s_camera
 {
 	double	angle_rad;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	int		step_x;
-	int		step_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	int		map_x;
-	int		map_y;
+	double	dir[2];
+	double	plane[2];
+	double	ray_dir[2];
+	double	delta_dist[2];
+	int		step[2];
+	double	side_dist[2];
+	int		**grid;
+	int		grid_pos[2];
+	int		side_touch;
+	double	raylength;
 }	t_camera;
 
 
@@ -160,7 +160,7 @@ int		destroy_all(int keysym, t_game *game);
 /**========================================================================
  *!                            RAYCASTING
  *========================================================================**/
-void	update_camera_dir(t_game *game);
-int		*get_raydir_x(t_game *game, int x);
+void	update_camera_dir(t_camera *camera);
+int		*get_raydir_x(t_camera *camera, t_map *map, int x);
 
 #endif
