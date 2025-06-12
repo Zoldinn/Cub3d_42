@@ -12,7 +12,8 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	utils/frees.c \
 	utils/init_and_close.c \
 	rendering/map.c \
-	rendering/render_map.c)
+	rendering/render_map.c \
+	rendering/ray_draw.c)
 # raycast/camera.c 
 # raycast/raycasting.c
 

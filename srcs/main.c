@@ -102,6 +102,7 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	init_texture(&game);
 	render_map2d(&game);
+	ray_draw(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
 		&end_game, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);

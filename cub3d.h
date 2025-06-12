@@ -163,5 +163,6 @@ int		destroy_all(int keysym, t_game *game);
  *========================================================================**/
 void	update_camera_dir(t_camera *camera);
 int		*get_raydir_x(t_camera *camera, t_map *map, int x);
+void	ray_draw(t_game *game);
 
 #endif
