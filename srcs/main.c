@@ -37,21 +37,37 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
+//get pressed key, update map and set new position of the player
 void	move_player(int keysym, t_game *game)
 {
-	update_map2D(game);
 	if (keysym == KEY_W)
+	{
+		game->player.go_up = 1;
+		update_map2d(game);
 		game->player.pos_x -= .1f;
+	}
 	else if (keysym == KEY_S)
+	{
+		game->player.go_down = 1;
+		update_map2d(game);
 		game->player.pos_x += .1f;
+	}
 	else if (keysym == KEY_A)
+	{
+		game->player.go_left = 1;
+		update_map2d(game);
 		game->player.pos_y -= .1f;
+	}
 	else if (keysym == KEY_D)
+	{
+		game->player.go_right = 1;
+		update_map2d(game);
 		game->player.pos_y += .1f;
 	if (keysym == KEY_LEFT)
 		game->player.camera.angle_rad += .1f;
 	else if (keysym == KEY_RIGHT)
 		game->player.camera.angle_rad -= .1f;
+	}
 }
 
 int	handle_keypress(int keysym, t_game *game)
@@ -61,12 +77,15 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
 		|| keysym == KEY_D || keysym == KEY_LEFT || keysym == KEY_RIGHT)
 	{
+		init_direction_player(game);
 		move_player(keysym, game);
 		printf("pos_x : %f\n", game->player.pos_x);
 		printf("pos_y : %f\n", game->player.pos_y);
 		printf("angle_rad : %f\n", game->player.camera.angle_rad);
 		update_camera_dir(game);
 		draw_square(game, PLAYER_COLOR);
+		draw_player(game, game->player.pos_x * SIZE,
+			game->player.pos_y * SIZE, PLAYER_COLOR);
 		mlx_do_sync(game->mlx);
 	}
 
@@ -84,7 +103,7 @@ int	main(int argc, char **argv)
 		return (free_map(&game.map), 1);
 	init_game(&game);
 	init_texture(&game);
-	render_map2D(&game);
+	render_map2d(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
 		&end_game, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);

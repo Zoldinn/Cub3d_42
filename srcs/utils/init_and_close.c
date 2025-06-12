@@ -30,6 +30,14 @@ void	init_game(t_game *game)
 	game->player.pos_y = -1;
 }
 
+void	init_direction_player(t_game *game)
+{
+	game->player.go_up = 0;
+	game->player.go_down = 0;
+	game->player.go_right = 0;
+	game->player.go_left = 0;
+}
+
 //close mlx and free everything
 int	end_game(t_game *game)
 {
