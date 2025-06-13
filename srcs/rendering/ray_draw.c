@@ -15,3 +15,4 @@ void	draw_ray(t_game *game, t_player *player, t_camera *camera, int color)
 		pos_screen[X] += camera->dir[X];
 	}
 }
+

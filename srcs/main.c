@@ -109,6 +109,7 @@ int	main(int argc, char **argv)
 		return (free_map(&game.map), 1);
 	init_game(&game);
 	init_texture(&game);
+	render_map(&game);
 	render_map2d(&game);
 	init_camera_angle(&game.player.camera, &game.map);
 	update_camera_dir(&game.player.camera);
