@@ -40,11 +40,21 @@ void	set_step_and_sidedist(t_player *player, t_camera *camera)
 	}
 }
 
+void	get_raydir_x(t_camera *camera, t_map *map, int x)
+{
+	double	camera_x;
+
+	camera_x = 2 * x / (double) map->col_max - 1;
+	camera->ray_dir[X] = camera->dir[X] + camera->plane[X] * camera_x;
+	camera->ray_dir[Y] = camera->dir[Y] + camera->plane[Y] * camera_x;
+}
+
 // The DDA algorithm
-void	dda_algo(t_game *game, t_camera *camera, t_player *player)
+void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x)
 {
 	player->grid_pos[X] = (int) player->pos_x;
 	player->grid_pos[Y] = (int) player->pos_y;
+	get_raydir_x(camera, &game->map, x);
 	set_delta_dist(camera);
 	set_step_and_sidedist(player, camera);
 	while (game->map.map[player->grid_pos[Y]][player->grid_pos[X]] != '1')
@@ -64,14 +74,25 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player)
 	}
 }
 
+void	do_all_rays(t_game *game)
+{
+	int	x;
+
+	x = -1;
+	while (++x < game->map.col_max)
+	{
+		dda_algo(game, &game->player.camera, &game->player, x);
+	}
+}
+
 // get the distance / length of the ray from player to the wall hit
-void	get_raylength(t_camera *camera)
+/* void	get_raylength(t_camera *camera)
 {
 	if (camera->side_touch == 0)
 		camera->raylength = camera->side_dist[X] - camera->delta_dist[X];
 	else
 		camera->raylength = camera->side_dist[Y] - camera->delta_dist[Y];
-}
+} */
 
 
 

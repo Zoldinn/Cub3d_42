@@ -165,7 +165,7 @@ int		destroy_all(int keysym, t_game *game);
  *========================================================================**/
 void	init_camera_angle(t_camera *camera, t_map *map);
 void	update_camera_dir(t_camera *camera);
-int		*get_raydir_x(t_camera *camera, t_map *map, int x);
-void	draw_ray(t_game *game, t_player *player, t_camera *camera, int color);
+void	draw_ray(t_game *game, int color);
+void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x);
 
 #endif
