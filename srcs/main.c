@@ -64,6 +64,10 @@ void	move_player(int keysym, t_game *game)
 		update_map2d(game);
 		game->player.pos_x += .1f;
 	}
+}
+
+void	move_camera(int keysym, t_game *game)
+{
 	if (keysym == KEY_LEFT)
 	{
 		printf("prout\n");
@@ -82,11 +86,12 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
 		|| keysym == KEY_D || keysym == KEY_LEFT || keysym == KEY_RIGHT)
 	{
-		draw_ray(game, &game->player, &game->player.camera, FLOOR_COLOR);
+		draw_ray(game, FLOOR_COLOR);
 		init_direction_player(game);
 		move_player(keysym, game);
+		move_camera(keysym, game);
 		update_camera_dir(&game->player.camera);
-		draw_ray(game, &game->player, &game->player.camera, PLAYER_COLOR);
+		draw_ray(game, PLAYER_COLOR);
 		printf("pos_x : %f\n", game->player.pos_x);
 		printf("pos_y : %f\n", game->player.pos_y);
 		// printf("angle_rad : %f\n", game->player.camera.angle_rad);
