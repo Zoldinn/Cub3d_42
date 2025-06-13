@@ -76,6 +76,14 @@ typedef struct s_camera
 	double	raylength;
 }	t_camera;
 
+typedef struct s_image
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_image;
 
 typedef struct s_texture
 {
@@ -104,6 +112,7 @@ typedef struct s_game
 	int			**grid;
 	t_texture	txt[4];
 	t_player	player;
+	t_image		img;
 }	t_game;
 
 typedef enum e_id
