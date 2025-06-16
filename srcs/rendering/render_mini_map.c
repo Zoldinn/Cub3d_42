@@ -111,6 +111,11 @@ int	render_map2d(t_game *game)
 	int	y;
 
 	x = 0;
+	game->map2d_img.mlx_img = mlx_new_image(game->mlx, (game->map.col_max + 1) * SIZE,
+		game->map.rows * SIZE);
+	game->map2d_img.addr = mlx_get_data_addr(game->map2d_img.mlx_img,
+		&game->map2d_img.bpp, &game->map2d_img.line_len,
+		&game->map2d_img.endian);
 	while (x < game->map.rows)
 	{
 		y = 0;
@@ -121,7 +126,8 @@ int	render_map2d(t_game *game)
 		}
 		x++;
 	}
-	draw_player(game, game->player.pos_x * SIZE, game->player.pos_y * SIZE,
-		PLAYER_COLOR);
+	draw_ray(game, PLAYER_COLOR);
+	mlx_put_image_to_window(game->mlx, game->window, game->map2d_img.mlx_img,
+		WIDTH - ((game->map.col_max + 1) * SIZE), 0);
 	return (0);
 }

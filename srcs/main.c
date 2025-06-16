@@ -86,18 +86,16 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
 		|| keysym == KEY_D || keysym == KEY_LEFT || keysym == KEY_RIGHT)
 	{
-		draw_ray(game, FLOOR_COLOR);
+		// draw_ray(game, FLOOR_COLOR);
 		init_direction_player(game);
 		move_player(keysym, game);
 		move_camera(keysym, game);
 		update_camera_dir(&game->player.camera);
-		draw_ray(game, PLAYER_COLOR);
 		printf("pos_x : %f\n", game->player.pos_x);
 		printf("pos_y : %f\n", game->player.pos_y);
 		// printf("angle_rad : %f\n", game->player.camera.angle_rad);
 		// update_camera_dir(game);
-		draw_player(game, game->player.pos_x * SIZE,
-			game->player.pos_y * SIZE, PLAYER_COLOR);
+		render_map2d(game);
 		mlx_do_sync(game->mlx);
 	}
 	return (0);
@@ -115,9 +113,9 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	init_texture(&game);
 	render_map(&game);
-	render_map2d(&game);
 	init_camera_angle(&game.player.camera, &game.map);
 	update_camera_dir(&game.player.camera);
+	render_map2d(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
 		&end_game, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);

@@ -10,6 +10,15 @@ void	init_map(t_map *map)
 	map->lines_data = 0;
 }
 
+void	init_img(t_my_img *img)
+{
+	img->mlx_img = NULL;
+	img->addr = NULL;
+	img->bpp = 0;
+	img->line_len = 0;
+	img->endian = 0;
+}
+
 //set up and start mlx
 void	init_game(t_game *game)
 {
@@ -28,6 +37,8 @@ void	init_game(t_game *game)
 	}
 	game->player.pos_x = -1;
 	game->player.pos_y = -1;
+	init_img(&game->map2d_img);
+	init_img(&game->map3d_img);
 }
 
 void	init_direction_player(t_game *game)
@@ -52,8 +63,10 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->player.texture.img);
 	if (game->txt[OOB].img)
 		mlx_destroy_image(game->mlx, game->txt[OOB].img);
-	if (game->img.mlx_img)
-		mlx_destroy_image(game->mlx, game->img.mlx_img);
+	if (game->map3d_img.mlx_img)
+		mlx_destroy_image(game->mlx, game->map3d_img.mlx_img);
+	if (game->map2d_img.mlx_img)
+		mlx_destroy_image(game->mlx, game->map2d_img.mlx_img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);
