@@ -52,6 +52,8 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->player.texture.img);
 	if (game->txt[OOB].img)
 		mlx_destroy_image(game->mlx, game->txt[OOB].img);
+	if (game->img.mlx_img)
+		mlx_destroy_image(game->mlx, game->img.mlx_img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);

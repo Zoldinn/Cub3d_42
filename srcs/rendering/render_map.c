@@ -1,6 +1,6 @@
 #include "../../cub3d.h"
 
-void	pix_put(t_image *img, int x, int y, int color)
+void	pix_put(t_my_img *img, int x, int y, int color)
 {
 	char	*pixel;
 	
@@ -8,27 +8,27 @@ void	pix_put(t_image *img, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-void	render_background(t_image *img)
+void	render_background(t_my_img *img)
 {
 	int	i;
 	int	j;
 	
 	i = 0;
-	while (i < WIDTH / 2)
+	while (i < HEIGHT / 2)
 	{
 		j = 0;
-		while (j < (HEIGHT / 2))
+		while (j < WIDTH)
 		{
 			pix_put(img, j, i, WALL_COLOR);
 			j++;
 		}
 		i++;
 	}
-	i = 0;
-	while (i < WIDTH)
+	i = HEIGHT / 2;
+	while (i < HEIGHT)
 	{
-		j = HEIGHT / 2;
-		while (j < HEIGHT)
+		j = 0;
+		while (j < WIDTH)
 		{
 			pix_put(img, j, i, FLOOR_COLOR);
 			j++;
@@ -37,7 +37,7 @@ void	render_background(t_image *img)
 	}
 }
 
-void	init_img(t_image *img)
+void	init_img(t_my_img *img)
 {
 	img->mlx_img = NULL;
 	img->addr = NULL;
