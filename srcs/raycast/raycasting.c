@@ -74,6 +74,15 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x)
 	}
 }
 
+// get the distance / length of the ray from player to the wall hit
+void	get_raylength(t_camera *camera)
+{
+	if (camera->side_touch == 0)
+		camera->raylength = camera->side_dist[X] - camera->delta_dist[X];
+	else
+		camera->raylength = camera->side_dist[Y] - camera->delta_dist[Y];
+}
+
 void	do_all_rays(t_game *game)
 {
 	int	x;
@@ -82,17 +91,10 @@ void	do_all_rays(t_game *game)
 	while (++x < game->map.col_max)
 	{
 		dda_algo(game, &game->player.camera, &game->player, x);
+		get_raylength(&game->player.camera);
 	}
 }
 
-// get the distance / length of the ray from player to the wall hit
-/* void	get_raylength(t_camera *camera)
-{
-	if (camera->side_touch == 0)
-		camera->raylength = camera->side_dist[X] - camera->delta_dist[X];
-	else
-		camera->raylength = camera->side_dist[Y] - camera->delta_dist[Y];
-} */
 
 
 
