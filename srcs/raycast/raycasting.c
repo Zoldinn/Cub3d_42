@@ -110,14 +110,13 @@ void	set_color(t_game *game, t_map *map, t_camera *camera)
 
 void	do_all_rays(t_game *game, t_camera *camera)
 {
-	int	x;
-
-	x = -1;
-	while (++x < game->map.col_max)
+	camera->x = -1;
+	while (++camera->x < game->map.col_max)
 	{
-		dda_algo(game, camera, &game->player, x);
+		dda_algo(game, camera, &game->player, camera->x);
 		get_raylength(camera);
 		set_drawing(camera);
+		draw_verline(&game->)
 	}
 }
 

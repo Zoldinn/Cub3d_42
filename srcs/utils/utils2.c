@@ -66,4 +66,14 @@ int	is_charset(char c, char *charset)
 	return (0);
 }
 
-void	draw_verline()
+void	draw_verline(t_my_img *img, t_camera *camera)
+{
+	int	y;
+
+	y = camera->draw_start;
+	while (y <= camera->draw_end)
+	{
+		pix_put(img, camera->x, y, camera->color);
+		y++;
+	}
+}
