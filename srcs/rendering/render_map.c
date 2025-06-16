@@ -8,7 +8,7 @@ void	put_pixel(t_my_img *img, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-void	draw_square(t_my_img *img, int x, int y, int color)
+void	draw_square(t_my_img *img, double x, double y, int color)
 {
 	int	i;
 	int	j;
@@ -57,6 +57,8 @@ void	render_background(t_my_img *img)
 
 void	render_map(t_game *game)
 {
+	if (game->map3d_img.mlx_img)
+		mlx_destroy_image(game->mlx, game->map3d_img.mlx_img);
 	game->map3d_img.mlx_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->map3d_img.addr = mlx_get_data_addr(game->map3d_img.mlx_img,
 		&game->map3d_img.bpp, &game->map3d_img.line_len,

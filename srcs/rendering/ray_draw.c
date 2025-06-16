@@ -21,9 +21,6 @@ void	draw_ray(t_game *game, int color)
 		{
 			put_pixel(&game->map2d_img, ray[X] * SIZE + SIZE / 2,
 				ray[Y] * SIZE + SIZE / 2, color);
-			/* mlx_pixel_put(game->mlx, game->window,
-				ray[X] * SIZE + SIZE / 2,
-				ray[Y] * SIZE + SIZE / 2, color); */
 			ray[Y] += ray_dir[Y] * 0.1;
 			ray[X] += ray_dir[X] * 0.1;
 		}

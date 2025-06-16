@@ -30,31 +30,3 @@ void	init_texture(t_game *game)
 	game->player.texture = new_texture(game, PLAYER_PATH);
 	game->txt[OOB] = new_texture(game, OOB_PATH);
 }
-
-void	fill_map(t_game *game, int x, int y)
-{
-	char	pos;
-
-	if (y < (int)ft_strlen(game->map.map[x]))
-	{
-		pos = game->map.map[x][y];
-		if (pos == '1')
-			draw_square(&game->map2d_img, x, y, WALL_COLOR);
-		if (pos == '0' || (pos == 'N' || pos == 'S' || pos == 'W'
-				|| pos == 'E'))
-			draw_square(&game->map2d_img, x, y, FLOOR_COLOR);
-		if (pos == ' ')
-			draw_square(&game->map2d_img, x, y, EMPTY_COLOR);
-		if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
-			&& (game->player.pos_x == -1 && game->player.pos_x == -1))
-		{
-			if (game->player.pos_x == -1 && game->player.pos_x == -1)
-			{
-				game->player.pos_x = y;
-				game->player.pos_y = x;
-			}
-		}
-	}
-	else
-		draw_square(&game->map2d_img, x, y, OOB_COLOR);
-}

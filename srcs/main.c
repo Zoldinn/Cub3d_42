@@ -43,25 +43,21 @@ void	move_player(int keysym, t_game *game)
 	if (keysym == KEY_W)
 	{
 		game->player.go_up = 1;
-		update_map2d(game);
 		game->player.pos_y -= .1f;
 	}
 	else if (keysym == KEY_S)
 	{
 		game->player.go_down = 1;
-		update_map2d(game);
 		game->player.pos_y += .1f;
 	}
 	else if (keysym == KEY_A)
 	{
 		game->player.go_left = 1;
-		update_map2d(game);
 		game->player.pos_x -= .1f;
 	}
 	else if (keysym == KEY_D)
 	{
 		game->player.go_right = 1;
-		update_map2d(game);
 		game->player.pos_x += .1f;
 	}
 }
@@ -86,15 +82,12 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
 		|| keysym == KEY_D || keysym == KEY_LEFT || keysym == KEY_RIGHT)
 	{
-		// draw_ray(game, FLOOR_COLOR);
 		init_direction_player(game);
 		move_player(keysym, game);
 		move_camera(keysym, game);
 		update_camera_dir(&game->player.camera);
 		printf("pos_x : %f\n", game->player.pos_x);
 		printf("pos_y : %f\n", game->player.pos_y);
-		// printf("angle_rad : %f\n", game->player.camera.angle_rad);
-		// update_camera_dir(game);
 		render_map2d(game);
 		mlx_do_sync(game->mlx);
 	}

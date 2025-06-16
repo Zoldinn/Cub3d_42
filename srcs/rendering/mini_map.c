@@ -1,0 +1,58 @@
+#include "../../cub3d.h"
+
+void	fill_map(t_game *game, int x, int y)
+{
+	char	pos;
+
+	if (y < (int)ft_strlen(game->map.map[x]))
+	{
+		pos = game->map.map[x][y];
+		if (pos == '1')
+			draw_square(&game->map2d_img, x, y, WALL_COLOR);
+		if (pos == '0' || (pos == 'N' || pos == 'S' || pos == 'W'
+				|| pos == 'E'))
+			draw_square(&game->map2d_img, x, y, FLOOR_COLOR);
+		if (pos == ' ')
+			draw_square(&game->map2d_img, x, y, EMPTY_COLOR);
+		if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
+			&& (game->player.pos_x == -1 && game->player.pos_x == -1))
+		{
+			game->player.pos_x = y;
+			game->player.pos_y = x;
+		}
+	}
+	else
+		draw_square(&game->map2d_img, x, y, OOB_COLOR);
+}
+
+//render the map to print it in 2D
+int	render_map2d(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	if (game->map2d_img.mlx_img)
+		mlx_destroy_image(game->mlx, game->map2d_img.mlx_img);
+	game->map2d_img.mlx_img = mlx_new_image(game->mlx, (game->map.col_max + 1) * SIZE,
+		game->map.rows * SIZE);
+	game->map2d_img.addr = mlx_get_data_addr(game->map2d_img.mlx_img,
+		&game->map2d_img.bpp, &game->map2d_img.line_len,
+		&game->map2d_img.endian);
+	while (x < game->map.rows)
+	{
+		y = 0;
+		while (y <= game->map.col_max)
+		{
+			fill_map(game, x, y);
+			y++;
+		}
+		x++;
+	}
+	draw_square(&game->map2d_img, game->player.pos_y, game->player.pos_x,
+		PLAYER_COLOR);
+	draw_ray(game, PLAYER_COLOR);
+	mlx_put_image_to_window(game->mlx, game->window, game->map2d_img.mlx_img,
+		WIDTH - ((game->map.col_max + 1) * SIZE), 0);
+	return (0);
+}
