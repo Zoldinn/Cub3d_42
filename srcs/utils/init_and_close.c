@@ -19,8 +19,8 @@ void	init_game(t_game *game)
 		printf("Error creating the mlx\n");
 		exit(EXIT_FAILURE);
 	}
-	game->window = mlx_new_window(game->mlx, (game->map.col_max + 1) * SIZE,
-			game->map.rows * SIZE, "cub3d");
+	game->window = mlx_new_window(game->mlx, WIDTH,
+			HEIGHT, "cub3d");
 	if (game->window == NULL)
 	{
 		free(game->window);
@@ -52,6 +52,8 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->player.texture.img);
 	if (game->txt[OOB].img)
 		mlx_destroy_image(game->mlx, game->txt[OOB].img);
+	if (game->img.mlx_img)
+		mlx_destroy_image(game->mlx, game->img.mlx_img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);

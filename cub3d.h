@@ -31,7 +31,9 @@
 # define KEY_D			100
 # define KEY_ESC		65307
 
-# define SIZE			24
+# define WIDTH			1920
+# define HEIGHT			1080
+# define SIZE			12
 # define FOV_DEGREE		66
 # define PI				3.14159265359
 
@@ -39,7 +41,9 @@
 # define WALL			1
 # define EMPTY			2
 # define OOB			3
+# define FLOOR3D_PATH	"./assets/floor3d.xpm"
 # define FLOOR_PATH		"./assets/floor.xpm"
+# define WALL3D_PATH	"./assets/wall3d.xpm"
 # define WALL_PATH		"./assets/wall.xpm"
 # define EMPTY_PATH		"./assets/empty.xpm"
 # define PLAYER_PATH	"./assets/player.xpm"
@@ -72,6 +76,14 @@ typedef struct s_camera
 	double	raylength;
 }	t_camera;
 
+typedef struct s_my_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_my_img;
 
 typedef struct s_texture
 {
@@ -100,6 +112,7 @@ typedef struct s_game
 	int			**grid;
 	t_texture	txt[4];
 	t_player	player;
+	t_my_img	img;
 }	t_game;
 
 typedef enum e_id
@@ -154,6 +167,7 @@ void	init_direction_player(t_game *game);
 /**========================================================================
  *!                               MAP
  *========================================================================**/
+void	render_map(t_game *game);
 int		render_map2d(t_game *game);
 void	update_map2d(t_game *game);
 void	fill_map(t_game *game, int x, int y);
