@@ -177,10 +177,9 @@ void	init_img(t_my_img *img);
  *========================================================================**/
 void	render_map(t_game *game);
 int		render_map2d(t_game *game);
-void	update_map2d(t_game *game);
 void	put_pixel(t_my_img *img, int x, int y, int color);
 void	fill_map(t_game *game, int x, int y);
-void	draw_square(t_my_img *img, int x, int y, int color);
+void	draw_square(t_my_img *img, double x, double y, int color);
 void	draw_player(t_game *game, int x, int y, int color);
 int		end_game(t_game *game);
 int		destroy_all(int keysym, t_game *game);
