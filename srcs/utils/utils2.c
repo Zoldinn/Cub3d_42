@@ -65,3 +65,5 @@ int	is_charset(char c, char *charset)
 	}
 	return (0);
 }
+
+void	draw_verline()

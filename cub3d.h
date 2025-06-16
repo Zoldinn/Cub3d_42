@@ -69,11 +69,16 @@ typedef struct s_camera
 	double	dir[2];
 	double	plane[2];
 	double	ray_dir[2];
+	int		grid_pos[2];
 	double	delta_dist[2];
 	int		step[2];
 	double	side_dist[2];
 	int		side_touch;
 	double	raylength;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		color;
 }	t_camera;
 
 typedef struct s_my_img
@@ -96,7 +101,6 @@ typedef struct s_player
 	t_texture	texture;
 	double		pos_x;
 	double		pos_y;
-	int			grid_pos[2];
 	int			go_up;
 	int			go_down;
 	int			go_right;

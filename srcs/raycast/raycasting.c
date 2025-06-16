@@ -21,21 +21,21 @@ void	set_step_and_sidedist(t_player *player, t_camera *camera)
 	double	dist_to_grid;
 
 	camera->step[X] = 1;
-	dist_to_grid = player->grid_pos[X] + 1 - player->pos_x;
+	dist_to_grid = camera->grid_pos[X] + 1 - player->pos_x;
 	camera->side_dist[X] = (dist_to_grid) * camera->delta_dist[X];
 	if (camera->ray_dir[X] < 0)
 	{
 		camera->step[X] = -1;
-		dist_to_grid = player->pos_x - player->grid_pos[X];
+		dist_to_grid = player->pos_x - camera->grid_pos[X];
 		camera->side_dist[X] = (dist_to_grid) * camera->delta_dist[X];
 	}
 	camera->step[Y] = 1;
-	dist_to_grid = player->grid_pos[Y] + 1 - player->pos_y;
+	dist_to_grid = camera->grid_pos[Y] + 1 - player->pos_y;
 	camera->side_dist[Y] = (dist_to_grid) * camera->delta_dist[Y];
 	if (camera->ray_dir[Y] < 0)
 	{
 		camera->step[Y] = -1;
-		dist_to_grid = player->pos_y - player->grid_pos[Y];
+		dist_to_grid = player->pos_y - camera->grid_pos[Y];
 		camera->side_dist[Y] = (dist_to_grid) * camera->delta_dist[Y];
 	}
 }
@@ -52,23 +52,23 @@ void	get_raydir_x(t_camera *camera, t_map *map, int x)
 // The DDA algorithm
 void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x)
 {
-	player->grid_pos[X] = (int) player->pos_x;
-	player->grid_pos[Y] = (int) player->pos_y;
+	camera->grid_pos[X] = (int) player->pos_x;
+	camera->grid_pos[Y] = (int) player->pos_y;
 	get_raydir_x(camera, &game->map, x);
 	set_delta_dist(camera);
 	set_step_and_sidedist(player, camera);
-	while (game->map.map[player->grid_pos[Y]][player->grid_pos[X]] != '1')
+	while (game->map.map[camera->grid_pos[Y]][camera->grid_pos[X]] != '1')
 	{
 		if (camera->side_dist[X] < camera->side_dist[Y])
 		{
 			camera->side_dist[X] += camera->delta_dist[X];
-			player->grid_pos[X] += camera->step[X];
+			camera->grid_pos[X] += camera->step[X];
 			camera->side_touch = 0;
 		}
 		else
 		{
 			camera->side_dist[Y] += camera->delta_dist[Y];
-			player->grid_pos[Y] += camera->step[Y];
+			camera->grid_pos[Y] += camera->step[Y];
 			camera->side_touch = 1;
 		}
 	}
@@ -83,15 +83,41 @@ void	get_raylength(t_camera *camera)
 		camera->raylength = camera->side_dist[Y] - camera->delta_dist[Y];
 }
 
-void	do_all_rays(t_game *game)
+// set the height of the wall, the start/end drawing point
+void	set_drawing(t_camera *camera)
+{
+	camera->line_height = (int) (HEIGHT / camera->raylength);
+	camera->draw_start = (HEIGHT / 2) - (camera->line_height / 2);
+	if (camera->draw_start < 0)
+		camera->draw_start = 0;
+	camera->draw_end = (HEIGHT / 2) + (camera->line_height / 2);
+	if (camera->draw_end >= HEIGHT)
+		camera->draw_end = HEIGHT - 1;
+}
+
+void	set_color(t_game *game, t_map *map, t_camera *camera)
+{
+	char	pos;
+
+	pos = map->map[camera->grid_pos[Y]][camera->grid_pos[X]];
+	if (pos == 1)
+		camera->color = WALL_COLOR;
+	else if (pos == 0)
+		camera->color = FLOOR_COLOR;
+	if (camera->side_touch == 1)
+		camera->color /= 2;
+}
+
+void	do_all_rays(t_game *game, t_camera *camera)
 {
 	int	x;
 
 	x = -1;
 	while (++x < game->map.col_max)
 	{
-		dda_algo(game, &game->player.camera, &game->player, x);
-		get_raylength(&game->player.camera);
+		dda_algo(game, camera, &game->player, x);
+		get_raylength(camera);
+		set_drawing(camera);
 	}
 }
 
