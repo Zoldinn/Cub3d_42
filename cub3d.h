@@ -191,7 +191,8 @@ void	init_camera_angle(t_camera *camera, t_map *map);
 void	update_camera_dir(t_camera *camera);
 void	draw_ray(t_game *game, int color);
 void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x);
-void	pix_put(t_my_img *img, int x, int y, int color);
+void	put_pixel(t_my_img *img, int x, int y, int color);
 void	draw_verline(t_my_img *img, t_camera *camera);
+void	do_all_rays(t_game *game, t_camera *camera);
 
 #endif

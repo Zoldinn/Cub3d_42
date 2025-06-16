@@ -62,6 +62,7 @@ void	render_map(t_game *game)
 		&game->map3d_img.bpp, &game->map3d_img.line_len,
 		&game->map3d_img.endian);
 	render_background(&game->map3d_img);
+	do_all_rays(game, &game->player.camera);
 	mlx_put_image_to_window(game->mlx, game->window, game->map3d_img.mlx_img,
 		0, 0);
 }

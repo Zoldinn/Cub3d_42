@@ -95,7 +95,7 @@ void	set_drawing(t_camera *camera)
 		camera->draw_end = HEIGHT - 1;
 }
 
-void	set_color(t_game *game, t_map *map, t_camera *camera)
+void	set_color(t_map *map, t_camera *camera)
 {
 	char	pos;
 
@@ -116,10 +116,6 @@ void	do_all_rays(t_game *game, t_camera *camera)
 		dda_algo(game, camera, &game->player, camera->x);
 		get_raylength(camera);
 		set_drawing(camera);
-		draw_verline(&game->)
+		draw_verline(&game->map3d_img, camera);
 	}
 }
-
-
-
-

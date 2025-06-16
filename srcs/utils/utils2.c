@@ -73,7 +73,7 @@ void	draw_verline(t_my_img *img, t_camera *camera)
 	y = camera->draw_start;
 	while (y <= camera->draw_end)
 	{
-		pix_put(img, camera->x, y, camera->color);
+		put_pixel(img, camera->x, y, camera->color);
 		y++;
 	}
 }
