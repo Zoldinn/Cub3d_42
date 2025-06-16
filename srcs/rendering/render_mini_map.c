@@ -126,9 +126,8 @@ int	render_map2d(t_game *game)
 		}
 		x++;
 	}
+	draw_ray(game, PLAYER_COLOR);
 	mlx_put_image_to_window(game->mlx, game->window, game->map2d_img.mlx_img,
 		WIDTH - ((game->map.col_max + 1) * SIZE), 0);
-	draw_player(game, game->player.pos_x * SIZE, game->player.pos_y * SIZE,
-		PLAYER_COLOR);
 	return (0);
 }
