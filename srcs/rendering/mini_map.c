@@ -1,5 +1,6 @@
 #include "../../cub3d.h"
 
+//fill the 2d map with pixels
 void	fill_map(t_game *game, int x, int y)
 {
 	char	pos;
@@ -14,12 +15,6 @@ void	fill_map(t_game *game, int x, int y)
 			draw_square(&game->map2d_img, x, y, FLOOR_COLOR);
 		if (pos == ' ')
 			draw_square(&game->map2d_img, x, y, EMPTY_COLOR);
-		if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
-			&& (game->player.pos_x == -1 && game->player.pos_x == -1))
-		{
-			game->player.pos_x = y;
-			game->player.pos_y = x;
-		}
 	}
 	else
 		draw_square(&game->map2d_img, x, y, OOB_COLOR);

@@ -35,18 +35,37 @@ void	init_game(t_game *game)
 		free(game->window);
 		exit(EXIT_FAILURE);
 	}
-	game->player.pos_x = -1;
-	game->player.pos_y = -1;
 	init_img(&game->map2d_img);
 	init_img(&game->map3d_img);
 }
 
-void	init_direction_player(t_game *game)
+void	init_dir_pos_player(t_game *game)
 {
+	char	pos;
+	int		i;
+	int		j;
+
 	game->player.go_up = 0;
 	game->player.go_down = 0;
 	game->player.go_right = 0;
 	game->player.go_left = 0;
+	i = 0;
+	while (i < game->map.rows - 1)
+	{
+		j = 0;
+		while (j < game->map.col_max - 1 && game->map.map[i][j])
+		{
+			pos = game->map.map[i][j];
+			if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
+			{
+				game->player.pos_x = j;
+				game->player.pos_y = i;	
+				break;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 //close mlx and free everything

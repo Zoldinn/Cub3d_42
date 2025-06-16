@@ -170,7 +170,7 @@ void	p_er(char *str);
 void	init_map(t_map *map);
 void	init_game(t_game *game);
 void	init_texture(t_game *game);
-void	init_direction_player(t_game *game);
+void	init_dir_pos_player(t_game *game);
 void	init_img(t_my_img *img);
 /**========================================================================
  *!                               MAP

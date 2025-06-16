@@ -1,5 +1,6 @@
 #include "../../cub3d.h"
 
+//draw one (and only one) pixel
 void	put_pixel(t_my_img *img, int x, int y, int color)
 {
 	char	*pixel;
@@ -8,6 +9,7 @@ void	put_pixel(t_my_img *img, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
+//draw a square of pixels
 void	draw_square(t_my_img *img, double x, double y, int color)
 {
 	int	i;
@@ -26,6 +28,9 @@ void	draw_square(t_my_img *img, double x, double y, int color)
 	}
 }
 
+//draw background split horizontaly
+//top half is the ceiling
+//bottom half is the floor
 void	render_background(t_my_img *img)
 {
 	int	i;
@@ -55,6 +60,7 @@ void	render_background(t_my_img *img)
 	}
 }
 
+//render the map in 3d
 void	render_map(t_game *game)
 {
 	if (game->map3d_img.mlx_img)

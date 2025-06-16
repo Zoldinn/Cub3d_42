@@ -37,7 +37,7 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
-//get pressed key, update map and set new position of the player
+//get pressed key and set new position of the player
 void	move_player(int keysym, t_game *game)
 {
 	if (keysym == KEY_W)
@@ -66,7 +66,6 @@ void	move_camera(int keysym, t_game *game)
 {
 	if (keysym == KEY_LEFT)
 	{
-		printf("prout\n");
 		game->player.camera.angle_rad -= .1f;
 	}
 	else if (keysym == KEY_RIGHT)
@@ -75,6 +74,7 @@ void	move_camera(int keysym, t_game *game)
 	}
 }
 
+//called by mlx_hook when a key is pressed
 int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == KEY_ESC)
@@ -85,11 +85,8 @@ int	handle_keypress(int keysym, t_game *game)
 		move_player(keysym, game);
 		move_camera(keysym, game);
 		update_camera_dir(&game->player.camera);
-		printf("pos_x : %f\n", game->player.pos_x);
-		printf("pos_y : %f\n", game->player.pos_y);
 		render_map(game);
 		render_map2d(game);
-		mlx_do_sync(game->mlx);
 	}
 	return (0);
 }
@@ -98,7 +95,7 @@ void	init(t_game *game)
 {
 	init_game(game);
 	init_texture(game);
-	init_direction_player(game);
+	init_dir_pos_player(game);
 	init_camera_angle(&game->player.camera, &game->map);
 	update_camera_dir(&game->player.camera);
 	render_map(game);
