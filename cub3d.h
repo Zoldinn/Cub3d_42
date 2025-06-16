@@ -22,6 +22,7 @@
 # define WALL_COLOR		0x403C37
 # define EMPTY_COLOR	0x800080
 # define OOB_COLOR		0xF0C807
+# define BLUE_COLOR		0x0000FF
 
 # define KEY_LEFT		65361
 # define KEY_RIGHT		65363
@@ -112,7 +113,8 @@ typedef struct s_game
 	int			**grid;
 	t_texture	txt[4];
 	t_player	player;
-	t_my_img	img;
+	t_my_img	map3d_img;
+	t_my_img	map2d_img;
 }	t_game;
 
 typedef enum e_id
@@ -164,6 +166,7 @@ void	init_map(t_map *map);
 void	init_game(t_game *game);
 void	init_texture(t_game *game);
 void	init_direction_player(t_game *game);
+void	init_img(t_my_img *img);
 /**========================================================================
  *!                               MAP
  *========================================================================**/
@@ -171,6 +174,7 @@ void	render_map(t_game *game);
 int		render_map2d(t_game *game);
 void	update_map2d(t_game *game);
 void	fill_map(t_game *game, int x, int y);
+void	draw_square(t_my_img *img, int x, int y, int color);
 void	draw_player(t_game *game, int x, int y, int color);
 int		end_game(t_game *game);
 int		destroy_all(int keysym, t_game *game);

@@ -39,15 +39,12 @@ void	fill_map(t_game *game, int x, int y)
 	{
 		pos = game->map.map[x][y];
 		if (pos == '1')
-			mlx_put_image_to_window(game->mlx, game->window,
-				game->txt[WALL].img, SIZE * y, SIZE * x);
+			draw_square(&game->map2d_img, x, y, WALL_COLOR);
 		if (pos == '0' || (pos == 'N' || pos == 'S' || pos == 'W'
 				|| pos == 'E'))
-			mlx_put_image_to_window(game->mlx, game->window,
-				game->txt[FLOOR].img, SIZE * y, SIZE * x);
+			draw_square(&game->map2d_img, x, y, FLOOR_COLOR);
 		if (pos == ' ')
-			mlx_put_image_to_window(game->mlx, game->window,
-				game->txt[EMPTY].img, SIZE * y, SIZE * x);
+			draw_square(&game->map2d_img, x, y, EMPTY_COLOR);
 		if ((pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 			&& (game->player.pos_x == -1 && game->player.pos_x == -1))
 		{
@@ -56,6 +53,5 @@ void	fill_map(t_game *game, int x, int y)
 		}
 	}
 	else
-		mlx_put_image_to_window(game->mlx, game->window, game->txt[OOB].img,
-			SIZE * y, SIZE * x);
+		draw_square(&game->map2d_img, x, y, OOB_COLOR);
 }
