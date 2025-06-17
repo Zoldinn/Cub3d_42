@@ -116,6 +116,6 @@ void	do_all_rays(t_game *game, t_camera *camera)
 		dda_algo(game, camera, &game->player, camera->x);
 		get_raylength(camera);
 		set_drawing(camera);
-		draw_verline(&game->map3d_img, camera);
+		draw_verline(&game->screen_img, camera);
 	}
 }

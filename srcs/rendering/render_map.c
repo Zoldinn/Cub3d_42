@@ -60,17 +60,15 @@ void	render_background(t_my_img *img)
 	}
 }
 
-//render the map in 3d
+//render the 3d img of the map
 void	render_map(t_game *game)
 {
-	if (game->map3d_img.mlx_img)
-		mlx_destroy_image(game->mlx, game->map3d_img.mlx_img);
-	game->map3d_img.mlx_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	game->map3d_img.addr = mlx_get_data_addr(game->map3d_img.mlx_img,
-		&game->map3d_img.bpp, &game->map3d_img.line_len,
-		&game->map3d_img.endian);
-	render_background(&game->map3d_img);
+	if (game->screen_img.mlx_img)
+		mlx_destroy_image(game->mlx, game->screen_img.mlx_img);
+	game->screen_img.mlx_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	game->screen_img.addr = mlx_get_data_addr(game->screen_img.mlx_img,
+		&game->screen_img.bpp, &game->screen_img.line_len,
+		&game->screen_img.endian);
+	render_background(&game->screen_img);
 	do_all_rays(game, &game->player.camera);
-	mlx_put_image_to_window(game->mlx, game->window, game->map3d_img.mlx_img,
-		0, 0);
 }

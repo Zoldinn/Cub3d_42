@@ -10,6 +10,8 @@ void	init_map(t_map *map)
 	map->lines_data = 0;
 }
 
+//init an img where we will draw every pixel on it
+//and then display the img on the window
 void	init_img(t_my_img *img)
 {
 	img->mlx_img = NULL;
@@ -35,8 +37,7 @@ void	init_game(t_game *game)
 		free(game->window);
 		exit(EXIT_FAILURE);
 	}
-	init_img(&game->map2d_img);
-	init_img(&game->map3d_img);
+	init_img(&game->screen_img);
 }
 
 void	init_dir_pos_player(t_game *game)
@@ -82,10 +83,8 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->player.texture.img);
 	if (game->txt[OOB].img)
 		mlx_destroy_image(game->mlx, game->txt[OOB].img);
-	if (game->map3d_img.mlx_img)
-		mlx_destroy_image(game->mlx, game->map3d_img.mlx_img);
-	if (game->map2d_img.mlx_img)
-		mlx_destroy_image(game->mlx, game->map2d_img.mlx_img);
+	if (game->screen_img.mlx_img)
+		mlx_destroy_image(game->mlx, game->screen_img.mlx_img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);

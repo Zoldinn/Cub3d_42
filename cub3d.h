@@ -118,8 +118,7 @@ typedef struct s_game
 	int			**grid;
 	t_texture	txt[4];
 	t_player	player;
-	t_my_img	map3d_img;
-	t_my_img	map2d_img;
+	t_my_img	screen_img;
 }	t_game;
 
 typedef enum e_id

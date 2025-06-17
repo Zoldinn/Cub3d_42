@@ -1,5 +1,6 @@
 #include "../../cub3d.h"
 
+//draw a cone of pixels in order to see raycasting
 void	draw_ray(t_game *game, int color)
 {
 	double		camera_x;
@@ -19,7 +20,7 @@ void	draw_ray(t_game *game, int color)
 		ray[Y] = game->player.pos_y;
 		while (game->map.map[(int)ray[Y]][(int)ray[X]] != '1')
 		{
-			put_pixel(&game->map2d_img, ray[X] * SIZE + SIZE / 2,
+			put_pixel(&game->screen_img, ray[X] * SIZE + SIZE / 2,
 				ray[Y] * SIZE + SIZE / 2, color);
 			ray[Y] += ray_dir[Y] * 0.1;
 			ray[X] += ray_dir[X] * 0.1;
