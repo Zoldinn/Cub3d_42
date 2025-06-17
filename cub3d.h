@@ -34,10 +34,13 @@
 
 # define WIDTH			1920
 # define HEIGHT			1080
+// # define WIDTH			3840
+// # define HEIGHT			1960
 # define SIZE			12
 # define FOV_DEGREE		66
 # define PI				3.14159265359
 
+# define SPEED			0.2f
 # define FLOOR			0
 # define WALL			1
 # define EMPTY			2

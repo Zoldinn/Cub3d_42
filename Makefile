@@ -1,6 +1,6 @@
 NAME = cub3d
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -O3
 
 DIR_SRC = srcs
 SRC = $(addprefix $(DIR_SRC)/, main.c \
