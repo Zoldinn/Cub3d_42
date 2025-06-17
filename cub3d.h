@@ -18,11 +18,11 @@
 # define YELLOW "\e[33m"
 
 # define PLAYER_COLOR	0xEE0943
-# define FLOOR_COLOR	0xFFFFFF
-# define WALL_COLOR		0x403C37
+# define FLOOR_COLOR	0x96B4B2
+# define WALL_COLOR		0x2D3949
 # define EMPTY_COLOR	0x800080
 # define OOB_COLOR		0xF0C807
-# define BLUE_COLOR		0x0000FF
+# define BLUE_COLOR		0x036272
 
 # define KEY_LEFT		65361
 # define KEY_RIGHT		65363

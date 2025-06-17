@@ -1,5 +1,16 @@
 #include "../../cub3d.h"
 
+/*
+	if (keysym == KEY_W)
+		y -= 0.1f;
+	else if (keysym == KEY_S)
+		y += 1;
+	else if (keysym == KEY_A)
+		x -= 0.1f;
+	else if (keysym == KEY_D)
+		x += 1; 
+} */
+
 //draw a cone of pixels in order to see raycasting
 void	draw_ray(t_game *game, int color)
 {
@@ -20,10 +31,10 @@ void	draw_ray(t_game *game, int color)
 		ray[Y] = game->player.pos_y;
 		while (game->map.map[(int)ray[Y]][(int)ray[X]] != '1')
 		{
-			put_pixel(&game->screen_img, ray[X] * SIZE + SIZE / 2,
-				ray[Y] * SIZE + SIZE / 2, color);
-			ray[Y] += ray_dir[Y] * 0.1;
-			ray[X] += ray_dir[X] * 0.1;
+			put_pixel(&game->screen_img, ray[X] * SIZE,
+				ray[Y] * SIZE, color);
+			ray[Y] += ray_dir[Y] * 0.01;
+			ray[X] += ray_dir[X] * 0.01;
 		}
 		x += 1;
 	}
