@@ -45,26 +45,44 @@ int	check_move(t_game *game, int x, int y)
 		return (0);
 }
 
-//get pressed key and set new position of the player
-void	move_player(int keysym, t_game *game)
+//check if the movement of the player is valid
+//0 is valid
+//1 is not valid
+int	check_player_move(t_game *game, int keysym)
 {
-	int x;
-	int	y;
+	double	x;
+	double	y;
 
 	x = game->player.pos_x;
 	y = game->player.pos_y;
+	if (keysym == KEY_W)
+		y -= 0.1f;
+	else if (keysym == KEY_S)
+		y += 1;
+	else if (keysym == KEY_A)
+		x -= 0.1f;
+	else if (keysym == KEY_D)
+		x += 1;
+	if (game->map.map[(int)y][(int)x] == ' ' || !game->map.map[(int)y][(int)x])
+		return (1);
+	else
+		return (0);
+}
 
+//get pressed key and set new position of the player
+void	move_player(int keysym, t_game *game)
+{
 	if (keysym == KEY_W && game->player.pos_y > 0
-		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
+		&& check_player_move(game, keysym) == 0)
 		game->player.pos_y -= .1f;
 	else if (keysym == KEY_S && game->player.pos_y < game->map.rows - 1
-		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
+		&& check_player_move(game, keysym) == 0)
 		game->player.pos_y += .1f;
 	else if (keysym == KEY_A && game->player.pos_x > 0
-		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
+		&& check_player_move(game, keysym) == 0)
 		game->player.pos_x -= .1f;
 	else if (keysym == KEY_D && game->player.pos_x < game->map.col_max
-		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
+		&& check_player_move(game, keysym) == 0)
 		game->player.pos_x += .1f;
 }
 
