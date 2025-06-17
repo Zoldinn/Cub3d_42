@@ -40,16 +40,12 @@ void	init_game(t_game *game)
 	init_img(&game->screen_img);
 }
 
-void	init_dir_pos_player(t_game *game)
+void	init_pos_player(t_game *game)
 {
 	char	pos;
 	int		i;
 	int		j;
 
-	game->player.go_up = 0;
-	game->player.go_down = 0;
-	game->player.go_right = 0;
-	game->player.go_left = 0;
 	i = 0;
 	while (i < game->map.rows - 1)
 	{

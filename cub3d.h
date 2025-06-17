@@ -103,10 +103,6 @@ typedef struct s_player
 	t_texture	texture;
 	double		pos_x;
 	double		pos_y;
-	int			go_up;
-	int			go_down;
-	int			go_right;
-	int			go_left;
 	t_camera	camera;
 }	t_player;
 
@@ -169,7 +165,7 @@ void	p_er(char *str);
 void	init_map(t_map *map);
 void	init_game(t_game *game);
 void	init_texture(t_game *game);
-void	init_dir_pos_player(t_game *game);
+void	init_pos_player(t_game *game);
 void	init_img(t_my_img *img);
 /**========================================================================
  *!                               MAP
@@ -179,9 +175,7 @@ int		render_map2d(t_game *game);
 void	put_pixel(t_my_img *img, int x, int y, int color);
 void	fill_map(t_game *game, int x, int y);
 void	draw_square(t_my_img *img, double x, double y, int color);
-void	draw_player(t_game *game, int x, int y, int color);
 int		end_game(t_game *game);
-int		destroy_all(int keysym, t_game *game);
 /**========================================================================
  *!                            RAYCASTING
  *========================================================================**/

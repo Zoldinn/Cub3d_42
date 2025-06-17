@@ -37,29 +37,35 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
+int	check_move(t_game *game, int x, int y)
+{
+	if (game->map.map[y][x] == ' ' || game->map.map[y][x] == '\0')
+		return (1);
+	else
+		return (0);
+}
+
 //get pressed key and set new position of the player
 void	move_player(int keysym, t_game *game)
 {
-	if (keysym == KEY_W)
-	{
-		game->player.go_up = 1;
+	int x;
+	int	y;
+
+	x = game->player.pos_x;
+	y = game->player.pos_y;
+
+	if (keysym == KEY_W && game->player.pos_y > 0
+		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
 		game->player.pos_y -= .1f;
-	}
-	else if (keysym == KEY_S)
-	{
-		game->player.go_down = 1;
+	else if (keysym == KEY_S && game->player.pos_y < game->map.rows - 1
+		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
 		game->player.pos_y += .1f;
-	}
-	else if (keysym == KEY_A)
-	{
-		game->player.go_left = 1;
+	else if (keysym == KEY_A && game->player.pos_x > 0
+		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
 		game->player.pos_x -= .1f;
-	}
-	else if (keysym == KEY_D)
-	{
-		game->player.go_right = 1;
+	else if (keysym == KEY_D && game->player.pos_x < game->map.col_max
+		&& game->map.map[y][x] == ' ' && game->map.map[y][x] == '\0')
 		game->player.pos_x += .1f;
-	}
 }
 
 void	move_camera(int keysym, t_game *game)
@@ -95,7 +101,7 @@ void	init(t_game *game)
 {
 	init_game(game);
 	init_texture(game);
-	init_dir_pos_player(game);
+	init_pos_player(game);
 	init_camera_angle(&game->player.camera, &game->map);
 	update_camera_dir(&game->player.camera);
 	render_map(game);
