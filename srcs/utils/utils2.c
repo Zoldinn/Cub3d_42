@@ -73,6 +73,9 @@ void	draw_verline(t_my_img *img, t_camera *camera)
 	y = camera->draw_start;
 	while (y <= camera->draw_end)
 	{
+		camera->color = WALL_COLOR;
+		if (camera->side_touch == 1)
+			camera->color /= 2;
 		put_pixel(img, camera->x, y, camera->color);
 		y++;
 	}

@@ -21,8 +21,8 @@ void	draw_ray(t_game *game, int color)
 	int			x;
 
 	camera = &game->player.camera;
-	x = 0;
-	while (x < game->map.col_max)
+	x = -1;
+	while (++x < WIDTH)
 	{
 		camera_x = 2 * x / (double) game->map.col_max - 1;
 		ray_dir[X] = camera->dir[X] + camera->plane[X] * camera_x;
@@ -36,7 +36,6 @@ void	draw_ray(t_game *game, int color)
 			ray[Y] += ray_dir[Y] * 0.01;
 			ray[X] += ray_dir[X] * 0.01;
 		}
-		x += 1;
 	}
 }
 

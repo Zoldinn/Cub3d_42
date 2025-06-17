@@ -74,16 +74,28 @@ void	move_player(int keysym, t_game *game)
 {
 	if (keysym == KEY_W && game->player.pos_y > 0
 		&& check_player_move(game, keysym) == 0)
-		game->player.pos_y -= .1f;
+	{
+		game->player.pos_x += game->player.camera.dir[X] * 0.1f;
+		game->player.pos_y += game->player.camera.dir[Y] * 0.1f;
+	}
 	else if (keysym == KEY_S && game->player.pos_y < game->map.rows - 1
 		&& check_player_move(game, keysym) == 0)
-		game->player.pos_y += .1f;
+	{
+		game->player.pos_x -= game->player.camera.dir[X] * 0.1f;
+		game->player.pos_y -= game->player.camera.dir[Y] * 0.1f;
+	}
 	else if (keysym == KEY_A && game->player.pos_x > 0
 		&& check_player_move(game, keysym) == 0)
-		game->player.pos_x -= .1f;
+	{
+		game->player.pos_x -= game->player.camera.plane[X] * 0.1f;
+		game->player.pos_y -= game->player.camera.plane[Y] * 0.1f;
+	}
 	else if (keysym == KEY_D && game->player.pos_x < game->map.col_max
 		&& check_player_move(game, keysym) == 0)
-		game->player.pos_x += .1f;
+	{
+		game->player.pos_x += game->player.camera.plane[X] * 0.1f;
+		game->player.pos_y += game->player.camera.plane[Y] * 0.1f;
+	}
 }
 
 void	move_camera(int keysym, t_game *game)

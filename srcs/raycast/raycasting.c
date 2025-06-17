@@ -43,8 +43,8 @@ void	set_step_and_sidedist(t_player *player, t_camera *camera)
 void	get_raydir_x(t_camera *camera, t_map *map, int x)
 {
 	double	camera_x;
-
-	camera_x = 2 * x / (double) map->col_max - 1;
+	(void) map;
+	camera_x = 2 * x / (double) WIDTH - 1;
 	camera->ray_dir[X] = camera->dir[X] + camera->plane[X] * camera_x;
 	camera->ray_dir[Y] = camera->dir[Y] + camera->plane[Y] * camera_x;
 }
@@ -95,23 +95,10 @@ void	set_drawing(t_camera *camera)
 		camera->draw_end = HEIGHT - 1;
 }
 
-void	set_color(t_map *map, t_camera *camera)
-{
-	char	pos;
-
-	pos = map->map[camera->grid_pos[Y]][camera->grid_pos[X]];
-	if (pos == 1)
-		camera->color = WALL_COLOR;
-	else if (pos == 0)
-		camera->color = FLOOR_COLOR;
-	if (camera->side_touch == 1)
-		camera->color /= 2;
-}
-
 void	do_all_rays(t_game *game, t_camera *camera)
 {
 	camera->x = -1;
-	while (++camera->x < game->map.col_max)
+	while (++camera->x < WIDTH)
 	{
 		dda_algo(game, camera, &game->player, camera->x);
 		get_raylength(camera);
