@@ -65,12 +65,9 @@ int	handle_keypress(int keysym, t_game *game)
 void	init(t_game *game)
 {
 	init_game(game);
-	printf("floor color : %s\n", game->map.rgb[0]);
-	printf("ceil color : %s\n", game->map.rgb[1]);
+	get_textures_wall(game);
 	game->map.floor_color = rgb_to_hex(game->map.rgb[0]);
 	game->map.ceil_color = rgb_to_hex(game->map.rgb[1]);
-	printf("floor color : %d\n", game->map.floor_color);
-	printf("ceil color : %d\n", game->map.ceil_color);
 	init_texture(game);
 	init_pos_player(game);
 	init_camera_angle(&game->player.camera, &game->map);

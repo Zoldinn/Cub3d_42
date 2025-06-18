@@ -119,7 +119,7 @@ int	check_file(char *path, t_map *map)
 		count++;
 	if (count != 6)
 		return (p_er("there's something missing"), 1);
-	map->rgb = calloc(3, sizeof(char *));
+	map->rgb = calloc(sizeof(char *), 3);
 	map->rgb[0] = get_rgb("F", map);
 	map->rgb[1] = get_rgb("C", map);
 	if (check_rgb_values(map->rgb) != 0 || check_txt(map) != 0)

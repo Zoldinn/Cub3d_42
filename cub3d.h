@@ -41,17 +41,10 @@
 # define PI				3.14159265359
 
 # define SPEED			0.2f
-# define FLOOR			0
-# define WALL			1
-# define EMPTY			2
-# define OOB			3
-# define FLOOR3D_PATH	"./assets/floor3d.xpm"
-# define FLOOR_PATH		"./assets/floor.xpm"
-# define WALL3D_PATH	"./assets/wall3d.xpm"
-# define WALL_PATH		"./assets/wall.xpm"
-# define EMPTY_PATH		"./assets/empty.xpm"
-# define PLAYER_PATH	"./assets/player.xpm"
-# define OOB_PATH		"./assets/oob.xpm"
+# define WALL_N			0
+# define WALL_S			1
+# define WALL_W			2
+# define WALL_E			3
 
 # define X				1
 # define Y				0
@@ -101,6 +94,7 @@ typedef struct s_my_img
 typedef struct s_texture
 {
 	void	*img;
+	char	*addr;
 	char	*path;
 }	t_texture;
 
@@ -118,8 +112,8 @@ typedef struct s_game
 	void		*window;
 	t_map		map;
 	int			**grid;
-	t_texture	txt[4];
 	t_player	player;
+	t_texture	wall[4];
 	t_my_img	screen_img;
 }	t_game;
 
@@ -162,6 +156,7 @@ int		rgb_to_hex(char *rgb);
 void	free_arr(char **arr);
 void	free_and_exit(t_map *map, int code);
 void	free_map(t_map *map);
+void	free_walls_texture(t_game *game);
 int		arrlen(char **arr);
 int		ft_check_atoi(const char *nptr);
 int		ft_cmpstr(char *s1, char *s2);
@@ -174,6 +169,7 @@ void	init_game(t_game *game);
 void	init_texture(t_game *game);
 void	init_pos_player(t_game *game);
 void	init_img(t_my_img *img);
+void	get_textures_wall(t_game *game);
 /**========================================================================
  *!                               MAP
  *========================================================================**/
