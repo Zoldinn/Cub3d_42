@@ -4,10 +4,13 @@ void	init_map(t_map *map)
 {
 	map->data = NULL;
 	map->map = NULL;
+	map->rgb = NULL;
 	map->txt = NULL;
 	map->rows = 0;
 	map->col_max = 0;
 	map->lines_data = 0;
+	map->floor_color = 0;
+	map->ceil_color = 0;
 }
 
 //init an img where we will draw every pixel on it

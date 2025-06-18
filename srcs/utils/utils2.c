@@ -66,17 +66,13 @@ int	is_charset(char c, char *charset)
 	return (0);
 }
 
-void	draw_verline(t_my_img *img, t_camera *camera)
+int	rgb_to_hex(char *rgb)
 {
-	int	y;
+	char	**arr;
+	int		res;
 
-	y = camera->draw_start;
-	while (y <= camera->draw_end)
-	{
-		camera->color = WALL_COLOR;
-		if (camera->side_touch == 1)
-			camera->color /= 2;
-		put_pixel(img, camera->x, y, camera->color);
-		y++;
-	}
+	arr = ft_split(rgb, ",");
+	res = (ft_atoi(arr[0]) << 16) | (ft_atoi(arr[1]) << 8) | ft_atoi(arr[2]);
+	free_arr(arr);
+	return (res);
 }

@@ -60,11 +60,14 @@ typedef struct s_map
 {
 	char	**data;
 	char	**map;
+	char	**rgb;
+	char	**txt;
 	int		rows;
 	int		col_max;
 	int		lines_data;
 	int		start_map;
-	char	**txt;
+	int		floor_color;
+	int		ceil_color;
 }	t_map;
 
 typedef struct s_camera
@@ -152,6 +155,7 @@ void	check_empty_lines_map(t_map *map, char *file_temp);
 char	*get_rgb(char *id, t_map *map);
 int		is_charset(char c, char *charset);
 double	get_rad(double degree);
+int		rgb_to_hex(char *rgb);
 /**========================================================================
  *!                               FREE
  *========================================================================**/

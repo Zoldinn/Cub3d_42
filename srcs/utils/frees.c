@@ -20,6 +20,8 @@ void	free_map(t_map *map)
 		free_arr(map->data);
 	if (map->map)
 		free_arr(map->map);
+	if (map->rgb)
+		free_arr(map->rgb);
 	if (map->txt)
 		free_txt(map->txt);
 }

@@ -57,7 +57,7 @@ void	draw_square(t_my_img *img, double x, double y, int color)
 //draw background split horizontaly
 //top half is the ceiling
 //bottom half is the floor
-void	render_background(t_my_img *img)
+void	render_background(t_my_img *img, t_map *map)
 {
 	int	i;
 	int	j;
@@ -68,7 +68,7 @@ void	render_background(t_my_img *img)
 		j = 0;
 		while (j < WIDTH)
 		{
-			put_pixel(img, j, i, BLUE_COLOR);
+			put_pixel(img, j, i, map->ceil_color);
 			j++;
 		}
 		i++;
@@ -79,7 +79,7 @@ void	render_background(t_my_img *img)
 		j = 0;
 		while (j < WIDTH)
 		{
-			put_pixel(img, j, i, FLOOR_COLOR);
+			put_pixel(img, j, i, map->floor_color);
 			j++;
 		}
 		i++;
@@ -95,6 +95,6 @@ void	render_map(t_game *game)
 	game->screen_img.addr = mlx_get_data_addr(game->screen_img.mlx_img,
 			&game->screen_img.bpp, &game->screen_img.line_len,
 			&game->screen_img.endian);
-	render_background(&game->screen_img);
+	render_background(&game->screen_img, &game->map);
 	do_all_rays(game, &game->player.camera);
 }
