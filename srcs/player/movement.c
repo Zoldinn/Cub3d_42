@@ -35,6 +35,8 @@ int	check_player_move(t_game *game, int keysym)
 	double	y;
 	int		offset_oob;
 
+	x = 0;
+	y = 0;
 	set_movement(game, keysym, &x, &y);
 	offset_oob = 2;
 	if (x <= 0 || y <= 0 || x >= game->map.col_max || y >= game->map.rows - 1)
