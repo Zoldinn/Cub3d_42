@@ -1,16 +1,5 @@
 #include "../../cub3d.h"
 
-/*
-	if (keysym == KEY_W)
-		y -= 0.1f;
-	else if (keysym == KEY_S)
-		y += 1;
-	else if (keysym == KEY_A)
-		x -= 0.1f;
-	else if (keysym == KEY_D)
-		x += 1; 
-} */
-
 //draw a cone of pixels in order to see raycasting
 void	draw_ray(t_game *game, int color)
 {

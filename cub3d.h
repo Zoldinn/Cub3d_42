@@ -189,5 +189,9 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x);
 void	put_pixel(t_my_img *img, int x, int y, int color);
 void	draw_verline(t_my_img *img, t_camera *camera);
 void	do_all_rays(t_game *game, t_camera *camera);
+/**========================================================================
+ *!                              PLAYER
+ *========================================================================**/
+void	move_player(int keysym, t_game *game);
 
 #endif

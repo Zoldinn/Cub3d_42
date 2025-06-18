@@ -28,7 +28,6 @@ void	draw_square(t_my_img *img, double x, double y, int color)
 	}
 }
 
-
 // draw_wall(int *img)
 // {
 // 	*img = color;
@@ -62,7 +61,7 @@ void	render_background(t_my_img *img)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < HEIGHT / 2)
 	{
@@ -94,8 +93,8 @@ void	render_map(t_game *game)
 		mlx_destroy_image(game->mlx, game->screen_img.mlx_img);
 	game->screen_img.mlx_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->screen_img.addr = mlx_get_data_addr(game->screen_img.mlx_img,
-		&game->screen_img.bpp, &game->screen_img.line_len,
-		&game->screen_img.endian);
+			&game->screen_img.bpp, &game->screen_img.line_len,
+			&game->screen_img.endian);
 	render_background(&game->screen_img);
 	do_all_rays(game, &game->player.camera);
 }
