@@ -41,17 +41,10 @@
 # define PI				3.14159265359
 
 # define SPEED			0.2f
-# define FLOOR			0
-# define WALL			1
-# define EMPTY			2
-# define OOB			3
-# define FLOOR3D_PATH	"./assets/floor3d.xpm"
-# define FLOOR_PATH		"./assets/floor.xpm"
-# define WALL3D_PATH	"./assets/wall3d.xpm"
-# define WALL_PATH		"./assets/wall.xpm"
-# define EMPTY_PATH		"./assets/empty.xpm"
-# define PLAYER_PATH	"./assets/player.xpm"
-# define OOB_PATH		"./assets/oob.xpm"
+# define WALL_N			0
+# define WALL_S			1
+# define WALL_W			2
+# define WALL_E			3
 
 # define X				1
 # define Y				0
@@ -60,11 +53,14 @@ typedef struct s_map
 {
 	char	**data;
 	char	**map;
+	char	**rgb;
+	char	**txt;
 	int		rows;
 	int		col_max;
 	int		lines_data;
 	int		start_map;
-	char	**txt;
+	int		floor_color;
+	int		ceil_color;
 }	t_map;
 
 typedef struct s_camera
@@ -98,6 +94,7 @@ typedef struct s_my_img
 typedef struct s_texture
 {
 	void	*img;
+	char	*addr;
 	char	*path;
 }	t_texture;
 
@@ -115,8 +112,8 @@ typedef struct s_game
 	void		*window;
 	t_map		map;
 	int			**grid;
-	t_texture	txt[4];
 	t_player	player;
+	t_texture	wall[4];
 	t_my_img	screen_img;
 }	t_game;
 
@@ -152,12 +149,14 @@ void	check_empty_lines_map(t_map *map, char *file_temp);
 char	*get_rgb(char *id, t_map *map);
 int		is_charset(char c, char *charset);
 double	get_rad(double degree);
+int		rgb_to_hex(char *rgb);
 /**========================================================================
  *!                               FREE
  *========================================================================**/
 void	free_arr(char **arr);
 void	free_and_exit(t_map *map, int code);
 void	free_map(t_map *map);
+void	free_walls_texture(t_game *game);
 int		arrlen(char **arr);
 int		ft_check_atoi(const char *nptr);
 int		ft_cmpstr(char *s1, char *s2);
@@ -170,6 +169,7 @@ void	init_game(t_game *game);
 void	init_texture(t_game *game);
 void	init_pos_player(t_game *game);
 void	init_img(t_my_img *img);
+void	get_textures_wall(t_game *game);
 /**========================================================================
  *!                               MAP
  *========================================================================**/
@@ -189,5 +189,9 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x);
 void	put_pixel(t_my_img *img, int x, int y, int color);
 void	draw_verline(t_my_img *img, t_camera *camera);
 void	do_all_rays(t_game *game, t_camera *camera);
+/**========================================================================
+ *!                              PLAYER
+ *========================================================================**/
+void	move_player(int keysym, t_game *game);
 
 #endif

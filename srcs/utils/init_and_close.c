@@ -4,10 +4,13 @@ void	init_map(t_map *map)
 {
 	map->data = NULL;
 	map->map = NULL;
+	map->rgb = NULL;
 	map->txt = NULL;
 	map->rows = 0;
 	map->col_max = 0;
 	map->lines_data = 0;
+	map->floor_color = 0;
+	map->ceil_color = 0;
 }
 
 //init an img where we will draw every pixel on it
@@ -69,21 +72,20 @@ void	init_pos_player(t_game *game)
 int	end_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->window);
-	if (game->txt[WALL].img)
-		mlx_destroy_image(game->mlx, game->txt[WALL].img);
-	if (game->txt[FLOOR].img)
-		mlx_destroy_image(game->mlx, game->txt[FLOOR].img);
-	if (game->txt[EMPTY].img)
-		mlx_destroy_image(game->mlx, game->txt[EMPTY].img);
-	if (game->player.texture.img)
-		mlx_destroy_image(game->mlx, game->player.texture.img);
-	if (game->txt[OOB].img)
-		mlx_destroy_image(game->mlx, game->txt[OOB].img);
+	if (game->wall[WALL_N].img)
+		mlx_destroy_image(game->mlx, game->wall[WALL_N].img);
+	if (game->wall[WALL_S].img)
+		mlx_destroy_image(game->mlx, game->wall[WALL_S].img);
+	if (game->wall[WALL_W].img)
+		mlx_destroy_image(game->mlx, game->wall[WALL_W].img);
+	if (game->wall[WALL_E].img)
+		mlx_destroy_image(game->mlx, game->wall[WALL_E].img);
 	if (game->screen_img.mlx_img)
 		mlx_destroy_image(game->mlx, game->screen_img.mlx_img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_map(&game->map);
+	free_walls_texture(game);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

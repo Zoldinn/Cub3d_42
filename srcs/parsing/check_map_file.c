@@ -102,7 +102,6 @@ int	check_file(char *path, t_map *map)
 {
 	int		i;
 	int		count;
-	char	*rgb[2];
 	char	**id;
 
 	if (get_map(map, path) != 0 || map->data == NULL || map->map == NULL)
@@ -120,9 +119,10 @@ int	check_file(char *path, t_map *map)
 		count++;
 	if (count != 6)
 		return (p_er("there's something missing"), 1);
-	rgb[0] = get_rgb("F", map);
-	rgb[1] = get_rgb("C", map);
-	if (check_rgb_values(rgb) != 0 || check_txt(map) != 0)
-		return (free(rgb[0]), free(rgb[1]), 1);
-	return (free(rgb[0]), free(rgb[1]), 0);
+	map->rgb = calloc(sizeof(char *), 3);
+	map->rgb[0] = get_rgb("F", map);
+	map->rgb[1] = get_rgb("C", map);
+	if (check_rgb_values(map->rgb) != 0 || check_txt(map) != 0)
+		return (1);
+	return (0);
 }
