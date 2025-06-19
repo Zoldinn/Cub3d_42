@@ -34,8 +34,6 @@
 
 # define WIDTH			1920
 # define HEIGHT			1080
-// # define WIDTH			3840
-// # define HEIGHT			1960
 # define SIZE			12
 # define FOV_DEGREE		66
 # define PI				3.14159265359
