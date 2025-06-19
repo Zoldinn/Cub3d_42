@@ -40,6 +40,7 @@ int	render_map2d(t_game *game)
 	}
 	draw_square(&game->screen_img, game->player.pos_y, game->player.pos_x,
 		PLAYER_COLOR);
+	game->screen_img.done = 1;
 	// draw_ray(game, PLAYER_COLOR);
 	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
 		0, 0);

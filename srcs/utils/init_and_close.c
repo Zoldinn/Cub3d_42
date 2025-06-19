@@ -22,6 +22,7 @@ void	init_img(t_my_img *img)
 	img->bpp = 0;
 	img->line_len = 0;
 	img->endian = 0;
+	img->done = 0;
 }
 
 //set up and start mlx
