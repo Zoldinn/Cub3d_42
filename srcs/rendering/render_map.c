@@ -97,5 +97,5 @@ void	render_map(t_game *game)
 			&game->screen_img.bpp, &game->screen_img.line_len,
 			&game->screen_img.endian);
 	render_background(&game->screen_img, &game->map);
-	do_all_rays(game, &game->player.camera);
+	raycasting(game, &game->player.camera);
 }

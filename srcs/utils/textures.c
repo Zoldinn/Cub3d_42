@@ -17,19 +17,15 @@ void	get_textures_wall(t_game *game)
 
 t_texture	new_texture(t_game *game, char *path)
 {
-	t_texture	texture;
-	int			x;
-	int			y;
+	t_texture	tex;
 
-	x = SIZE;
-	y = SIZE;
-	texture.img = mlx_xpm_file_to_image(game->mlx, path, &x, &y);
-	if (!texture.img)
+	tex.img = mlx_xpm_file_to_image(game->mlx, path, &tex.width, &tex.height);
+	if (!tex.img)
 	{
 		printf("Texture not found.\n");
 		end_game(game);
 	}
-	return (texture);
+	return (tex);
 }
 
 void	init_texture(t_game *game)

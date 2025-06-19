@@ -34,8 +34,6 @@
 
 # define WIDTH			1920
 # define HEIGHT			1080
-// # define WIDTH			3840
-// # define HEIGHT			1960
 # define SIZE			12
 # define FOV_DEGREE		66
 # define PI				3.14159265359
@@ -48,6 +46,11 @@
 
 # define X				1
 # define Y				0
+
+// "vertical" == a wall east or west
+# define VERTICAL		0
+// "horizontal" == a wall north or south
+# define HORIZONTAL		1
 
 typedef struct s_map
 {
@@ -96,6 +99,8 @@ typedef struct s_texture
 	void	*img;
 	char	*addr;
 	char	*path;
+	int		width;
+	int		height;
 }	t_texture;
 
 typedef struct s_player
@@ -106,12 +111,19 @@ typedef struct s_player
 	t_camera	camera;
 }	t_player;
 
+typedef struct s_wall
+{
+	double		wall_x;
+	double		tex_x;
+	int			color;
+	t_texture	*tex;
+}	t_wall;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*window;
 	t_map		map;
-	int			**grid;
 	t_player	player;
 	t_texture	wall[4];
 	t_my_img	screen_img;
@@ -187,8 +199,8 @@ void	update_camera_dir(t_camera *camera);
 void	draw_ray(t_game *game, int color);
 void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x);
 void	put_pixel(t_my_img *img, int x, int y, int color);
-void	draw_verline(t_my_img *img, t_camera *camera);
-void	do_all_rays(t_game *game, t_camera *camera);
+void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera);
+void	raycasting(t_game *game, t_camera *camera);
 /**========================================================================
  *!                              PLAYER
  *========================================================================**/
