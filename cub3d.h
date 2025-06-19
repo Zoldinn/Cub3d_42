@@ -113,13 +113,17 @@ typedef struct s_player
 	t_camera	camera;
 }	t_player;
 
-typedef struct s_wall
+typedef struct s_tex_mapping
 {
 	double		wall_x;
 	double		tex_x;
 	int			color;
 	t_texture	*tex;
-}	t_wall;
+	int			step;
+	int			start_y;
+	int			y;
+
+}	t_tex_mapping;
 
 typedef struct s_game
 {
@@ -203,6 +207,10 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x);
 void	put_pixel(t_my_img *img, int x, int y, int color);
 void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera);
 void	raycasting(t_game *game, t_camera *camera);
+int		get_img_pixel_color(t_my_img *img, int x, int y);
+void	get_wall_tex(t_game *game, t_camera *camera, t_wall *wall);
+void	get_wall_x(t_game *game, t_wall *wall);
+void	get_tex_x(t_game *game, t_wall *wall);
 /**========================================================================
  *!                              PLAYER
  *========================================================================**/
