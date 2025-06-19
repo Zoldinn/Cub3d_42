@@ -92,6 +92,7 @@ void	render_map(t_game *game)
 {
 	if (game->screen_img.mlx_img)
 		mlx_destroy_image(game->mlx, game->screen_img.mlx_img);
+	game->screen_img.done = 0;
 	game->screen_img.mlx_img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->screen_img.addr = mlx_get_data_addr(game->screen_img.mlx_img,
 			&game->screen_img.bpp, &game->screen_img.line_len,

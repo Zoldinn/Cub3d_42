@@ -51,14 +51,28 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == KEY_ESC)
 		end_game(game);
 	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
-		|| keysym == KEY_D || keysym == KEY_LEFT || keysym == KEY_RIGHT)
+		|| keysym == KEY_D)
 	{
 		move_player(keysym, game);
-		move_camera(keysym, game);
-		update_camera_dir(&game->player.camera);
 		render_map(game);
 		render_map2d(game);
 	}
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_game *game)
+{
+	(void)y;
+	if (x < (WIDTH / 2) - (WIDTH / 10))
+		game->player.camera.angle_rad -= 0.1f;
+	else if (x > (WIDTH / 2) + (WIDTH / 10))
+		game->player.camera.angle_rad += 0.1f;
+	else
+		return (0);
+	update_camera_dir(&game->player.camera);
+	render_map(game);
+	render_map2d(game);
+	mlx_mouse_move(game->mlx, game->window, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }
 
@@ -74,6 +88,8 @@ void	init(t_game *game)
 	update_camera_dir(&game->player.camera);
 	render_map(game);
 	render_map2d(game);
+	mlx_mouse_hide(game->mlx, game->window);
+	mlx_mouse_move(game->mlx, game->window, WIDTH / 2, HEIGHT / 2);
 }
 
 int	main(int argc, char **argv)
@@ -88,8 +104,8 @@ int	main(int argc, char **argv)
 	init(&game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
 		&end_game, &game);
+	mlx_hook(game.window, 6, PointerMotionMask, &mouse_move, &game);
 	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);
-	// mlx_loop_hook(game.mlx, , &game);
 	mlx_loop(game.mlx);
 	free_map(&game.map);
 	return (0);

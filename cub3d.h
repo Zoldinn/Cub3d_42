@@ -2,6 +2,7 @@
 # define CUB3D_H
 
 # include <math.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -92,6 +93,7 @@ typedef struct s_my_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		done;
 }	t_my_img;
 
 typedef struct s_texture

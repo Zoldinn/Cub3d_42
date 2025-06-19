@@ -57,6 +57,8 @@ void	compare_maps(t_map *map, char *file_temp, int i)
 	int		index_map;
 
 	index_map = 0;
+	while (file_temp[i] == '\n')
+		i++;
 	while (map->map[index_map])
 	{
 		j = i;
