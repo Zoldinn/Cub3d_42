@@ -22,7 +22,6 @@ void	init_img(t_my_img *img)
 	img->bpp = 0;
 	img->line_len = 0;
 	img->endian = 0;
-	img->done = 0;
 }
 
 //set up and start mlx
@@ -61,7 +60,7 @@ void	init_pos_player(t_game *game)
 			{
 				game->player.pos_x = j;
 				game->player.pos_y = i;
-				break;
+				break ;
 			}
 			j++;
 		}

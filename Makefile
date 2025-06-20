@@ -7,6 +7,7 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	parsing/check_map_file.c \
 	parsing/map_parsing.c \
 	parsing/map_parsing_utils.c \
+	parsing/check_args.c \
 	utils/utils.c \
 	utils/utils2.c \
 	utils/frees.c \
@@ -16,6 +17,7 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	rendering/render_map.c \
 	rendering/ray_draw.c \
 	rendering/tex_mapping.c \
+	rendering/pixels.c \
 	raycast/camera.c \
 	raycast/raycasting.c \
 	player/movement.c)

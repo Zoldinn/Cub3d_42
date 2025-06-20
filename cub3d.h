@@ -35,6 +35,7 @@
 
 # define WIDTH			1920
 # define HEIGHT			1080
+
 # define SIZE			12
 # define FOV_DEGREE		66
 # define PI				3.14159265359
@@ -92,7 +93,6 @@ typedef struct s_my_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-	int		done;
 }	t_my_img;
 
 typedef struct s_texture
@@ -153,6 +153,7 @@ int			check_extension(char *file_name, char *ext);
 /**========================================================================
  *!                              PARSING
  *========================================================================**/
+int			check_args(int argc, char **argv);
 int			get_map(t_map *map, char *path);
 char		*get_next_line(int fd);
 int			check_file(char *path, t_map *map);
@@ -216,5 +217,10 @@ void		get_tex_x(t_camera *camera, t_tex_mapping *tex);
  *!                              PLAYER
  *========================================================================**/
 void		move_player(int keysym, t_game *game);
+void		draw_player(t_my_img *img, double x, double y, int color);
+/**========================================================================
+ *!                              CAMERA
+ *========================================================================**/
+void		move_camera(int keysym, t_game *game);
 
 #endif

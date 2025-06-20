@@ -64,4 +64,3 @@ void	draw_ray(t_game *game, int color)
 		}
 	}
 }
-
