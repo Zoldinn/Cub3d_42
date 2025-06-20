@@ -88,7 +88,6 @@ typedef struct s_my_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-	int		done;
 }	t_my_img;
 
 typedef struct s_texture
@@ -193,5 +192,6 @@ void	do_all_rays(t_game *game, t_camera *camera);
  *!                              PLAYER
  *========================================================================**/
 void	move_player(int keysym, t_game *game);
+void	draw_player(t_my_img *img, double x, double y, int color);
 
 #endif

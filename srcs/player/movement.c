@@ -40,20 +40,15 @@ int	check_player_move(t_game *game, int keysym)
 	set_movement(game, keysym, &x, &y);
 	offset_oob = 2;
 	if (x <= 0 || y <= 0 || x >= game->map.col_max || y >= game->map.rows - 1)
-		return (printf("first condition\n"), 1);
+		return (1);
+	/* if (x > game->player.pos_x)
+		x += .3f;
+	if (y > game->player.pos_y)
+		y += .3f; */
 	if (game->map.map[(int)y][(int)x] == ' '
+		|| game->map.map[(int)y][(int)x] == '1'
 		|| (size_t)x > ft_strlen(game->map.map[(int)y]) - offset_oob)
-		return (printf("second condition\n"), 1);
-	if (x > game->player.pos_x || y > game->player.pos_y)
-	{
-		if (x > game->player.pos_x)
-			x += 1;
-		if (y > game->player.pos_y)
-			y += 1;
-		if (game->map.map[(int)y][(int)x] == ' '
-			|| (size_t)x > ft_strlen(game->map.map[(int)y]) - offset_oob + 1)
-		return (printf("third condition\n"), 1);
-	}
+		return (1);
 	return (0);
 }
 

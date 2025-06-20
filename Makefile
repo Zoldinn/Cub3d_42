@@ -15,6 +15,7 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	rendering/mini_map.c \
 	rendering/render_map.c \
 	rendering/ray_draw.c \
+	rendering/pixels.c \
 	raycast/camera.c \
 	raycast/raycasting.c \
 	player/movement.c)
