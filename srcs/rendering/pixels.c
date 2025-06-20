@@ -7,7 +7,6 @@ void	put_pixel(t_my_img *img, int x, int y, int color)
 
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(int *)pixel = color;
-	//return color for xpm
 }
 
 //draw a square of pixels

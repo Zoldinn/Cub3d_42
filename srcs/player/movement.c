@@ -41,10 +41,6 @@ int	check_player_move(t_game *game, int keysym)
 	offset_oob = 2;
 	if (x <= 0 || y <= 0 || x >= game->map.col_max || y >= game->map.rows - 1)
 		return (1);
-	/* if (x > game->player.pos_x)
-		x += .3f;
-	if (y > game->player.pos_y)
-		y += .3f; */
 	if (game->map.map[(int)y][(int)x] == ' '
 		|| game->map.map[(int)y][(int)x] == '1'
 		|| (size_t)x > ft_strlen(game->map.map[(int)y]) - offset_oob)

@@ -43,6 +43,7 @@ void	set_step_and_sidedist(t_player *player, t_camera *camera)
 void	get_raydir_x(t_camera *camera, t_map *map, int x)
 {
 	double	camera_x;
+
 	(void) map;
 	camera_x = 2 * x / (double) WIDTH - 1;
 	camera->ray_dir[X] = camera->dir[X] + camera->plane[X] * camera_x;
@@ -86,7 +87,7 @@ void	get_raylength(t_camera *camera)
 // set the height of the wall, the start/end drawing point
 void	set_drawing(t_camera *camera)
 {
-	camera->line_height = (int) (HEIGHT / camera->raylength);
+	camera->line_height = (int)(HEIGHT / camera->raylength);
 	camera->draw_start = (HEIGHT / 2) - (camera->line_height / 2);
 	if (camera->draw_start < 0)
 		camera->draw_start = 0;

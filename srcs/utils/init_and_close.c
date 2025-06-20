@@ -59,8 +59,8 @@ void	init_pos_player(t_game *game)
 			if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 			{
 				game->player.pos_x = j;
-				game->player.pos_y = i;	
-				break;
+				game->player.pos_y = i;
+				break ;
 			}
 			j++;
 		}

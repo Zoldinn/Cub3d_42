@@ -193,5 +193,9 @@ void	do_all_rays(t_game *game, t_camera *camera);
  *========================================================================**/
 void	move_player(int keysym, t_game *game);
 void	draw_player(t_my_img *img, double x, double y, int color);
+/**========================================================================
+ *!                              CAMERA
+ *========================================================================**/
+void	move_camera(int keysym, t_game *game);
 
 #endif
