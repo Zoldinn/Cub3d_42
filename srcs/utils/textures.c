@@ -31,11 +31,11 @@ t_texture	new_texture(t_game *game, char *path)
 void	init_texture(t_game *game)
 {
 	game->wall[WALL_N].img = NULL;
-	// game->wall[WALL_N] = new_texture(game, game->wall[0].path);
+	game->wall[WALL_N] = new_texture(game, game->wall[0].path);
 	game->wall[WALL_S].img = NULL;
-	// game->wall[WALL_S] = new_texture(game, game->wall[1].path);
+	game->wall[WALL_S] = new_texture(game, game->wall[1].path);
 	game->wall[WALL_W].img = NULL;
-	// game->wall[WALL_W] = new_texture(game, game->wall[2].path);
+	game->wall[WALL_W] = new_texture(game, game->wall[2].path);
 	game->wall[WALL_E].img = NULL;
-	// game->wall[WALL_E] = new_texture(game, game->wall[3].path);
+	game->wall[WALL_E] = new_texture(game, game->wall[3].path);
 }

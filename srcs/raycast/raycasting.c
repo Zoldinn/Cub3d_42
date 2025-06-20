@@ -40,10 +40,10 @@ void	set_step_and_sidedist(t_player *player, t_camera *camera)
 	}
 }
 
-void	get_raydir_x(t_camera *camera, t_map *map, int x)
+void	get_raydir_x(t_camera *camera, int x)
 {
 	double	camera_x;
-	(void) map;
+
 	camera_x = 2 * x / (double) WIDTH - 1;
 	camera->ray_dir[X] = camera->dir[X] + camera->plane[X] * camera_x;
 	camera->ray_dir[Y] = camera->dir[Y] + camera->plane[Y] * camera_x;
@@ -54,7 +54,7 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x)
 {
 	camera->grid_pos[X] = (int) player->pos_x;
 	camera->grid_pos[Y] = (int) player->pos_y;
-	get_raydir_x(camera, &game->map, x);
+	get_raydir_x(camera, x);
 	set_delta_dist(camera);
 	set_step_and_sidedist(player, camera);
 	while (game->map.map[camera->grid_pos[Y]][camera->grid_pos[X]] != '1')
@@ -74,35 +74,17 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x)
 	}
 }
 
-// get the distance / length of the ray from player to the wall hit
-void	get_raylength(t_camera *camera)
-{
-	if (camera->side_touch == VERTICAL)
-		camera->raylength = camera->side_dist[X] - camera->delta_dist[X];
-	else
-		camera->raylength = camera->side_dist[Y] - camera->delta_dist[Y];
-}
-
-// set the height of the wall, the start/end drawing point
-void	set_drawing(t_camera *camera)
-{
-	camera->line_height = (int) (HEIGHT / camera->raylength);
-	camera->draw_start = (HEIGHT / 2) - (camera->line_height / 2);
-	if (camera->draw_start < 0)
-		camera->draw_start = 0;
-	camera->draw_end = (HEIGHT / 2) + (camera->line_height / 2);
-	if (camera->draw_end >= HEIGHT)
-		camera->draw_end = HEIGHT - 1;
-}
-
+// for each col of screen, call the DDA, calcul the length of the ray, then draw
 void	raycasting(t_game *game, t_camera *camera)
 {
 	camera->x = -1;
 	while (++camera->x < WIDTH)
 	{
 		dda_algo(game, camera, &game->player, camera->x);
-		get_raylength(camera);
-		set_drawing(camera);
+		if (camera->side_touch == VERTICAL)
+			camera->raylen = camera->side_dist[X] - camera->delta_dist[X];
+		else
+			camera->raylen = camera->side_dist[Y] - camera->delta_dist[Y];
 		draw_vertical_line(&game->screen_img, game, camera);
 	}
 }
