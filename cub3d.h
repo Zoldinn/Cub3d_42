@@ -35,6 +35,7 @@
 
 # define WIDTH			1920
 # define HEIGHT			1080
+
 # define SIZE			12
 # define FOV_DEGREE		66
 # define PI				3.14159265359
@@ -133,6 +134,7 @@ int		check_extension(char *file_name, char *ext);
 /**========================================================================
  *!                              PARSING
  *========================================================================**/
+int		check_args(int argc, char **argv);
 int		get_map(t_map *map, char *path);
 char	*get_next_line(int fd);
 int		check_file(char *path, t_map *map);

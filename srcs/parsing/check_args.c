@@ -18,7 +18,7 @@ int	check_extension(char *file_name, char *ext)
 	return (free(clean), 0);
 }
 
-static int	check_args(int argc, char **argv)
+int	check_args(int argc, char **argv)
 {
 	if (argc < 2)
 	{
