@@ -24,6 +24,10 @@ void	free_map(t_map *map)
 		free_arr(map->rgb);
 	if (map->txt)
 		free_txt(map->txt);
+	if (map->door_pos_x)
+		free(map->door_pos_x);
+	if (map->door_pos_y)
+		free(map->door_pos_y);
 }
 
 void	free_walls_texture(t_game *game)

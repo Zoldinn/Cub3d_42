@@ -58,7 +58,8 @@ void	dda_algo(t_game *game, t_camera *camera, t_player *player, int x)
 	get_raydir_x(camera, &game->map, x);
 	set_delta_dist(camera);
 	set_step_and_sidedist(player, camera);
-	while (game->map.map[camera->grid_pos[Y]][camera->grid_pos[X]] != '1')
+	while (game->map.map[camera->grid_pos[Y]][camera->grid_pos[X]] != '1'
+		&& game->map.map[camera->grid_pos[Y]][camera->grid_pos[X]] != 'D')
 	{
 		if (camera->side_dist[X] < camera->side_dist[Y])
 		{

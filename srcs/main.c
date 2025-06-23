@@ -47,6 +47,8 @@ void	init(t_game *game)
 	get_textures_wall(game);
 	game->map.floor_color = rgb_to_hex(game->map.rgb[0]);
 	game->map.ceil_color = rgb_to_hex(game->map.rgb[1]);
+	game->map.door_pos_x = ft_calloc(sizeof(int), game->map.nb_doors);
+	game->map.door_pos_y = ft_calloc(sizeof(int), game->map.nb_doors);
 	init_texture(game);
 	init_pos_player(game);
 	init_camera_angle(&game->player.camera, &game->map);
@@ -55,7 +57,7 @@ void	init(t_game *game)
 	render_map2d(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
 		0, 0);
-	mlx_mouse_hide(game->mlx, game->window);
+	// mlx_mouse_hide(game->mlx, game->window);
 	mlx_mouse_move(game->mlx, game->window, WIDTH / 2, HEIGHT / 2);
 }
 

@@ -36,3 +36,14 @@ int	check_args(int argc, char **argv)
 		return (p_er("Map file isn't .cub"), 1);
 	return (0);
 }
+
+int	is_valid_letter_map(t_map *map, int i, int j)
+{
+	if (map->map[i][j] == '0' || map->map[i][j] == '1'
+		|| map->map[i][j] == 'N' || map->map[i][j] == 'S'
+		|| map->map[i][j] == 'E' || map->map[i][j] == 'W'
+		|| map->map[i][j] == ' ' || map->map[i][j] == 'D')
+		return (0);
+	else
+		return (1);
+}

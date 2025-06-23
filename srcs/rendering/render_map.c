@@ -58,6 +58,58 @@ void	render_background(t_my_img *img, t_map *map)
 	}
 }
 
+void	get_door_pos(t_map *map)
+{
+	int		i;
+	int		j;
+	int		x;
+
+	x = 0;
+	i = -1;
+	while (map->map[++i])
+	{
+		j = -1;
+		while (map->map[i][++j])
+		{
+			if (map->map[i][j] == 'D')
+			{
+				map->door_pos_x[x] = j;
+				map->door_pos_y[x] = i;
+				x++;
+				if (x == map->nb_doors)
+					break;
+			}
+		}
+	}
+}
+
+void	alter_door_map(t_map *map)
+{
+
+}
+
+//check distance between player and door using Manhattan distance algorithm
+void	check_distance_door(t_map *map, t_player *player)
+{
+	float	*distance;
+	int		i;
+
+	get_door_pos(map);
+	distance = ft_calloc(sizeof(float), map->nb_doors);
+	i = 0;
+	while (i < map->nb_doors)
+	{
+		distance[i] = fabs(player->pos_x - map->door_pos_x[i])
+			+ fabs(player->pos_y - map->door_pos_y[i]);
+		if (distance[i] <= 3)
+		{
+			alter_door_map(map);
+		}
+		i++;
+	}
+	free(distance);
+}
+
 //render the 3d img of the map
 void	render_map(t_game *game)
 {
@@ -68,5 +120,6 @@ void	render_map(t_game *game)
 			&game->screen_img.bpp, &game->screen_img.line_len,
 			&game->screen_img.endian);
 	render_background(&game->screen_img, &game->map);
+	check_distance_door(&game->map, &game->player);
 	do_all_rays(game, &game->player.camera);
 }
