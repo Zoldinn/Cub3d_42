@@ -1,13 +1,18 @@
 #include "../../cub3d.h"
 
-int	get_img_pixel_color(t_my_img *img, int x, int y)
+int	get_tex_pixel_color(t_texture *tex, int x, int y)
 {
 	char			*pixel;
 	unsigned int	color;
 
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	// printf("tex->heigth = %d\ntex->width = %d\n", tex->height, tex->width);
+	// printf("x = %d\ny = %d\n", x, y);
+	// if (x < 0 || y < 0 || !tex || !tex || !tex->addr
+	// 	|| tex->height == 0 || tex->width == 0
+	// 	|| y > tex->height || x > tex->width)
+	// 	return (printf("%sdodo%s\n", BLUE, NC), 0);
+	pixel = tex->addr + (tex->height * y + x);
 	color = *(unsigned int *) pixel;
-	printf("%spixel%s : %d\n", RED, NC, color);
 	return (color);
 }
 

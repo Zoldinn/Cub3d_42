@@ -209,7 +209,7 @@ void		dda_algo(t_game *game, t_camera *camera, t_player *player, int x);
 void		put_pixel(t_my_img *img, int x, int y, int color);
 void		draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera);
 void		raycasting(t_game *game, t_camera *camera);
-int			get_img_pixel_color(t_my_img *img, int x, int y);
+int			get_tex_pixel_color(t_texture *tex, int x, int y);
 t_texture	*get_wall_tex(t_game *game, t_camera *camera);
 void		get_wall_x(t_game *game, t_tex_mapping *tex);
 void		get_tex_x(t_camera *camera, t_tex_mapping *tex);

@@ -28,7 +28,8 @@ void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera)
 	while (y <= tex.draw_end)
 	{
 		tex.int_y = (tex.float_y >> 8) & (tex.tex->height - 1);
-		tex.color = get_img_pixel_color(tex.tex->img, (int)tex.itpl_x[TEX], tex.int_y);
+		tex.color = get_tex_pixel_color(tex.tex,
+			floor(tex.itpl_x[TEX]), tex.int_y);
 		if (camera->side_touch == VERTICAL)
 			tex.color = (tex.color >> 1) & 0x7F7F7F;
 		put_pixel(img, camera->x, y, tex.color);

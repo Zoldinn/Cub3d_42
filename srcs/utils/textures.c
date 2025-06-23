@@ -19,6 +19,8 @@ t_texture	new_texture(t_game *game, char *path)
 {
 	t_texture	tex;
 
+	tex.height = 0;
+	tex.width = 0;
 	tex.img = mlx_xpm_file_to_image(game->mlx, path, &tex.width, &tex.height);
 	if (!tex.img)
 	{
