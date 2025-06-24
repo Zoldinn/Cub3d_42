@@ -58,31 +58,6 @@ void	render_background(t_my_img *img, t_map *map)
 	}
 }
 
-void	get_door_pos(t_map *map)
-{
-	int		i;
-	int		j;
-	int		x;
-
-	x = 0;
-	i = -1;
-	while (map->map[++i])
-	{
-		j = -1;
-		while (map->map[i][++j])
-		{
-			if (map->map[i][j] == 'D')
-			{
-				map->door_pos_x[x] = j;
-				map->door_pos_y[x] = i;
-				x++;
-				if (x == map->nb_doors)
-					break ;
-			}
-		}
-	}
-}
-
 //remove door from map if bool is set on 0
 //re-add door to map if bool is set on 1
 void	alter_door_map(t_map *map, int i, int bool)
@@ -94,20 +69,12 @@ void	alter_door_map(t_map *map, int i, int bool)
 	free(map->map[map->door_pos_y[i]]);
 	map->map[map->door_pos_y[i]] = ft_calloc(sizeof(char), ft_strlen(temp) + 1);
 	index = 0;
-	/* printf("i : %d\n", i);
-	printf("temp : %s\n", temp); */
 	while (temp[index])
 	{
 		if (bool == 0 && map->door_pos_x[i] == index)
-		{
-			// printf("%d first condition\n", i);
 			map->map[map->door_pos_y[i]][index] = '0';
-		}
 		else if (bool == 1 && map->door_pos_x[i] == index)
-		{
-			// printf("%d second condition\n", i);
 			map->map[map->door_pos_y[i]][index] = 'D';
-		}
 		else
 			map->map[map->door_pos_y[i]][index] = temp[index];
 		index++;
@@ -121,14 +88,12 @@ void	check_distance_door(t_map *map, t_player *player)
 	float	*distance;
 	int		i;
 
-	// get_door_pos(map);
 	distance = ft_calloc(sizeof(float), map->nb_doors);
 	i = 0;
 	while (i < map->nb_doors)
 	{
 		distance[i] = fabs(player->pos_x - map->door_pos_x[i])
 			+ fabs(player->pos_y - map->door_pos_y[i]);
-		// printf("distance[%d] : %f\n", i, distance[i]);
 		if (distance[i] <= 3)
 			alter_door_map(map, i, 0);
 		else if (distance[i] > 3)
