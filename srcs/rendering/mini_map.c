@@ -15,6 +15,8 @@ void	fill_map(t_game *game, int x, int y)
 			draw_square(&game->screen_img, x, y, FLOOR_COLOR);
 		if (pos == ' ')
 			draw_square(&game->screen_img, x, y, EMPTY_COLOR);
+		if (pos == 'D')
+			draw_square(&game->screen_img, x, y, DOOR_COLOR);
 	}
 	else
 		draw_square(&game->screen_img, x, y, OOB_COLOR);

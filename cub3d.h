@@ -23,7 +23,7 @@
 # define WALL_COLOR		0x2D3949
 # define EMPTY_COLOR	0x800080
 # define OOB_COLOR		0xF0C807
-# define BLUE_COLOR		0x036272
+# define DOOR_COLOR		0x8F521A
 
 # define KEY_LEFT		65361
 # define KEY_RIGHT		65363
@@ -63,12 +63,15 @@ typedef struct s_map
 	char	**map;
 	char	**rgb;
 	char	**txt;
+	int		*door_pos_x;
+	int		*door_pos_y;
 	int		rows;
 	int		col_max;
 	int		lines_data;
 	int		start_map;
 	int		floor_color;
 	int		ceil_color;
+	int		nb_doors;
 }	t_map;
 
 typedef struct s_camera
@@ -153,10 +156,11 @@ int			check_extension(char *file_name, char *ext);
 /**========================================================================
  *!                              PARSING
  *========================================================================**/
-int			check_args(int argc, char **argv);
-int			get_map(t_map *map, char *path);
-char		*get_next_line(int fd);
-int			check_file(char *path, t_map *map);
+int		check_args(int argc, char **argv);
+int		get_map(t_map *map, char *path);
+char	*get_next_line(int fd);
+int		check_file(char *path, t_map *map);
+int		is_valid_letter_map(t_map *map, int i, int j);
 /**========================================================================
  *!                               UTILS
  *========================================================================**/

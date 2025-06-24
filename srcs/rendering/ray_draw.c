@@ -60,8 +60,8 @@ void	draw_ray(t_game *game, int color)
 		{
 			put_pixel(&game->screen_img, ray[X] * SIZE,
 				ray[Y] * SIZE, color);
-			ray[Y] += ray_dir[Y] * 0.01;
-			ray[X] += ray_dir[X] * 0.01;
+			ray[Y] += ray_dir[Y] * 0.01f;
+			ray[X] += ray_dir[X] * 0.01f;
 		}
 	}
 }

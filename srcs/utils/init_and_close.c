@@ -6,11 +6,14 @@ void	init_map(t_map *map)
 	map->map = NULL;
 	map->rgb = NULL;
 	map->txt = NULL;
+	map->door_pos_x = NULL;
+	map->door_pos_y = NULL;
 	map->rows = 0;
 	map->col_max = 0;
 	map->lines_data = 0;
 	map->floor_color = 0;
 	map->ceil_color = 0;
+	map->nb_doors = 0;
 }
 
 //init an img where we will draw every pixel on it
@@ -48,23 +51,27 @@ void	init_pos_player(t_game *game)
 	char	pos;
 	int		i;
 	int		j;
+	int		x;
 
-	i = 0;
-	while (i < game->map.rows - 1)
+	x = 0;
+	i = -1;
+	while (++i < game->map.rows - 1)
 	{
-		j = 0;
-		while (j < game->map.col_max - 1 && game->map.map[i][j])
+		j = -1;
+		while (++j < game->map.col_max - 1 && game->map.map[i][j])
 		{
 			pos = game->map.map[i][j];
-			if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
+			if (pos == 'D')
+			{
+				game->map.door_pos_x[x] = j;
+				game->map.door_pos_y[x++] = i;
+			}
+			else if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 			{
 				game->player.pos_x = j;
 				game->player.pos_y = i;
-				break ;
 			}
-			j++;
 		}
-		i++;
 	}
 }
 

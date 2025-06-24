@@ -6,10 +6,7 @@ int	check_map_map(t_map *map, int i, int j, int x)
 {
 	if (x == 1)
 	{
-		if (map->map[i][j] == '0' || map->map[i][j] == '1'
-		|| map->map[i][j] == 'N' || map->map[i][j] == 'S'
-		|| map->map[i][j] == 'E' || map->map[i][j] == 'W'
-		|| map->map[i][j] == ' ')
+		if (is_valid_letter_map(map, i, j) == 0)
 			return (0);
 		else
 			return (p_er(""), printf("'%c' isn't valid\n", map->map[i][j]), 1);
@@ -21,7 +18,8 @@ int	check_map_map(t_map *map, int i, int j, int x)
 			return (p_er("The borders of the map are not valid"), 1);
 		else if (map->map[i][j] == '0' || map->map[i][j] == '1'
 			|| map->map[i][j] == 'N' || map->map[i][j] == 'S'
-			|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			|| map->map[i][j] == 'D' || map->map[i][j] == 'E'
+			|| map->map[i][j] == 'W')
 			return (0);
 		else if (map->map[i][j] == ' ')
 			return (p_er(""), printf("'%c' not valid next to '0'\n",
@@ -58,24 +56,24 @@ void	check_map(t_map *map)
 	int	j;
 	int	count_player;
 
-	i = 0;
 	count_player = 0;
-	while (i < map->rows)
+	i = -1;
+	while (++i < map->rows)
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (map->map[i][++j])
 		{
 			if (j > map->col_max)
 				map->col_max = j;
+			if (map->map[i][j] == 'D')
+				map->nb_doors++;
 			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 				count_player++;
 			if (count_player > 1)
 				return (p_er("Too many players\n"), free_and_exit(map, 1));
 			get_check_map_map(map, i, j);
-			j++;
 		}
-		i++;
 	}
 	if (count_player == 0)
 		return (p_er("No player detected\n"), free_and_exit(map, 1));
@@ -104,7 +102,7 @@ void	set_map_and_datas(t_map *map, char *file_temp)
 	free_arr(temp);
 	if (map->lines_data > 5 && map->rows == 0)
 	{
-		p_er("The map is not in the right place or missing");
+		p_er("The map is not in the right place or is missing");
 		free(file_temp);
 		free_and_exit(map, 1);
 	}
