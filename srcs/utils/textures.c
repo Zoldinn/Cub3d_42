@@ -27,6 +27,8 @@ t_texture	new_texture(t_game *game, char *path)
 		printf("Texture not found.\n");
 		end_game(game);
 	}
+	tex.addr = mlx_get_data_addr(tex.img,
+		&tex.bpp, &tex.size_line, &tex.endian);
 	return (tex);
 }
 

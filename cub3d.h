@@ -105,6 +105,9 @@ typedef struct s_texture
 	char	*path;
 	int		width;
 	int		height;
+	int		bpp;
+	int		endian;
+	int		size_line;
 }	t_texture;
 
 typedef struct s_player

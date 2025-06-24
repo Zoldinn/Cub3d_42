@@ -1,12 +1,12 @@
-   WE                            ./assets/empty.xpm 
-NO      ./assets/oob.xpm
+   WE                            ./assets/colorstone.xpm 
+NO      ./assets/greystone.xpm
 
 
-SO ./assets/wall.xpm
+SO ./assets/mossy.xpm
 
 F   69, 222, 199
 
-EA ./assets/floor.xpm
+EA ./assets/purplestone.xpm
 
 
 

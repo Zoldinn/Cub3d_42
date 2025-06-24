@@ -24,17 +24,18 @@ void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera)
 	get_tex_x(camera, &tex);
 	tex.step = (tex.tex->height << 8) / tex.line_height;
 	tex.float_y = (tex.draw_start - HEIGHT / 2 + tex.line_height / 2) * tex.step;
-	y = tex.draw_start;
-	while (y <= tex.draw_end)
+	y = tex.draw_start - 1;
+	while (++y <= tex.draw_end)
 	{
-		tex.int_y = (tex.float_y >> 8) & (tex.tex->height - 1);
+		tex.int_y = tex.float_y >> 8;
+		if (tex.int_y >= tex.tex->height)
+			tex.int_y = tex.tex->height -1;
 		tex.color = get_tex_pixel_color(tex.tex,
 			floor(tex.itpl_x[TEX]), tex.int_y);
 		if (camera->side_touch == VERTICAL)
 			tex.color = (tex.color >> 1) & 0x7F7F7F;
 		put_pixel(img, camera->x, y, tex.color);
 		tex.float_y += tex.step;
-		y++;
 	}
 }
 
