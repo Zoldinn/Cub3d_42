@@ -51,23 +51,27 @@ void	init_pos_player(t_game *game)
 	char	pos;
 	int		i;
 	int		j;
+	int		x;
 
-	i = 0;
-	while (i < game->map.rows - 1)
+	x = 0;
+	i = -1;
+	while (++i < game->map.rows - 1)
 	{
-		j = 0;
-		while (j < game->map.col_max - 1 && game->map.map[i][j])
+		j = -1;
+		while (++j < game->map.col_max - 1 && game->map.map[i][j])
 		{
 			pos = game->map.map[i][j];
-			if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
+			if (pos == 'D')
+			{
+				game->map.door_pos_x[x] = j;
+				game->map.door_pos_y[x++] = i;
+			}
+			else if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 			{
 				game->player.pos_x = j;
 				game->player.pos_y = i;
-				break ;
 			}
-			j++;
 		}
-		i++;
 	}
 }
 
