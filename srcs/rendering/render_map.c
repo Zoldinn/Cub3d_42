@@ -114,5 +114,5 @@ void	render_map(t_game *game)
 			&game->screen_img.endian);
 	render_background(&game->screen_img, &game->map);
 	check_distance_door(&game->map, &game->player);
-	do_all_rays(game, &game->player.camera);
+	raycasting(game, &game->player.camera);
 }
