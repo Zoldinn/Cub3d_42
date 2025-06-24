@@ -156,11 +156,11 @@ int			check_extension(char *file_name, char *ext);
 /**========================================================================
  *!                              PARSING
  *========================================================================**/
-int		check_args(int argc, char **argv);
-int		get_map(t_map *map, char *path);
-char	*get_next_line(int fd);
-int		check_file(char *path, t_map *map);
-int		is_valid_letter_map(t_map *map, int i, int j);
+int			check_args(int argc, char **argv);
+int			get_map(t_map *map, char *path);
+char		*get_next_line(int fd);
+int			check_file(char *path, t_map *map);
+int			is_valid_letter_map(t_map *map, int i, int j);
 /**========================================================================
  *!                               UTILS
  *========================================================================**/
