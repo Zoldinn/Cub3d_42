@@ -9,7 +9,7 @@ int	get_tex_pixel_color(t_texture *tex, int x, int y)
 		|| tex->height == 0 || tex->width == 0
 		|| y > tex->height || x > tex->width)
 		return (0);
-	pixel = tex->addr + (tex->height * y + x);
+	pixel = tex->addr + (y * tex->size_line + x * (tex->bpp / 8));
 	color = *(unsigned int *) pixel;
 	return (color);
 }
@@ -44,8 +44,8 @@ void	get_wall_x(t_game *game, t_tex_mapping *tex)
 void	get_tex_x(t_camera *camera, t_tex_mapping *tex)
 {
 	tex->itpl_x[TEX] = (int)(tex->itpl_x[WALL] * (double)tex->tex->width);
-	if (camera->side_touch == VERTICAL && camera->ray_dir[X] > 0)
+	if (camera->side_touch == VERTICAL && camera->ray_dir[X] < 0)
 		tex->itpl_x[TEX] = tex->tex->width - tex->itpl_x[TEX] - 1;
-	if (camera->side_touch == HORIZONTAL && camera->ray_dir[Y] < 0)
+	if (camera->side_touch == HORIZONTAL && camera->ray_dir[Y] > 0)
 		tex->itpl_x[TEX] = tex->tex->width - tex->itpl_x[TEX] - 1;
 }
