@@ -12,6 +12,15 @@
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
 
+# define TORCH1_PATH	"./assets/torch1.xpm"
+# define TORCH2_PATH	"./assets/torch2.xpm"
+# define TORCH3_PATH	"./assets/torch3.xpm"
+# define TORCH4_PATH	"./assets/torch4.xpm"
+# define TORCH5_PATH	"./assets/torch5.xpm"
+# define TORCH6_PATH	"./assets/torch6.xpm"
+# define TORCH7_PATH	"./assets/torch7.xpm"
+# define TORCH8_PATH	"./assets/torch8.xpm"
+
 # define NC "\e[0m"
 # define RED "\e[31m"
 # define BLUE "\e[34m"
@@ -117,6 +126,7 @@ typedef struct s_game
 	int			**grid;
 	t_player	player;
 	t_texture	wall[4];
+	t_texture	torch[8];
 	t_my_img	screen_img;
 }	t_game;
 
@@ -199,6 +209,7 @@ void	do_all_rays(t_game *game, t_camera *camera);
  *========================================================================**/
 void	move_player(int keysym, t_game *game);
 void	draw_player(t_my_img *img, double x, double y, int color);
+void	render_torch(t_game *game);
 /**========================================================================
  *!                              CAMERA
  *========================================================================**/

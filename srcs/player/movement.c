@@ -72,3 +72,15 @@ void	move_player(int keysym, t_game *game)
 		game->player.pos_y += game->player.camera.plane[Y] * SPEED;
 	}
 }
+
+//render torch as animated sprite
+void	render_torch(t_game *game)
+{
+	static int	i = 0;
+
+	mlx_put_image_to_window(game->mlx, game->window, game->torch[i].img,
+		WIDTH / 2, HEIGHT / 2);
+	i++;
+	if (i == 8)
+		i = 0;
+}

@@ -23,7 +23,6 @@ void	fill_map(t_game *game, int x, int y)
 }
 
 //render the 2d img of the map
-//and put the image (3d + 2d) on window
 int	render_map2d(t_game *game)
 {
 	int	x;
@@ -42,6 +41,5 @@ int	render_map2d(t_game *game)
 	}
 	draw_player(&game->screen_img, game->player.pos_y, game->player.pos_x,
 		PLAYER_COLOR);
-	// draw_ray(game, PLAYER_COLOR);
 	return (0);
 }

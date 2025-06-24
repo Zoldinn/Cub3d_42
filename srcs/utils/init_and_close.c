@@ -78,6 +78,8 @@ void	init_pos_player(t_game *game)
 //close mlx and free everything
 int	end_game(t_game *game)
 {
+	int	i;
+
 	mlx_destroy_window(game->mlx, game->window);
 	if (game->wall[WALL_N].img)
 		mlx_destroy_image(game->mlx, game->wall[WALL_N].img);
@@ -87,6 +89,12 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->wall[WALL_W].img);
 	if (game->wall[WALL_E].img)
 		mlx_destroy_image(game->mlx, game->wall[WALL_E].img);
+	i = -1;
+	while (++i < 8)
+	{
+		if (game->torch[i].img)
+			mlx_destroy_image(game->mlx, game->torch[i].img);
+	}
 	if (game->screen_img.mlx_img)
 		mlx_destroy_image(game->mlx, game->screen_img.mlx_img);
 	mlx_destroy_display(game->mlx);
