@@ -46,6 +46,6 @@ void	get_tex_x(t_camera *camera, t_tex_mapping *tex)
 	tex->itpl_x[TEX] = (int)(tex->itpl_x[WALL] * (double)tex->tex->width);
 	if (camera->side_touch == VERTICAL && camera->ray_dir[X] > 0)
 		tex->itpl_x[TEX] = tex->tex->width - tex->itpl_x[TEX] - 1;
-	if (camera->side_touch == HORIZONTAL && camera->ray_dir[X] < 0)
+	if (camera->side_touch == HORIZONTAL && camera->ray_dir[Y] < 0)
 		tex->itpl_x[TEX] = tex->tex->width - tex->itpl_x[TEX] - 1;
 }
