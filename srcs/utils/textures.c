@@ -17,27 +17,19 @@ void	get_textures_wall(t_game *game)
 
 t_texture	new_texture(t_game *game, char *path, int *a, int *b)
 {
-	t_texture	texture;
-	int			x;
-	int			y;
+	t_texture	tex;
 
-	if (*a == 0 && *b == 0)
-	{
-		x = SIZE;
-		y = SIZE;
-		texture.img = mlx_xpm_file_to_image(game->mlx, path, &x, &y);
-	}
-	else
-	{
-		printf("wtf\n");
-		texture.img = mlx_xpm_file_to_image(game->mlx, path, a, b);
-	}
-	if (!texture.img)
+	tex.height = 0;
+	tex.width = 0;
+	tex.img = mlx_xpm_file_to_image(game->mlx, path, &tex.width, &tex.height);
+	if (!tex.img)
 	{
 		printf("Texture not found.\n");
 		end_game(game);
 	}
-	return (texture);
+	tex.addr = mlx_get_data_addr(tex.img,
+		&tex.bpp, &tex.size_line, &tex.endian);
+	return (tex);
 }
 
 void	init_texture(t_game *game)
@@ -47,12 +39,13 @@ void	init_texture(t_game *game)
 	int	height;
 
 	game->wall[WALL_N].img = NULL;
-	// game->wall[WALL_N] = new_texture(game, game->wall[0].path);
+	game->wall[WALL_N] = new_texture(game, game->wall[0].path);
 	game->wall[WALL_S].img = NULL;
-	// game->wall[WALL_S] = new_texture(game, game->wall[1].path);
+	game->wall[WALL_S] = new_texture(game, game->wall[1].path);
 	game->wall[WALL_W].img = NULL;
-	// game->wall[WALL_W] = new_texture(game, game->wall[2].path);
+	game->wall[WALL_W] = new_texture(game, game->wall[2].path);
 	game->wall[WALL_E].img = NULL;
+	game->wall[WALL_E] = new_texture(game, game->wall[3].path);
 	// game->wall[WALL_E] = new_texture(game, game->wall[3].path);
 	i = -1;
 	while (++i < 8)

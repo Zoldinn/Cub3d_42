@@ -1,17 +1,42 @@
 #include "../../cub3d.h"
 
-void	draw_verline(t_my_img *img, t_camera *camera)
+// set the height of the wall, the start/end drawing point
+void	set_drawing_height(t_tex_mapping *tex, t_camera *camera)
 {
-	int	y;
+	tex->line_height = (int) (HEIGHT / camera->raylen);
+	tex->draw_start = (HEIGHT / 2) - (tex->line_height / 2);
+	if (tex->draw_start < 0)
+		tex->draw_start = 0;
+	tex->draw_end = (HEIGHT / 2) + (tex->line_height / 2);
+	if (tex->draw_end >= HEIGHT)
+		tex->draw_end = HEIGHT - 1;
+}
 
-	y = camera->draw_start;
-	while (y <= camera->draw_end)
+// use a bresenham like
+void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera)
+{
+	t_tex_mapping	tex;
+	int				y;
+	int				tex_x;
+
+	tex.tex = get_wall_tex(game, camera);
+	set_drawing_height(&tex, camera);
+	get_wall_x(game, &tex);
+	get_tex_x(camera, &tex);
+	tex_x = (int)tex.itpl_x[TEX];
+	tex.step = (tex.tex->height << 8) / tex.line_height;
+	tex.float_y = (tex.draw_start - HEIGHT / 2 + tex.line_height / 2) * tex.step;
+	y = tex.draw_start - 1;
+	while (++y <= tex.draw_end)
 	{
-		camera->color = WALL_COLOR;
-		if (camera->side_touch == 1)
-			camera->color /= 2;
-		put_pixel(img, camera->x, y, camera->color);
-		y++;
+		tex.int_y = tex.float_y >> 8;
+		if (tex.int_y >= tex.tex->height)
+			tex.int_y = tex.tex->height -1;
+		tex.color = get_tex_pixel_color(tex.tex, tex_x, tex.int_y);
+		if (camera->side_touch == VERTICAL)
+			tex.color = (tex.color >> 1) & 0x7F7F7F;
+		put_pixel(img, camera->x, y, tex.color);
+		tex.float_y += tex.step;
 	}
 }
 
