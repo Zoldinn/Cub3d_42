@@ -123,7 +123,7 @@ typedef struct s_tex_mapping
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
-	double		itpl_x[2];
+	double		x[2];
 	int			color;
 	t_texture	*tex;
 	int			step;
