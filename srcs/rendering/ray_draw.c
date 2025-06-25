@@ -17,13 +17,11 @@ void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera)
 {
 	t_tex_mapping	tex;
 	int				y;
-	int				tex_x;
 
 	tex.tex = get_wall_tex(game, camera);
 	set_drawing_height(&tex, camera);
 	get_wall_x(game, &tex);
 	get_tex_x(camera, &tex);
-	tex_x = (int)tex.itpl_x[TEX];
 	tex.step = (tex.tex->height << 8) / tex.line_height;
 	tex.float_y = (tex.draw_start - HEIGHT / 2 + tex.line_height / 2) * tex.step;
 	y = tex.draw_start - 1;
@@ -32,7 +30,7 @@ void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera)
 		tex.int_y = tex.float_y >> 8;
 		if (tex.int_y >= tex.tex->height)
 			tex.int_y = tex.tex->height -1;
-		tex.color = get_tex_pixel_color(tex.tex, tex_x, tex.int_y);
+		tex.color = get_tex_pixel_color(tex.tex, (int)tex.x[TEX], tex.int_y);
 		if (camera->side_touch == VERTICAL)
 			tex.color = (tex.color >> 1) & 0x7F7F7F;
 		put_pixel(img, camera->x, y, tex.color);
@@ -50,8 +48,8 @@ void	draw_ray(t_game *game, int color)
 	int			x;
 
 	camera = &game->player.camera;
-	x = -1;
-	while (++x < WIDTH)
+	x = 0;
+	while (x < game->map.col_max)
 	{
 		camera_x = 2 * x / (double) game->map.col_max - 1;
 		ray_dir[X] = camera->dir[X] + camera->plane[X] * camera_x;
@@ -65,5 +63,6 @@ void	draw_ray(t_game *game, int color)
 			ray[Y] += ray_dir[Y] * 0.01f;
 			ray[X] += ray_dir[X] * 0.01f;
 		}
+		x += 3;
 	}
 }
