@@ -78,7 +78,7 @@ void	render_torch(t_game *game)
 {
 	static int	i = 0;
 
-	draw_torch(game, &game->torch[i], 20, 0xFF000000);
+	draw_torch(game, &game->torch[i], WIDTH / 160, HEIGHT / 90);
 	i++;
 	if (i == 8)
 		i = 0;

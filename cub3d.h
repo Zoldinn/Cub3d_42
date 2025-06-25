@@ -45,7 +45,7 @@
 # define WIDTH			1920
 # define HEIGHT			1080
 
-# define SIZE			12
+# define SIZE			WIDTH / 160
 # define FOV_DEGREE		66
 # define PI				3.14159265359
 
@@ -105,6 +105,7 @@ typedef struct s_my_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		color;
 }	t_my_img;
 
 typedef struct s_texture
@@ -233,10 +234,10 @@ void		get_tex_x(t_camera *camera, t_tex_mapping *tex);
 /**========================================================================
  *!                              PLAYER
  *========================================================================**/
-void	move_player(int keysym, t_game *game);
-void	draw_player(t_my_img *img, double x, double y, int color);
-void	render_torch(t_game *game);
-void	draw_torch(t_game *game, t_texture *tex, int a, int transparent);
+void		move_player(int keysym, t_game *game);
+void		draw_player(t_my_img *img, double x, double y, int color);
+void		render_torch(t_game *game);
+void		draw_torch(t_game *game, t_texture *tex, int a, int transparent);
 /**========================================================================
  *!                              CAMERA
  *========================================================================**/
