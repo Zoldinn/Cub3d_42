@@ -120,16 +120,14 @@ typedef struct s_player
 
 typedef struct s_tex_mapping
 {
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
+	double		line_height;
+	double		draw_start;
+	double		draw_end;
 	double		x[2];
 	int			color;
 	t_texture	*tex;
-	int			step;
-	int			start_y;
-	int			float_y;
-	int			int_y;
+	double		step;
+	double		y;
 }	t_tex_mapping;
 
 typedef struct s_game
