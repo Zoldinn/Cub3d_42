@@ -53,7 +53,7 @@ void	update_camera_dir(t_camera *camera)
 void	move_camera(int keysym, t_game *game)
 {
 	if (keysym == KEY_LEFT)
-		game->player.camera.angle_rad -= .1f;
+		game->player.camera.angle_rad -= .05f;
 	else if (keysym == KEY_RIGHT)
-		game->player.camera.angle_rad += .1f;
+		game->player.camera.angle_rad += .05f;
 }

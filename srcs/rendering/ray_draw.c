@@ -3,11 +3,11 @@
 // set the height of the wall, the start/end drawing point
 void	set_drawing_height(t_tex_mapping *tex, t_camera *camera)
 {
-	tex->line_height = (int) (HEIGHT / camera->raylen);
-	tex->draw_start = (HEIGHT / 2) - (tex->line_height / 2);
+	tex->line_height = HEIGHT / camera->raylen;
+	tex->draw_start = (HEIGHT / 2.0) - (tex->line_height / 2.0);
 	if (tex->draw_start < 0)
 		tex->draw_start = 0;
-	tex->draw_end = (HEIGHT / 2) + (tex->line_height / 2);
+	tex->draw_end = (HEIGHT / 2.0) + (tex->line_height / 2.0);
 	if (tex->draw_end >= HEIGHT)
 		tex->draw_end = HEIGHT - 1;
 }
@@ -22,19 +22,20 @@ void	draw_vertical_line(t_my_img *img, t_game *game, t_camera *camera)
 	set_drawing_height(&tex, camera);
 	get_wall_x(game, &tex);
 	get_tex_x(camera, &tex);
-	tex.step = (tex.tex->height << 8) / tex.line_height;
-	tex.float_y = (tex.draw_start - HEIGHT / 2 + tex.line_height / 2) * tex.step;
+	tex.step = (double)tex.tex->height / tex.line_height;
+	tex.y = (tex.draw_start - HEIGHT / 2.0 + tex.line_height / 2.0) * tex.step;
 	y = tex.draw_start - 1;
 	while (++y <= tex.draw_end)
 	{
-		tex.int_y = tex.float_y >> 8;
-		if (tex.int_y >= tex.tex->height)
-			tex.int_y = tex.tex->height -1;
-		tex.color = get_tex_pixel_color(tex.tex, (int)tex.x[TEX], tex.int_y);
+		if (tex.y < 0)
+			tex.y = 0;
+		if (tex.y >= tex.tex->height)
+			tex.y = tex.tex->height - 1;
+		tex.color = get_tex_pixel_color(tex.tex, tex.x[TEX], tex.y);
 		if (camera->side_touch == VERTICAL)
 			tex.color = (tex.color >> 1) & 0x7F7F7F;
 		put_pixel(img, camera->x, y, tex.color);
-		tex.float_y += tex.step;
+		tex.y += tex.step;
 	}
 }
 
