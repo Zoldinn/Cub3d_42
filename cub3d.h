@@ -236,6 +236,7 @@ void		get_tex_x(t_camera *camera, t_tex_mapping *tex);
 void	move_player(int keysym, t_game *game);
 void	draw_player(t_my_img *img, double x, double y, int color);
 void	render_torch(t_game *game);
+void	draw_torch(t_game *game, t_texture *tex, int a, int transparent);
 /**========================================================================
  *!                              CAMERA
  *========================================================================**/

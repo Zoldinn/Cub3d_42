@@ -78,8 +78,7 @@ void	render_torch(t_game *game)
 {
 	static int	i = 0;
 
-	mlx_put_image_to_window(game->mlx, game->window, game->torch[i].img,
-		WIDTH / 2, HEIGHT / 2);
+	draw_torch(game, &game->torch[i], 20, 0xFF000000);
 	i++;
 	if (i == 8)
 		i = 0;

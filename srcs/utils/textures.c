@@ -15,7 +15,7 @@ void	get_textures_wall(t_game *game)
 	}
 }
 
-t_texture	new_texture(t_game *game, char *path, int *a, int *b)
+t_texture	new_texture(t_game *game, char *path)
 {
 	t_texture	tex;
 
@@ -35,8 +35,6 @@ t_texture	new_texture(t_game *game, char *path, int *a, int *b)
 void	init_texture(t_game *game)
 {
 	int	i;
-	int	width;
-	int	height;
 
 	game->wall[WALL_N].img = NULL;
 	game->wall[WALL_N] = new_texture(game, game->wall[0].path);
@@ -46,18 +44,17 @@ void	init_texture(t_game *game)
 	game->wall[WALL_W] = new_texture(game, game->wall[2].path);
 	game->wall[WALL_E].img = NULL;
 	game->wall[WALL_E] = new_texture(game, game->wall[3].path);
-	// game->wall[WALL_E] = new_texture(game, game->wall[3].path);
 	i = -1;
 	while (++i < 8)
 		game->torch[i].img = NULL;
-	height = 1000;
-	width = 1000;
-	game->torch[0] = new_texture(game, TORCH1_PATH, &width, &height);
-	game->torch[1] = new_texture(game, TORCH2_PATH, &width, &height);
-	game->torch[2] = new_texture(game, TORCH3_PATH, &width, &height);
-	game->torch[3] = new_texture(game, TORCH4_PATH, &width, &height);
-	game->torch[4] = new_texture(game, TORCH5_PATH, &width, &height);
-	game->torch[5] = new_texture(game, TORCH6_PATH, &width, &height);
-	game->torch[6] = new_texture(game, TORCH7_PATH, &width, &height);
-	game->torch[7] = new_texture(game, TORCH8_PATH, &width, &height);
+	game->torch[0] = new_texture(game, TORCH1_PATH);
+	game->torch[1] = new_texture(game, TORCH2_PATH);
+	game->torch[2] = new_texture(game, TORCH3_PATH);
+	game->torch[3] = new_texture(game, TORCH4_PATH);
+	game->torch[4] = new_texture(game, TORCH5_PATH);
+	game->torch[5] = new_texture(game, TORCH6_PATH);
+	game->torch[6] = new_texture(game, TORCH7_PATH);
+	game->torch[7] = new_texture(game, TORCH8_PATH);
+	game->torch->width = 60;
+	game->torch->height = 60;
 }

@@ -36,9 +36,9 @@ int	render_loop(t_game *game)
 {
 	render_map(game);
 	render_map2d(game);
+	render_torch(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
 		0, 0);
-	render_torch(game);
 	return (0);
 }
 
@@ -56,12 +56,13 @@ void	init(t_game *game)
 	update_camera_dir(&game->player.camera);
 	render_map(game);
 	render_map2d(game);
+	render_torch(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
 		0, 0);
-	render_torch(game);
 	// mlx_mouse_hide(game->mlx, game->window);
 	mlx_mouse_move(game->mlx, game->window, WIDTH / 2, HEIGHT / 2);
 }
+
 
 int	main(int argc, char **argv)
 {

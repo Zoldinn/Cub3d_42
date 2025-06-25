@@ -46,3 +46,24 @@ void	draw_player(t_my_img *img, double x, double y, int color)
 		i++;
 	}
 }
+
+void	draw_torch(t_game *game, t_texture *tex, int a, int transparent)
+{
+	int		color;
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < tex->height)
+	{
+		x = 0;
+		while (x < tex->width)
+		{
+			color = get_tex_pixel_color(tex, x, y);
+			if (color != transparent)
+				draw_square(&game->screen_img, y + a, x + a, color);
+			x++;
+		}
+		y++;
+	}
+}
