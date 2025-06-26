@@ -68,7 +68,6 @@ void	init(t_game *game)
 	render_torch(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
 		0, 0);
-	// mlx_mouse_hide(game->mlx, game->window);
 	mlx_mouse_move(game->mlx, game->window, WIDTH / 2, HEIGHT / 2);
 }
 
@@ -85,6 +84,7 @@ int	main(int argc, char **argv)
 	ft_memset(&game.input, 0, sizeof(t_input));
 	mlx_hook(game.window, KeyPress, KeyPressMask, &key_press, &game);
 	mlx_hook(game.window, KeyRelease, KeyReleaseMask, &key_release, &game);
+	mlx_hook(game.window, 6, PointerMotionMask, &mouse_move, &game);
 	mlx_hook(game.window, DestroyNotify, StructureNotifyMask, &end_game, &game);
 	mlx_loop_hook(game.mlx, &handle_input, &game);
 	mlx_loop(game.mlx);

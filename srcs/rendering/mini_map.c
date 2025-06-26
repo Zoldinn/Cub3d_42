@@ -41,6 +41,5 @@ int	render_map2d(t_game *game)
 	}
 	draw_player(&game->screen_img, game->player.pos_y, game->player.pos_x,
 		PLAYER_COLOR);
-	// draw_ray(game, PLAYER_COLOR);
 	return (0);
 }
