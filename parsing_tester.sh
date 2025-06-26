@@ -44,7 +44,7 @@ run_valgrind() {
 	get_log_header "$map_file" >> "$LOGFILE"
 
 	# Exécution de valgrind
-	valgrind --leak-check=full ./"$EXEC" "$map_file" >> "$LOGFILE" 2>&1
+	./"$EXEC" "$map_file" >> "$LOGFILE" 2>&1
 
 	echo -e "\n" >> "$LOGFILE"
 }

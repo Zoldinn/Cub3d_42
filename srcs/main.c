@@ -13,7 +13,6 @@ int	handle_input(void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	printf("%sprout%s\n", YELLOW, NC);
 	if (game->input.w)
 		move_player(KEY_W, game);
 	if (game->input.a)

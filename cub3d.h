@@ -40,7 +40,7 @@
 # define FOV_DEGREE		66
 # define PI				3.14159265359
 
-# define SPEED			0.2f
+# define SPEED			0.1f
 # define WALL_N			0
 # define WALL_S			1
 # define WALL_W			2
@@ -150,16 +150,6 @@ typedef struct s_game
 	t_texture	wall[4];
 	t_my_img	screen_img;
 }	t_game;
-
-typedef enum e_id
-{
-	NO,
-	SO,
-	WE,
-	EA,
-	F,
-	C
-}	t_id;
 
 /**========================================================================
  *!                           CHECK ERRORS

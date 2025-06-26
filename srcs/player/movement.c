@@ -89,7 +89,6 @@ int	key_press(int keycode, t_game *game)
 		game->input.right = 1;
 	if (keycode == KEY_ESC)
 		end_game(game);
-	printf("key pressed : %d\n", keycode);
 	return (0);
 }
 
@@ -107,6 +106,5 @@ int	key_release(int keycode, t_game *game)
 		game->input.left = 0;
 	if (keycode == KEY_RIGHT)
 		game->input.right = 0;
-	printf("key realeased : %d\n", keycode);
 	return (0);
 }
