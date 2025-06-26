@@ -212,6 +212,7 @@ void		get_textures_wall(t_game *game);
  *========================================================================**/
 void		render_map(t_game *game);
 int			render_map2d(t_game *game);
+int			render_loop(t_game *game);
 void		put_pixel(t_my_img *img, int x, int y, int color);
 void		fill_map(t_game *game, int x, int y);
 void		draw_square(t_my_img *img, double x, double y, int color);

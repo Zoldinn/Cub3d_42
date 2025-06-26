@@ -1,13 +1,5 @@
 #include "../cub3d.h"
 
-void	render_loop(t_game *game)
-{
-	render_map(game);
-	render_map2d(game);
-	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
-		0, 0);
-}
-
 int	handle_input(void *param)
 {
 	t_game	*game;
