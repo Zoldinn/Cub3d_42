@@ -108,16 +108,3 @@ int	key_release(int keycode, t_game *game)
 		game->input.right = 0;
 	return (0);
 }
-
-//render torch as animated sprite
-void	render_torch(t_game *game)
-{
-	static int	i = 0;
-	int			framerate;
-	
-	framerate = 4;
-	draw_torch(game, &game->torch[i / framerate]);
-	i++;
-	if (i == 8 * framerate)
-		i = 0;
-}

@@ -27,7 +27,6 @@ int	handle_input(void *param)
 	return (0);
 }
 
-
 int	mouse_move(int x, int y, t_game *game)
 {
 	(void)y;
@@ -72,7 +71,6 @@ void	init(t_game *game)
 	// mlx_mouse_hide(game->mlx, game->window);
 	mlx_mouse_move(game->mlx, game->window, WIDTH / 2, HEIGHT / 2);
 }
-
 
 int	main(int argc, char **argv)
 {
