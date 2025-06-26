@@ -80,15 +80,14 @@ int	end_game(t_game *game)
 {
 	int	i;
 
+	free_map(&game->map);
 	mlx_destroy_window(game->mlx, game->window);
-	if (game->wall[WALL_N].img)
-		mlx_destroy_image(game->mlx, game->wall[WALL_N].img);
-	if (game->wall[WALL_S].img)
-		mlx_destroy_image(game->mlx, game->wall[WALL_S].img);
-	if (game->wall[WALL_W].img)
-		mlx_destroy_image(game->mlx, game->wall[WALL_W].img);
-	if (game->wall[WALL_E].img)
-		mlx_destroy_image(game->mlx, game->wall[WALL_E].img);
+	i = -1;
+	while (++i < 4)
+	{
+		if (game->wall[i].img)
+			mlx_destroy_image(game->mlx, game->wall[i].img);
+	}
 	i = -1;
 	while (++i < 8)
 	{
@@ -99,8 +98,6 @@ int	end_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->screen_img.mlx_img);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	free_map(&game->map);
-	free_walls_texture(game);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

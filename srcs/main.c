@@ -73,7 +73,6 @@ void	init(t_game *game)
 	mlx_mouse_move(game->mlx, game->window, WIDTH / 2, HEIGHT / 2);
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
