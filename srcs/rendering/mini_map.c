@@ -9,21 +9,20 @@ void	fill_map(t_game *game, int x, int y)
 	{
 		pos = game->map.map[x][y];
 		if (pos == '1')
-			draw_square(&game->screen_img, x, y, WALL_COLOR);
+			draw_square(&game->screen_img, y, x, WALL_COLOR);
 		if (pos == '0' || (pos == 'N' || pos == 'S' || pos == 'W'
 				|| pos == 'E'))
-			draw_square(&game->screen_img, x, y, FLOOR_COLOR);
+			draw_square(&game->screen_img, y, x, FLOOR_COLOR);
 		if (pos == ' ')
-			draw_square(&game->screen_img, x, y, EMPTY_COLOR);
+			draw_square(&game->screen_img, y, x, EMPTY_COLOR);
 		if (pos == 'D')
-			draw_square(&game->screen_img, x, y, DOOR_COLOR);
+			draw_square(&game->screen_img, y, x, DOOR_COLOR);
 	}
 	else
-		draw_square(&game->screen_img, x, y, OOB_COLOR);
+		draw_square(&game->screen_img, y, x, OOB_COLOR);
 }
 
 //render the 2d img of the map
-//and put the image (3d + 2d) on window
 int	render_map2d(t_game *game)
 {
 	int	x;
@@ -42,6 +41,6 @@ int	render_map2d(t_game *game)
 	}
 	draw_player(&game->screen_img, game->player.pos_y, game->player.pos_x,
 		PLAYER_COLOR);
-	draw_ray(game, PLAYER_COLOR);
+	// draw_ray(game, PLAYER_COLOR);
 	return (0);
 }

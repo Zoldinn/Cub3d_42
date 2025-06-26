@@ -12,6 +12,15 @@
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
 
+# define TORCH1_PATH	"./assets/torch1.xpm"
+# define TORCH2_PATH	"./assets/torch2.xpm"
+# define TORCH3_PATH	"./assets/torch3.xpm"
+# define TORCH4_PATH	"./assets/torch4.xpm"
+# define TORCH5_PATH	"./assets/torch5.xpm"
+# define TORCH6_PATH	"./assets/torch6.xpm"
+# define TORCH7_PATH	"./assets/torch7.xpm"
+# define TORCH8_PATH	"./assets/torch8.xpm"
+
 # define NC "\e[0m"
 # define RED "\e[31m"
 # define BLUE "\e[34m"
@@ -36,7 +45,7 @@
 # define WIDTH			1920
 # define HEIGHT			1080
 
-# define SIZE			12
+# define SIZE			WIDTH / 160
 # define FOV_DEGREE		66
 # define PI				3.14159265359
 
@@ -106,6 +115,7 @@ typedef struct s_my_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		color;
 }	t_my_img;
 
 typedef struct s_texture
@@ -148,6 +158,7 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_texture	wall[4];
+	t_texture	torch[8];
 	t_my_img	screen_img;
 }	t_game;
 
@@ -226,6 +237,8 @@ void		move_player(int keysym, t_game *game);
 void		draw_player(t_my_img *img, double x, double y, int color);
 int			key_press(int keycode, t_game *game);
 int			key_release(int keycode, t_game *game);
+void		render_torch(t_game *game);
+void		draw_torch(t_game *game, t_texture *tex);
 /**========================================================================
  *!                              CAMERA
  *========================================================================**/

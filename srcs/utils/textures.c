@@ -34,6 +34,8 @@ t_texture	new_texture(t_game *game, char *path)
 
 void	init_texture(t_game *game)
 {
+	int	i;
+
 	game->wall[WALL_N].img = NULL;
 	game->wall[WALL_N] = new_texture(game, game->wall[0].path);
 	game->wall[WALL_S].img = NULL;
@@ -42,4 +44,19 @@ void	init_texture(t_game *game)
 	game->wall[WALL_W] = new_texture(game, game->wall[2].path);
 	game->wall[WALL_E].img = NULL;
 	game->wall[WALL_E] = new_texture(game, game->wall[3].path);
+	i = -1;
+	while (++i < 8)
+	{
+		game->torch[i].img = NULL;
+		game->torch[i].width = 60;
+		game->torch[i].height = 60;
+	}
+	game->torch[0] = new_texture(game, TORCH1_PATH);
+	game->torch[1] = new_texture(game, TORCH2_PATH);
+	game->torch[2] = new_texture(game, TORCH3_PATH);
+	game->torch[3] = new_texture(game, TORCH4_PATH);
+	game->torch[4] = new_texture(game, TORCH5_PATH);
+	game->torch[5] = new_texture(game, TORCH6_PATH);
+	game->torch[6] = new_texture(game, TORCH7_PATH);
+	game->torch[7] = new_texture(game, TORCH8_PATH);
 }
