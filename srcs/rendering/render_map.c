@@ -1,31 +1,5 @@
 #include "../../cub3d.h"
 
-// draw_wall(int *img)
-// {
-// 	*img = color;
-// }
-
-// void	draw_all()
-// {
-// 	int *img;
-
-// 	img = img;
-// 	while (++y < HEIGHT)
-// 	{
-// 		while (++x < WIDTH)
-// 		{
-// 			data->camera[x];
-// 			if (y < camera.draw_start)
-// 				//draw_ceilcolor
-// 			else if (y > camera.draw_end)
-// 				//draw_floorcolor
-// 			else
-// 				//draw_wall
-// 			img++;
-// 		}
-// 	}
-// }
-
 //draw background split horizontaly
 //top half is the ceiling
 //bottom half is the floor
