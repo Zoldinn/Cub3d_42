@@ -30,18 +30,6 @@ void	free_map(t_map *map)
 		free(map->door_pos_y);
 }
 
-void	free_walls_texture(t_game *game)
-{
-	if (game->wall[0].path != NULL)
-		free(game->wall[0].path);
-	if (game->wall[1].path != NULL)
-		free(game->wall[1].path);
-	if (game->wall[2].path != NULL)
-		free(game->wall[2].path);
-	if (game->wall[3].path != NULL)
-		free(game->wall[3].path);
-}
-
 void	free_and_exit(t_map *map, int code)
 {
 	free_map(map);
@@ -58,10 +46,8 @@ void	free_arr(char **arr)
 		while (i < arrlen(arr))
 		{
 			free(arr[i]);
-			arr[i] = NULL;
 			i++;
 		}
 		free(arr);
-		arr = NULL;
 	}
 }

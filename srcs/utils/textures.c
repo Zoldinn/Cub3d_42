@@ -8,6 +8,7 @@ void	get_textures_wall(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
+		game->wall[i].path = NULL;
 		arr = ft_split(game->map.txt[i], " \t");
 		game->wall[i].path = ft_strdup(arr[1]);
 		free_arr(arr);
@@ -32,18 +33,10 @@ t_texture	new_texture(t_game *game, char *path)
 	return (tex);
 }
 
-void	init_texture(t_game *game)
+void	init_torch(t_game *game)
 {
 	int	i;
 
-	game->wall[WALL_N].img = NULL;
-	game->wall[WALL_N] = new_texture(game, game->wall[0].path);
-	game->wall[WALL_S].img = NULL;
-	game->wall[WALL_S] = new_texture(game, game->wall[1].path);
-	game->wall[WALL_W].img = NULL;
-	game->wall[WALL_W] = new_texture(game, game->wall[2].path);
-	game->wall[WALL_E].img = NULL;
-	game->wall[WALL_E] = new_texture(game, game->wall[3].path);
 	i = -1;
 	while (++i < 8)
 	{
@@ -59,4 +52,22 @@ void	init_texture(t_game *game)
 	game->torch[5] = new_texture(game, TORCH6_PATH);
 	game->torch[6] = new_texture(game, TORCH7_PATH);
 	game->torch[7] = new_texture(game, TORCH8_PATH);
+}
+
+void	init_texture(t_game *game)
+{
+	char	*path_temp;
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		path_temp = ft_strdup(game->wall[i].path);
+		free(game->wall[i].path);
+		game->wall[i].img = NULL;
+		game->wall[i] = new_texture(game, path_temp);
+		free(path_temp);
+		i++;
+	}
+	init_torch(game);
 }
