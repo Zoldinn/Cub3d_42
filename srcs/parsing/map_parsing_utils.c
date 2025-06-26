@@ -44,7 +44,7 @@ void	error_in_comparing(t_map *map, char *temp, char *file_temp)
 {
 	free(temp);
 	free(file_temp);
-	p_er("2 Empty lines are not allowed in the map");
+	p_er("Empty lines are not allowed in the map");
 	free_and_exit(map, 1);
 }
 
@@ -62,13 +62,10 @@ void	compare_maps(t_map *map, char *file_temp, int i)
 	while (map->map[index_map])
 	{
 		j = i;
-		printf("file_temp = %s\n", file_temp);
 		while (file_temp[j] && file_temp[j] != '\n')
 			j++;
 		temp = ft_substr(file_temp, i, j - i);
-		printf("temp = %s\n", temp);
 		i += (j - i) + 1;
-		printf("map->map[%d] = %s\n", index_map, map->map[index_map]);
 		if (ft_cmpstr(map->map[index_map], temp) != 0 || temp[0] == '\n')
 			error_in_comparing(map, temp, file_temp);
 		if (!temp || temp[0] == '\0')
@@ -100,7 +97,7 @@ void	check_empty_lines_map(t_map *map, char *file_temp)
 	}
 	if (j != map->rows)
 	{
-		p_er("1  Empty lines are not allowed in the map");
+		p_er("Empty lines are not allowed in the map");
 		free(file_temp);
 		free_and_exit(map, 1);
 	}
