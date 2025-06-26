@@ -20,7 +20,8 @@ SRC = $(addprefix $(DIR_SRC)/, main.c \
 	rendering/pixels.c \
 	raycast/camera.c \
 	raycast/raycasting.c \
-	player/movement.c)
+	player/movement.c \
+	player/torch.c)
 
 DIR_OBJ = objs
 OBJ = $(SRC:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
