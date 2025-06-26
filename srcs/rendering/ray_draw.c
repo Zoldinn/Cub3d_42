@@ -64,6 +64,6 @@ void	draw_ray(t_game *game, int color)
 			ray[Y] += ray_dir[Y] * 0.01f;
 			ray[X] += ray_dir[X] * 0.01f;
 		}
-		x += 3;
+		x += 1;
 	}
 }

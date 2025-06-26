@@ -1,22 +1,41 @@
 #include "../cub3d.h"
 
-//called by mlx_hook when a key is pressed
-int	handle_keypress(int keysym, t_game *game)
+void	render_loop(t_game *game)
 {
-	if (keysym == KEY_ESC)
-		end_game(game);
-	if (keysym == KEY_W || keysym == KEY_A || keysym == KEY_S
-		|| keysym == KEY_D || keysym == KEY_LEFT || keysym == KEY_RIGHT)
+	render_map(game);
+	render_map2d(game);
+	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
+		0, 0);
+}
+
+int	handle_input(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	printf("%sprout%s\n", YELLOW, NC);
+	if (game->input.w)
+		move_player(KEY_W, game);
+	if (game->input.a)
+		move_player(KEY_A, game);
+	if (game->input.s)
+		move_player(KEY_S, game);
+	if (game->input.d)
+		move_player(KEY_D, game);
+	if (game->input.left)
 	{
-		if (keysym == KEY_LEFT || keysym == KEY_RIGHT)
-		{
-			move_camera(keysym, game);
-			update_camera_dir(&game->player.camera);
-		}
-		move_player(keysym, game);
+		move_camera(KEY_LEFT, game);
+		update_camera_dir(&game->player.camera);
 	}
+	if (game->input.right)
+	{
+		move_camera(KEY_RIGHT, game);
+		update_camera_dir(&game->player.camera);
+	}
+	render_loop(game);
 	return (0);
 }
+
 
 int	mouse_move(int x, int y, t_game *game)
 {
@@ -32,14 +51,6 @@ int	mouse_move(int x, int y, t_game *game)
 	return (0);
 }
 
-int	render_loop(t_game *game)
-{
-	render_map(game);
-	render_map2d(game);
-	mlx_put_image_to_window(game->mlx, game->window, game->screen_img.mlx_img,
-		0, 0);
-	return (0);
-}
 
 void	init(t_game *game)
 {
@@ -71,11 +82,11 @@ int	main(int argc, char **argv)
 	if (check_file(argv[1], &game.map) != 0)
 		return (free_map(&game.map), 1);
 	init(&game);
-	mlx_hook(game.window, DestroyNotify, StructureNotifyMask,
-		&end_game, &game);
-	mlx_hook(game.window, 6, PointerMotionMask, &mouse_move, &game);
-	mlx_hook(game.window, KeyPress, KeyPressMask, &handle_keypress, &game);
-	mlx_loop_hook(game.mlx, &render_loop, &game);
+	ft_memset(&game.input, 0, sizeof(t_input));
+	mlx_hook(game.window, KeyPress, KeyPressMask, &key_press, &game);
+	mlx_hook(game.window, KeyRelease, KeyReleaseMask, &key_release, &game);
+	mlx_hook(game.window, DestroyNotify, StructureNotifyMask, &end_game, &game);
+	mlx_loop_hook(game.mlx, &handle_input, &game);
 	mlx_loop(game.mlx);
 	free_map(&game.map);
 	return (0);

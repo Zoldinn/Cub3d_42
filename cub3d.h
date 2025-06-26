@@ -57,6 +57,16 @@
 # define WALL			0
 # define TEX			1
 
+typedef struct s_input
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_input;
+
 typedef struct s_map
 {
 	char	**data;
@@ -134,6 +144,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*window;
+	t_input		input;
 	t_map		map;
 	t_player	player;
 	t_texture	wall[4];
@@ -223,6 +234,8 @@ void		get_tex_x(t_camera *camera, t_tex_mapping *tex);
  *========================================================================**/
 void		move_player(int keysym, t_game *game);
 void		draw_player(t_my_img *img, double x, double y, int color);
+int			key_press(int keycode, t_game *game);
+int			key_release(int keycode, t_game *game);
 /**========================================================================
  *!                              CAMERA
  *========================================================================**/

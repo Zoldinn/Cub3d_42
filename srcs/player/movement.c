@@ -72,3 +72,41 @@ void	move_player(int keysym, t_game *game)
 		game->player.pos_y += game->player.camera.plane[Y] * SPEED;
 	}
 }
+
+int	key_press(int keycode, t_game *game)
+{
+	if (keycode == KEY_W)
+		game->input.w = 1;
+	if (keycode == KEY_S)
+		game->input.s = 1;
+	if (keycode == KEY_A)
+		game->input.a = 1;
+	if (keycode == KEY_D)
+		game->input.d = 1;
+	if (keycode == KEY_LEFT)
+		game->input.left = 1;
+	if (keycode == KEY_RIGHT)
+		game->input.right = 1;
+	if (keycode == KEY_ESC)
+		end_game(game);
+	printf("key pressed : %d\n", keycode);
+	return (0);
+}
+
+int	key_release(int keycode, t_game *game)
+{
+	if (keycode == KEY_W)
+		game->input.w = 0;
+	if (keycode == KEY_S)
+		game->input.s = 0;
+	if (keycode == KEY_A)
+		game->input.a = 0;
+	if (keycode == KEY_D)
+		game->input.d = 0;
+	if (keycode == KEY_LEFT)
+		game->input.left = 0;
+	if (keycode == KEY_RIGHT)
+		game->input.right = 0;
+	printf("key realeased : %d\n", keycode);
+	return (0);
+}
