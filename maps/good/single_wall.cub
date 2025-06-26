@@ -1,7 +1,7 @@
-WE	./assets/colorstone.xpm
-NO	./assets/colorstone.xpm
-SO	./assets/colorstone.xpm
-EA	./assets/colorstone.xpm
+WE	./textures/colorstone.xpm
+NO	./textures/colorstone.xpm
+SO	./textures/colorstone.xpm
+EA	./textures/colorstone.xpm
 F	69, 222, 199
 C	235, 198, 52
 

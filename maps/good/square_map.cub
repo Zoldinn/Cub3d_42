@@ -1,12 +1,12 @@
-   WE                            ./assets/colorstone.xpm 
-NO      ./assets/greystone.xpm
+   WE                            ./textures/colorstone.xpm 
+NO      ./textures/greystone.xpm
 
 
-SO ./assets/mossy.xpm
+SO ./textures/mossy.xpm
 
 F   61, 47, 29
 
-EA ./assets/purplestone.xpm
+EA ./textures/purplestone.xpm
 
 
 
