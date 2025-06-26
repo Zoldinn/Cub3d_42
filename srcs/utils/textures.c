@@ -46,7 +46,11 @@ void	init_texture(t_game *game)
 	game->wall[WALL_E] = new_texture(game, game->wall[3].path);
 	i = -1;
 	while (++i < 8)
+	{
 		game->torch[i].img = NULL;
+		game->torch[i].width = 60;
+		game->torch[i].height = 60;
+	}
 	game->torch[0] = new_texture(game, TORCH1_PATH);
 	game->torch[1] = new_texture(game, TORCH2_PATH);
 	game->torch[2] = new_texture(game, TORCH3_PATH);
@@ -55,6 +59,4 @@ void	init_texture(t_game *game)
 	game->torch[5] = new_texture(game, TORCH6_PATH);
 	game->torch[6] = new_texture(game, TORCH7_PATH);
 	game->torch[7] = new_texture(game, TORCH8_PATH);
-	game->torch->width = 60;
-	game->torch->height = 60;
 }

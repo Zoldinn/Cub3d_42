@@ -77,9 +77,11 @@ void	move_player(int keysym, t_game *game)
 void	render_torch(t_game *game)
 {
 	static int	i = 0;
-
-	draw_torch(game, &game->torch[i], WIDTH / 160, HEIGHT / 90);
+	int			framerate;
+	
+	framerate = 4;
+	draw_torch(game, &game->torch[i / framerate]);
 	i++;
-	if (i == 8)
+	if (i == 8 * framerate)
 		i = 0;
 }

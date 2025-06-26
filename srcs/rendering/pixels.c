@@ -51,21 +51,23 @@ void	draw_pixel_torch(t_my_img *img, int x, int y, int size)
 {
 	int	i;
 	int	j;
+	int	height;
 
+	height = HEIGHT - (size * y);
 	i = 0;
 	while (i < size)
 	{
 		j = 0;
 		while (j < size)
 		{
-			put_pixel(img, (size * x) + i, (size * y) + j, img->color);
+			put_pixel(img, (size * x) + i, height + j, img->color);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	draw_torch(t_game *game, t_texture *tex, int a, int b)
+void	draw_torch(t_game *game, t_texture *tex)
 {
 	int		transparent;
 	int		x;
@@ -74,16 +76,17 @@ void	draw_torch(t_game *game, t_texture *tex, int a, int b)
 
 	transparent = 0xFF000000;
 	size = WIDTH / 160;
-	y = 0;
-	while (y < tex->height)
+	y = 10;
+	while (y < tex->height - 10)
 	{
 		x = 0;
 		while (x < tex->width)
 		{
-			game->screen_img.color = get_tex_pixel_color(tex, x, y);
-			if (game->screen_img.color != transparent && (x + a) * size < WIDTH
-				&& (y + b) * size < HEIGHT)
-				draw_pixel_torch(&game->screen_img, x + a, y + b, size);
+			game->screen_img.color = get_tex_pixel_color(tex, x,
+				tex->height - y);
+			if (game->screen_img.color != transparent && (x + size) * size < WIDTH
+				&& y * size < HEIGHT)
+				draw_pixel_torch(&game->screen_img, x + size, y - 10, size);
 			x++;
 		}
 		y++;
