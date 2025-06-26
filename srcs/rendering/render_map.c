@@ -1,30 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmenard <pmenard@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/26 16:13:27 by pmenard           #+#    #+#             */
+/*   Updated: 2025/06/26 16:13:27 by pmenard          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3d.h"
-
-// draw_wall(int *img)
-// {
-// 	*img = color;
-// }
-
-// void	draw_all()
-// {
-// 	int *img;
-
-// 	img = img;
-// 	while (++y < HEIGHT)
-// 	{
-// 		while (++x < WIDTH)
-// 		{
-// 			data->camera[x];
-// 			if (y < camera.draw_start)
-// 				//draw_ceilcolor
-// 			else if (y > camera.draw_end)
-// 				//draw_floorcolor
-// 			else
-// 				//draw_wall
-// 			img++;
-// 		}
-// 	}
-// }
 
 //draw background split horizontaly
 //top half is the ceiling
