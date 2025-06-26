@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_and_close.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmenard <pmenard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:12:49 by pmenard           #+#    #+#             */
-/*   Updated: 2025/06/26 16:12:50 by pmenard          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:25:53 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	init_pos_player(t_game *game)
 			}
 			else if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
 			{
-				game->player.pos_x = j;
-				game->player.pos_y = i;
+				game->player.pos_x = j + .5f;
+				game->player.pos_y = i + .5f;
 			}
 		}
 	}
